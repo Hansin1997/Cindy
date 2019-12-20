@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Cindy.Storages
 {
+    [AddComponentMenu("Cindy/StorableObject/TransformStorableObject",1)]
     [DisallowMultipleComponent]
     public class TransformStorableObject : AbstractStorableObject
     {

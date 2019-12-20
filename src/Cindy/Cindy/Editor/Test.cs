@@ -9,7 +9,7 @@ namespace Cindy.Editor
         [MenuItem("Cindy/Test")]
         public static void TestA()
         {
-            Debug.Log("Test");
+            Debug.Log("TestA");
         }
     }
 }
