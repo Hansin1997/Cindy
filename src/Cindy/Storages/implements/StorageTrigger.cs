@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cindy.Storages.implements
+namespace Cindy.Storages
 {
     public class StorageTrigger : MonoBehaviour
     {
