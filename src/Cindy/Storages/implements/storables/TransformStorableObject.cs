@@ -1,8 +1,10 @@
 ﻿using System;
 using Cindy.serializables;
+using UnityEngine;
 
 namespace Cindy.Storages
 {
+    [DisallowMultipleComponent]
     public class TransformStorableObject : AbstractStorableObject
     {
 

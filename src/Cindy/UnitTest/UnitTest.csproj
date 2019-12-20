@@ -60,9 +60,9 @@
       <Project>{b9107f87-e67a-41f7-8cb6-6537dd290c3d}</Project>
       <Name>Cindy</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Storages\Storages.csproj">
+    <ProjectReference Include="..\Storages\Cindy.Storages.csproj">
       <Project>{d9c15e60-9a0d-4aee-83bd-70a73bc6ad43}</Project>
-      <Name>Storages</Name>
+      <Name>Cindy.Storages</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
