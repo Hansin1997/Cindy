@@ -29,9 +29,11 @@ namespace Cindy.Storages
 
         public override void OnPutStorableObject(object obj)
         {
+            bool active = gameObject.activeSelf;
+            gameObject.SetActive(false);
             if (obj is SerializedTransform serializedTransform)
                 serializedTransform.SetTransform(transform, transformOptions.position, transformOptions.rotation, transformOptions.scale);
-
+            gameObject.SetActive(active);
         }
     }
 

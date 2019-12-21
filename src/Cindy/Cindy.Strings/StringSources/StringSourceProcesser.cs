@@ -26,7 +26,7 @@ namespace Cindy.Strings
                         {
                             if(kv.key == null || kv.key.Length != 2)
                             {
-                                Debug.Log("StringSourceProcesser Error: Parameter sources key must be two char.");
+                                Debug.LogError("StringSourceProcesser Error: Parameter sources key must be two char.");
                                 continue;
                             }
                             if (kv.value == null)
