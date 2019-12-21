@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cindy.Strings", "Cindy.Strings\Cindy.Strings.csproj", "{90D1BB86-FF23-475E-A403-088586184477}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cindy.Control", "Cindy.Control\Cindy.Control.csproj", "{035FFFDC-0F37-43A3-887C-1B15A6D46C64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{90D1BB86-FF23-475E-A403-088586184477}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90D1BB86-FF23-475E-A403-088586184477}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90D1BB86-FF23-475E-A403-088586184477}.Release|Any CPU.Build.0 = Release|Any CPU
+		{035FFFDC-0F37-43A3-887C-1B15A6D46C64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{035FFFDC-0F37-43A3-887C-1B15A6D46C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{035FFFDC-0F37-43A3-887C-1B15A6D46C64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{035FFFDC-0F37-43A3-887C-1B15A6D46C64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

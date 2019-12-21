@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Cindy.Strings
 {
-    [CreateAssetMenu(fileName = "StringSource", menuName = "Cindy/StringSources/SimpleStringSource", order = 1)]
+    [CreateAssetMenu(fileName = "SimpleStringSource", menuName = "Cindy/StringSources/SimpleStringSource", order = 1)]
     public class SimpleStringSource : StringSource
     {
         [SerializeField]
