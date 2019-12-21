@@ -20,20 +20,32 @@ namespace Cindy.Storages
 
         public virtual void Start()
         {
-            if (option.loadOnStart && storage != null)
-                storage.LoadObjects(FindObjects());
+            if (option.loadOnStart)
+                LoadObjects();
 
         }
 
         public virtual void OnApplicationPause(bool pause)
         {
-            if (option.saveOnPause && storage != null && pause)
-                storage.PutObjects(FindObjects());
+            if (option.saveOnPause && pause)
+                SaveObjects();
         }
 
         public virtual void OnApplicationQuit()
         {
-            if (option.saveOnQuit && storage != null)
+            if (option.saveOnQuit)
+                SaveObjects();
+        }
+
+        public void LoadObjects()
+        {
+            if(storage != null)
+                storage.LoadObjects(FindObjects());
+        }
+
+        public void SaveObjects()
+        {
+            if (storage != null)
                 storage.PutObjects(FindObjects());
         }
 
