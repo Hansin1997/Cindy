@@ -6,10 +6,10 @@ namespace Cindy.Editor
 {
     public class Test : ScriptableObject
     {
-        [MenuItem("Cindy/Test")]
+        [MenuItem("Cindy/TestA")]
         public static void TestA()
         {
-            Debug.Log("TestA");
+            Debug.Log("A");
         }
     }
 }

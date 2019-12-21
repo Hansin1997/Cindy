@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Cindy</RootNamespace>
     <AssemblyName>Cindy</AssemblyName>
+    <ApplicationIcon />
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Cindy.Control\Cindy.Control.csproj" />
     <ProjectReference Include="..\Cindy.Strings\Cindy.Strings.csproj" />
     <ProjectReference Include="..\Storages\Cindy.Storages.csproj" />
   </ItemGroup>

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -9,9 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="UnityEditor">
-      <HintPath>..\libs\UnityEditor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\libs\UnityEngine.dll</HintPath>
     </Reference>
