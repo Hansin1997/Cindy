@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Cindy.Control.Controllables
 {
@@ -9,6 +8,8 @@ namespace Cindy.Control.Controllables
         protected CharacterController characterController;
 
         protected Vector3 direction;
+
+        public bool useGravity = true;
 
         protected virtual void OnEnable()
         {
@@ -20,9 +21,17 @@ namespace Cindy.Control.Controllables
         {
             if(IsControllable())
             {
-                characterController.SimpleMove(direction * Time.fixedDeltaTime);
+                
             }
-
+            if (useGravity)
+            {
+                if (characterController.isGrounded)
+                    direction.y = 0;
+                else
+                    direction += Physics.gravity * Time.fixedDeltaTime;
+            }
+            characterController.Move(direction * Time.fixedDeltaTime);
+            
         }
 
         protected virtual void OnControllerColliderHit(ControllerColliderHit hit)
@@ -37,14 +46,15 @@ namespace Cindy.Control.Controllables
                     Vector3 vector = (r.mass * r.velocity + rigbody.mass * characterController.velocity) / (r.mass + rigbody.mass);
 
                     r.velocity = vector;
-                    direction = vector;
                 }
             }
         }
 
         protected override void DoMove(Vector3 direction)
         {
+            float y = this.direction.y;
             this.direction = direction * (rigbody.movingPower / rigbody.mass);
+            this.direction.y = y;
         }
 
         protected virtual void OnDisable()
