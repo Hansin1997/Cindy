@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    [SerializeField]
+    public List<Behaviour> behaviours;
+
+    public string a;
     // Start is called before the first frame update
     void Start()
     {
