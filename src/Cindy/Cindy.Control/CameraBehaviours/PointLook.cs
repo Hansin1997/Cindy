@@ -4,25 +4,21 @@ namespace Cindy.Control.CameraBehaviours
 {
 
     [AddComponentMenu("Cindy/Control/Camera/PointLook", 1)]
-    public class PointLook : CameraBehaviour
+    public class PointLook : BaseCameraBehaviour
     {
-        public override void OnCameraBlur(Camera camera)
-        {
+        [Header("PointLook")]
+        public bool keepOriginPosition;
 
-        }
+        protected Vector3 originPosition;
 
         public override void OnCameraFocus(Camera camera)
         {
-
+            originPosition = camera.transform.position;
         }
 
-        public override void OnCameraUpdate(Camera camera, float deltaTime)
+        protected override Vector3 GetPosition(Camera camera)
         {
-            if(target != null)
-            {
-                camera.transform.position = transform.position;
-                camera.transform.LookAt(target.transform);
-            }
+            return keepOriginPosition ? originPosition : transform.position;
         }
     }
 }

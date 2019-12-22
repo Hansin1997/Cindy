@@ -27,6 +27,5 @@ namespace Cindy.Control
     public class ControllableRigbody
     {
         public float mass = 1f;
-        public float movingPower = 1f;
     }
 }

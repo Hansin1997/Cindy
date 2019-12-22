@@ -6,19 +6,16 @@ namespace Cindy.Control.CameraBehaviours
 
 
     [AddComponentMenu("Cindy/Control/Camera/FreeLook", 1)]
-    public class FreeLook : CameraBehaviour
+    public class FreeLook : BaseCameraBehaviour
     {
+        [Header("Free Look")]
         public AxesConfig axesConfig;
         public float distance = 1f;
-
-        protected Vector2 r;
-        [Range(0,90)]
+        [Range(0, 90)]
         public float verticalAngleLimit = 80;
 
-        public override void OnCameraBlur(Camera camera)
-        {
+        protected Vector2 r;
 
-        }
 
         public override void OnCameraFocus(Camera camera)
         {
@@ -29,17 +26,18 @@ namespace Cindy.Control.CameraBehaviours
             xz.y = 0;
 
             r.x = Vector3.SignedAngle(dir, Vector3.forward, -Vector3.up);
-
             r.y = Vector3.Angle(xz, dir);
-            Debug.Log(r);
         }
 
         public override void OnCameraUpdate(Camera camera, float deltaTime)
         {
-            if (target == null)
-                return;
             r.x += deltaTime * VirtualInput.GetAxis(axesConfig.horizontalAxis) * axesConfig.horizontalScale;
             r.y += deltaTime * VirtualInput.GetAxis(axesConfig.verticalAxis) * axesConfig.verticalScale;
+            base.OnCameraUpdate(camera, deltaTime);
+        }
+
+        protected override Vector3 GetPosition(Camera camera)
+        {
             if (r.y > verticalAngleLimit)
                 r.y = verticalAngleLimit;
             if (r.y < -verticalAngleLimit)
@@ -48,8 +46,7 @@ namespace Cindy.Control.CameraBehaviours
             dir = Quaternion.Euler(Vector3.up * r.x) * dir;
             Vector3 axis = Quaternion.Euler(0, -90, 0) * dir;
             dir = Quaternion.AngleAxis(r.y, axis) * dir;
-            camera.transform.position = target.transform.position + dir * distance;
-            camera.transform.LookAt(target);
+            return target.transform.position + dir * distance;
         }
 
         [Serializable]

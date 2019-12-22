@@ -11,7 +11,10 @@ namespace Cindy.Control.Controllables
 
         protected Vector3 direction;
 
+        [Header("Physics")]
         public bool useGravity = true;
+
+        public float movingPower = 1f;
 
         protected virtual void OnEnable()
         {
@@ -55,7 +58,7 @@ namespace Cindy.Control.Controllables
         protected override void DoMove(Vector3 direction)
         {
             float y = this.direction.y;
-            this.direction = direction * (rigbody.movingPower / rigbody.mass);
+            this.direction = direction * (movingPower / rigbody.mass);
             this.direction.y = y;
         }
 
