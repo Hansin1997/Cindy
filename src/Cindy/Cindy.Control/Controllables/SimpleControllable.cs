@@ -2,6 +2,8 @@
 
 namespace Cindy.Control.Controllables
 {
+
+    [AddComponentMenu("Cindy/Control/Controllable/SimpleControllable", 1)]
     [RequireComponent(typeof(CharacterController))]
     public class SimpleControllable : Controllable
     {

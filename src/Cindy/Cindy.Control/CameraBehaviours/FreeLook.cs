@@ -3,15 +3,18 @@ using UnityEngine;
 
 namespace Cindy.Control.CameraBehaviours
 {
+
+
+    [AddComponentMenu("Cindy/Control/Camera/FreeLook", 1)]
     public class FreeLook : CameraBehaviour
     {
-        public Transform target;
         public AxesConfig axesConfig;
         public float distance = 1f;
 
         protected Vector2 r;
         [Range(0,90)]
         public float verticalAngleLimit = 80;
+
         public override void OnCameraBlur(Camera camera)
         {
 
@@ -24,11 +27,11 @@ namespace Cindy.Control.CameraBehaviours
             Vector3 dir = (camera.transform.position - target.transform.position);
             Vector3 xz = dir;
             xz.y = 0;
-            Vector3 y = dir;
-            y.x = y.z = 0;
 
-            r.x = Vector3.Angle(xz, -Vector3.forward);
-            r.y = Vector3.Angle(xz, y);
+            r.x = Vector3.SignedAngle(dir, Vector3.forward, -Vector3.up);
+
+            r.y = Vector3.Angle(xz, dir);
+            Debug.Log(r);
         }
 
         public override void OnCameraUpdate(Camera camera, float deltaTime)
@@ -41,7 +44,7 @@ namespace Cindy.Control.CameraBehaviours
                 r.y = verticalAngleLimit;
             if (r.y < -verticalAngleLimit)
                 r.y = -verticalAngleLimit;
-            Vector3 dir = -Vector3.forward;
+            Vector3 dir = Vector3.forward;
             dir = Quaternion.Euler(Vector3.up * r.x) * dir;
             Vector3 axis = Quaternion.Euler(0, -90, 0) * dir;
             dir = Quaternion.AngleAxis(r.y, axis) * dir;

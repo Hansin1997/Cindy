@@ -7,6 +7,8 @@ namespace Cindy.Control
     {
         public CameraBehaviourConfig config;
 
+        public Transform target;
+
         protected CameraController Controller
         {
             get
@@ -18,18 +20,40 @@ namespace Cindy.Control
                 return null;
             }
         }
+
         protected virtual void Start()
         {
-            CameraController controller = Controller;
-            if (controller != null)
-                controller.Add(this);
+            if (config.attachOnStart)
+                Attach();
         }
 
         protected virtual void OnDestroy()
         {
+            if (config.detachOnDestroy)
+                Detach();
+        }
+
+        public bool Detach()
+        {
             CameraController controller = Controller;
             if (controller != null)
+            {
                 controller.Remove(this);
+                return true;
+            }
+            return false;
+        }
+
+        public bool Attach()
+        {
+
+            CameraController controller = Controller;
+            if (controller != null)
+            {
+                controller.Add(this);
+                return true;
+            }
+            return false;
         }
 
         public abstract void OnCameraFocus(Camera camera);
@@ -41,6 +65,9 @@ namespace Cindy.Control
         {
             public string controllerName = "Main Camera";
             public int order = 0;
+
+            public bool attachOnStart = false;
+            public bool detachOnDestroy = false;
         }
     }
 }

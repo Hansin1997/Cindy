@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Cindy.Storages
 {
+
+    [AddComponentMenu("Cindy/Storage/StorageTrigger", 10)]
     public class StorageTrigger : MonoBehaviour
     {
         [Serializable]

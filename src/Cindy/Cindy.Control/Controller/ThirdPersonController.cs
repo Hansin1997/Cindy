@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace Cindy.Control.Controller
 {
+
+    [AddComponentMenu("Cindy/Control/Controller/ThirdPersonController", 1)]
     public class ThirdPersonController : MonoBehaviour
     {
         [Serializable]
