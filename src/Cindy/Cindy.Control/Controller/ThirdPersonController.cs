@@ -27,7 +27,7 @@ namespace Cindy.Control.Controller
             if (camera == null || target == null || !target.IsControllable())
                 return;
             Vector3 dir = Vector3.forward * VirtualInput.GetAxis(axesMap.Vertical) + Vector3.right * VirtualInput.GetAxis(axesMap.Horizontal);
-            dir = Quaternion.Euler(0, camera.transform.rotation.y, 0) * dir;
+            dir = Quaternion.Euler(0, camera.transform.rotation.eulerAngles.y, 0) * dir;
 
             target.Move(dir.normalized);
         }
