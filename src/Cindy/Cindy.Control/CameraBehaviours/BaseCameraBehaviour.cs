@@ -40,16 +40,24 @@ namespace Cindy.Control.CameraBehaviours
         {
             Vector3 direction = newPosition - target.transform.position;
             RaycastHit[] hits = Physics.RaycastAll(target.transform.position, direction, direction.magnitude);
+            RaycastHit HIT = default;
+            bool flag = false;
             foreach (RaycastHit hit in hits)
             {
                 if (hit.collider.isTrigger || hit.collider.gameObject == target)
                     continue;
-
-                if (hit.distance > 1)
-                    newPosition = hit.point - direction.normalized;
+                if(!flag || HIT.distance > hit.distance)
+                {
+                    HIT = hit;
+                    flag = true;
+                }
+            }
+            if (flag)
+            {
+                if (HIT.distance > 1)
+                    newPosition = HIT.point - direction.normalized;
                 else
-                    newPosition = (hit.point + newPosition) / 2;
-                break;
+                    newPosition = HIT.point;
             }
             return newPosition;
         }
