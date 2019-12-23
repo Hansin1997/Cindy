@@ -49,6 +49,11 @@ namespace Cindy.Strings
             return defaultValue;
         }
 
+        public string Process(string text)
+        {
+            return Processer.GetString(text);
+        }
+
         [Serializable]
         public class KV : SerializedKeyValuePair<string,StringSource>
         {
