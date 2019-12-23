@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cindy.Storages", "Cindy.Sto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cindy.UI", "Cindy.UI\Cindy.UI.csproj", "{C3343AF3-0EBD-45F5-9F01-64DE9117C5C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cindy.Util", "Cindy.Util\Cindy.Util.csproj", "{D7F6C846-0BA8-43CD-94F5-B26F90EAAB11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C3343AF3-0EBD-45F5-9F01-64DE9117C5C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3343AF3-0EBD-45F5-9F01-64DE9117C5C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3343AF3-0EBD-45F5-9F01-64DE9117C5C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F6C846-0BA8-43CD-94F5-B26F90EAAB11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F6C846-0BA8-43CD-94F5-B26F90EAAB11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F6C846-0BA8-43CD-94F5-B26F90EAAB11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F6C846-0BA8-43CD-94F5-B26F90EAAB11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-﻿using Cindy.Storages.serializables;
+﻿using Cindy.Util.Serializables;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

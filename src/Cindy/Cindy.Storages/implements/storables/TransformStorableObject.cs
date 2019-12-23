@@ -1,5 +1,5 @@
-﻿using System;
-using Cindy.serializables;
+﻿using Cindy.Util.Serializables;
+using System;
 using UnityEngine;
 
 namespace Cindy.Storages

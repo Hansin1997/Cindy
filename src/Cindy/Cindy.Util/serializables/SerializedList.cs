@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Cindy.serializables
+namespace Cindy.Util.Serializables
 {
     [Serializable]
     public class SerializedList

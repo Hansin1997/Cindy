@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Cindy.Control
 {
-    public abstract class Controllable : MonoBehaviour
+    public abstract class Controller : MonoBehaviour
     {
+        [Header("Controllable")]
         public bool isControllable = true;
-        public ControllableRigbody rigbody;
 
         public virtual bool IsControllable()
         {
@@ -20,12 +20,5 @@ namespace Cindy.Control
         }
 
         protected abstract void DoMove(Vector3 direction);
-    }
-
-
-    [Serializable]
-    public class ControllableRigbody
-    {
-        public float mass = 1f;
     }
 }

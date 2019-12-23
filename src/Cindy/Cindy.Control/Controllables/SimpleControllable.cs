@@ -5,7 +5,7 @@ namespace Cindy.Control.Controllables
 
     [AddComponentMenu("Cindy/Control/Controllable/SimpleControllable", 1)]
     [RequireComponent(typeof(CharacterController))]
-    public class SimpleControllable : Controllable
+    public class SimpleControllable : Controller
     {
         protected CharacterController characterController;
 
@@ -13,7 +13,7 @@ namespace Cindy.Control.Controllables
 
         [Header("Physics")]
         public bool useGravity = true;
-
+        public float mass = 1f;
         public float movingPower = 1f;
 
         protected virtual void OnEnable()
@@ -48,7 +48,7 @@ namespace Cindy.Control.Controllables
                 if (offsetY > characterController.stepOffset)
                 {
                     // m*v + M*V = (m + M)V' , V' = (m*v + M*V) / (m + M)
-                    Vector3 vector = (r.mass * r.velocity + rigbody.mass * characterController.velocity) / (r.mass + rigbody.mass);
+                    Vector3 vector = (r.mass * r.velocity + mass * characterController.velocity) / (r.mass + mass);
 
                     r.velocity = vector;
                 }
@@ -58,7 +58,7 @@ namespace Cindy.Control.Controllables
         protected override void DoMove(Vector3 direction)
         {
             float y = this.direction.y;
-            this.direction = direction * (movingPower / rigbody.mass);
+            this.direction = direction * (movingPower / mass);
             this.direction.y = y;
         }
 

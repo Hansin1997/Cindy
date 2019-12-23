@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cindy.Storages.serializables
+namespace Cindy.Util.Serializables
 {
     [Serializable]
     public class SerializedKeyValuePair<K,V>

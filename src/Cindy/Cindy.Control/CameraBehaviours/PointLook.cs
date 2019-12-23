@@ -1,24 +1,21 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Cindy.Control.CameraBehaviours
 {
-
-    [AddComponentMenu("Cindy/Control/Camera/PointLook", 1)]
+    [CreateAssetMenu(fileName = "PointLookCamera", menuName = "Cindy/Control/Camera/PointLook", order = 1)]
     public class PointLook : BaseCameraBehaviour
     {
-        [Header("PointLook")]
-        public bool keepOriginPosition;
+        //[Header("PointLook")]
+        public const string POINT_KEY = "Point";
 
-        protected Vector3 originPosition;
-
-        public override void OnCameraFocus(Camera camera)
+        protected override Vector3 GetPosition(Camera camera, Transform target, float deltaTime, IDictionary<string, object> parameters)
         {
-            originPosition = camera.transform.position;
-        }
-
-        protected override Vector3 GetPosition(Camera camera)
-        {
-            return keepOriginPosition ? originPosition : transform.position;
+            object obj;
+            if (parameters.TryGetValue(POINT_KEY, out obj) && obj is Transform point)
+                return point.position;
+            else
+                return camera.transform.position;
         }
     }
 }

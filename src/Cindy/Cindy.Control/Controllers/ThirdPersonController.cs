@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Cindy.Control.Controller
+namespace Cindy.Control.Controllers
 {
 
     [AddComponentMenu("Cindy/Control/Controller/ThirdPersonController", 1)]
@@ -14,13 +14,13 @@ namespace Cindy.Control.Controller
             public string Vertical = "Vertical";
         }
 
-        public Controllable target;
+        public Controller target;
         public AxesMap axesMap;
 
         public virtual void Start()
         {
             if (target == null)
-                target = GetComponent<Controllable>();
+                target = GetComponent<Controller>();
         }
 
         public virtual void FixedUpdate()

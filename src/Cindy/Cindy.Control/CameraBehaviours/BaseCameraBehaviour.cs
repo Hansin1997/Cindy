@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Cindy.Control.CameraBehaviours
 {
@@ -9,23 +10,21 @@ namespace Cindy.Control.CameraBehaviours
         public bool raycast = true;
         public bool lookAtTarget = true;
 
-        public override void OnCameraBlur(Camera camera)
+        public override void OnCameraBlur(Camera camera, Transform target, IDictionary<string, object> parameters)
         {
 
         }
 
-        public override void OnCameraFocus(Camera camera)
+        public override void OnCameraFocus(Camera camera, Transform target, IDictionary<string, object> parameters)
         {
 
         }
 
-        public override void OnCameraUpdate(Camera camera, float deltaTime)
+        public override void OnCameraUpdate(Camera camera, Transform target, float deltaTime, IDictionary<string, object> parameters)
         {
-            if (target == null)
-                return;
-            Vector3 newPosition = GetPosition(camera);
-            if(raycast)
-                newPosition = ProcessRaycast(camera, newPosition);
+            Vector3 newPosition = GetPosition(camera, target, deltaTime, parameters);
+            if (raycast)
+                newPosition = ProcessRaycast(camera, target, newPosition, deltaTime, parameters);
 
             Vector3 dir = camera.transform.position - newPosition;
             float t = cameraSpeed.Evaluate(dir.magnitude);
@@ -34,9 +33,9 @@ namespace Cindy.Control.CameraBehaviours
                 camera.transform.LookAt(target);
         }
 
-        protected abstract Vector3 GetPosition(Camera camera);
+        protected abstract Vector3 GetPosition(Camera camera, Transform target, float deltaTime, IDictionary<string, object> parameters);
 
-        protected virtual Vector3 ProcessRaycast(Camera camera,Vector3 newPosition)
+        protected virtual Vector3 ProcessRaycast(Camera camera, Transform target, Vector3 newPosition, float deltaTime, IDictionary<string, object> parameters)
         {
             Vector3 direction = newPosition - target.transform.position;
             RaycastHit[] hits = Physics.RaycastAll(target.transform.position, direction, direction.magnitude);
@@ -46,7 +45,7 @@ namespace Cindy.Control.CameraBehaviours
             {
                 if (hit.collider.isTrigger || hit.collider.gameObject == target)
                     continue;
-                if(!flag || HIT.distance > hit.distance)
+                if (!flag || HIT.distance > hit.distance)
                 {
                     HIT = hit;
                     flag = true;

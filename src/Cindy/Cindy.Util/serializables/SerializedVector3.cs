@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Cindy.serializables
+namespace Cindy.Util.Serializables
 {
     [Serializable]
     public class SerializedVector3

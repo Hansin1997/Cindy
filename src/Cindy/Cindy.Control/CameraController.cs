@@ -1,17 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using Cindy.Control.CameraBehaviours;
+using Cindy.Util;
 using UnityEngine;
 
 namespace Cindy.Control
 {
     [RequireComponent(typeof(Camera))]
-    public class CameraController : MonoBehaviour
+    public class CameraController : Attachable<CameraControlHandler, CameraBehaviour>
     {
-        [SerializeField]
-        public List<CameraBehaviour> behaviours;
 
         protected Camera _camera;
 
-        protected CameraBehaviour focusedBehaviour;
+        protected CameraControlHandler focusedAttachment;
 
         public Camera Camera
         {
@@ -23,60 +22,30 @@ namespace Cindy.Control
             }
         }
 
-        public virtual void Add(CameraBehaviour behaviour)
-        {
-            if (behaviours.Contains(behaviour))
-                return;
-            if (behaviours.Count == 0)
-                behaviours.Add(behaviour);
-            else
-                for (int i = behaviours.Count - 1; i >= 0; i--)
-                {
-                    CameraBehaviour tmp = behaviours[i];
-                    if (tmp.config.order <= behaviour.config.order)
-                    {
-                        behaviours.Insert(i + 1, behaviour);
-                        break;
-                    }
-                    else if (i == 0)
-                    {
-                        behaviours.Insert(i, behaviour);
-                        break;
-                    }
-                }
-        }
-
-        public virtual void Remove(CameraBehaviour behaviour)
-        {
-            if (!behaviours.Contains(behaviour))
-                return;
-            behaviours.Remove(behaviour);
-        }
-
         protected virtual void FixedUpdate()
         {
-            CameraBehaviour top = null;
-            for (int i = behaviours.Count - 1;i >= 0;i--)
+            CameraControlHandler top = Peek();
+            if (top != null)
             {
-                CameraBehaviour behaviour = behaviours[i];
-                if (behaviour == null || !behaviour.enabled || !behaviour.gameObject.activeSelf)
-                    continue;
-                top = behaviour;
-                break;
-            }
-            if(top != null)
-            {
-                if (top != focusedBehaviour)
+                if (top != focusedAttachment)
                 {
-                    if (focusedBehaviour != null)
+                    if (focusedAttachment != null)
                     {
-                        focusedBehaviour.OnCameraBlur(Camera);
+                        focusedAttachment.attachment.OnCameraBlur(Camera, top.target, top.GetParameters());
                     }
-                    top.OnCameraFocus(Camera);
+                    top.attachment.OnCameraFocus(Camera, top.target, top.GetParameters());
                 }
-                top.OnCameraUpdate(Camera,Time.fixedDeltaTime);
+                top.attachment.OnCameraUpdate(Camera, top.target, Time.fixedDeltaTime, top.GetParameters());
             }
-            focusedBehaviour = top;
+            focusedAttachment = top;
+        }
+
+        protected override bool IsPeek(CameraControlHandler attachment)
+        {
+            CameraBehaviour behaviour = attachment.attachment;
+            if (behaviour == null || !attachment.enabled || !attachment.gameObject.activeSelf)
+                return false;
+            return true;
         }
     }
 }
