@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -11,17 +11,7 @@
     <ProjectReference Include="..\Cindy.Control\Cindy.Control.csproj" />
     <ProjectReference Include="..\Cindy.Storages\Cindy.Storages.csproj" />
     <ProjectReference Include="..\Cindy.Strings\Cindy.Strings.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\libs\UnityEngine.CoreModule.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>..\libs\UnityEngine.UI.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
+    <ProjectReference Include="..\Cindy.UI\Cindy.UI.csproj" />
   </ItemGroup>
 
 </Project>

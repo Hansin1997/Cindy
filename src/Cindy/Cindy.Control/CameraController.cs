@@ -59,7 +59,7 @@ namespace Cindy.Control
             for (int i = behaviours.Count - 1;i >= 0;i--)
             {
                 CameraBehaviour behaviour = behaviours[i];
-                if (behaviour == null || !behaviour.enabled)
+                if (behaviour == null || !behaviour.enabled || !behaviour.gameObject.activeSelf)
                     continue;
                 top = behaviour;
                 break;
