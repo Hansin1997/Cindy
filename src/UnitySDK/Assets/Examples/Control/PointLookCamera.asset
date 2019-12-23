@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1072405836, guid: 6553e29b71d4e0440bd55f6a9979354c, type: 3}
-  m_Name: FreeLookCamera
+  m_Script: {fileID: 1973304960, guid: 6553e29b71d4e0440bd55f6a9979354c, type: 3}
+  m_Name: PointLookCamera
   m_EditorClassIdentifier: 
   cameraSpeed:
     serializedVersion: 2
@@ -38,10 +38,3 @@ MonoBehaviour:
     m_RotationOrder: 4
   raycast: 1
   lookAtTarget: 1
-  axesConfig:
-    horizontalAxis: Mouse X
-    horizontalScale: 100
-    verticalAxis: Mouse Y
-    verticalScale: -100
-  distance: 5
-  verticalAngleLimit: 80

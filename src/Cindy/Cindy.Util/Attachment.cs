@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 namespace Cindy.Util
 {
-    public abstract class Attachment<T> : MonoBehaviour
+    public abstract class Attachment : MonoBehaviour
     {
         [Header("Attachment")]
         public string targetName = "";
@@ -12,16 +12,34 @@ namespace Cindy.Util
         public bool attachOnStart = false;
         public bool detachOnDestroy = false;
 
-        public T attachment;
+        protected abstract Type GetAttachableType();
 
-        private IDictionary<string, object> parameters;
+        public virtual void Attach()
+        {
+            Attachable attachable = FindTarget();
+            if (attachable != null)
+                attachable.Attach(this);
+        }
 
-        protected abstract void OnGetParameters(IDictionary<string, object> parameters);
+        public virtual void Detach()
+        {
+            Attachable attachable = FindTarget();
+            if (attachable != null)
+                attachable.Detach(this);
+        }
 
-
-        public abstract void Attach();
-
-        public abstract void Detach();
+        protected Attachable FindTarget()
+        {
+            UnityEngine.Object[] objs = FindObjectsOfType(GetAttachableType());
+            foreach (UnityEngine.Object obj in objs)
+            {
+                if (obj is Attachable attachable && attachable.gameObject.name.Equals(targetName))
+                {
+                    return attachable;
+                }
+            }
+            return null;
+        }
 
         protected virtual void Start()
         {
@@ -35,12 +53,5 @@ namespace Cindy.Util
                 Detach();
         }
 
-        public IDictionary<string,object> GetParameters()
-        {
-            if (parameters == null)
-                parameters = new Dictionary<string, object>();
-            OnGetParameters(parameters);
-            return parameters;
-        }
     }
 }
