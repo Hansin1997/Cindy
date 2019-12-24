@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace Cindy.Control.Controllers
 {
+    [DisallowMultipleComponent]
+    [RequireComponent(typeof(CharacterController))]
     [AddComponentMenu("Cindy/Control/Controllers/SimpleController", 1)]
     public class SimpleController : ControllerAttachment
     {
@@ -24,30 +26,35 @@ namespace Cindy.Control.Controllers
         public float jumpPower = 1f;
 
         protected Vector3 direction;
-        protected bool jump;
+        protected bool jumping;
 
+        protected bool selected;
         protected CharacterController characterController;
 
         protected virtual void FixedUpdate()
         {
-            if (Target == null || (characterController = Target.GetComponent<CharacterController>()) == null)
+            if (characterController == null)
                 return;
             if (useGravity)
             {
                 if (characterController.isGrounded)
                 {
-                    if (jump)
-                    {
-                        direction.y = jumpPower / mass;
-                        jump = false;
-                    }
-                    else
-                        direction.y = 0;
+                    direction.y = 0;
+                    jumping = false;
                 }
                 else
                 {
                     direction += Physics.gravity * Time.fixedDeltaTime;
-                    jump = false;
+                    jumping = true;
+                }
+            }
+
+            if (selected)
+            {
+                if (VirtualInput.GetButton(jumpButton) && !jumping)
+                {
+                    jumping = true;
+                    direction.y = jumpPower / mass;
                 }
             }
             characterController.Move(direction * Time.fixedDeltaTime);
@@ -55,7 +62,12 @@ namespace Cindy.Control.Controllers
 
         public override void OnControllerSelect()
         {
+            characterController = GetComponent<CharacterController>();
+            selected = true;
+        }
 
+        protected virtual void Update()
+        {
         }
 
         public override void OnControllerUpdate(float deltaTime)
@@ -71,14 +83,11 @@ namespace Cindy.Control.Controllers
             float y = direction.y;
             direction = dir * (movingPower / mass);
             direction.y = y;
-            if (VirtualInput.GetButtonDown(jumpButton))
-                jump = true;
-                
         }
 
         public override void OnControllerUnselect()
         {
-
+            selected = false;
         }
 
     }

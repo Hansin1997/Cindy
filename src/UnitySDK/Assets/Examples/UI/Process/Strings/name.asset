@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -2043242378, guid: 74de566f635c9ad48b07f330091a6dee, type: 3}
+  m_Name: name
+  m_EditorClassIdentifier: 
+  strings:
+  - key: c
+    value: Cindy
+  - key: p
+    value: Player

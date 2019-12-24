@@ -29,20 +29,20 @@ namespace Cindy.Control.Cameras
             float t = cameraSpeed.Evaluate(dir.magnitude);
             camera.transform.position = Vector3.Lerp(camera.transform.position, newPosition, t);
             if (lookAtTarget)
-                camera.transform.LookAt(attachment.CameraTarget);
+                camera.transform.LookAt(attachment.transform);
         }
 
         protected abstract Vector3 GetPosition(Camera camera, CameraBehaviourAttachment attachment, float deltaTime);
 
         protected virtual Vector3 ProcessRaycast(Camera camera, CameraBehaviourAttachment attachment, Vector3 newPosition, float deltaTime)
         {
-            Vector3 direction = newPosition - attachment.CameraTarget.transform.position;
-            RaycastHit[] hits = Physics.RaycastAll(attachment.CameraTarget.transform.position, direction, direction.magnitude);
+            Vector3 direction = newPosition - attachment.transform.position;
+            RaycastHit[] hits = Physics.RaycastAll(attachment.transform.position, direction, direction.magnitude);
             RaycastHit HIT = default;
             bool flag = false;
             foreach (RaycastHit hit in hits)
             {
-                if (hit.collider.isTrigger || hit.collider.gameObject == attachment.CameraTarget)
+                if (hit.collider.isTrigger || hit.collider.gameObject == attachment.transform)
                     continue;
                 if (!flag || HIT.distance > hit.distance)
                 {

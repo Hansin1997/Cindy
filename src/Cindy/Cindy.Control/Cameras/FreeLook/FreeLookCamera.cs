@@ -14,7 +14,7 @@ namespace Cindy.Control.Cameras
 
         public override void OnCameraFocus(Camera camera, CameraBehaviourAttachment attachment)
         {
-            Vector3 dir = (camera.transform.position - attachment.CameraTarget.transform.position);
+            Vector3 dir = (camera.transform.position - attachment.transform.position);
             Vector3 xz = dir;
             xz.y = 0;
 
@@ -45,7 +45,7 @@ namespace Cindy.Control.Cameras
             dir = Quaternion.Euler(Vector3.up * r.x) * dir;
             Vector3 axis = Quaternion.Euler(0, -90, 0) * dir;
             dir = Quaternion.AngleAxis(r.y, axis) * dir;
-            return attachment.CameraTarget.transform.position + dir * distance;
+            return attachment.transform.position + dir * distance;
         }
 
         [Serializable]

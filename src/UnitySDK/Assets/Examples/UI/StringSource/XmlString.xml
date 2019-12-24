@@ -1,0 +1,6 @@
+<strings>
+  <string key="title">TITLE (From XML)</string>
+  <string key="content">
+    This <b>content</b> from <i>XML</i>!
+  </string>
+</strings>

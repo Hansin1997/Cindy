@@ -9,6 +9,10 @@ namespace Cindy.Strings
     public class StringSourceSwitch : StringSource
     {
         public string defaultKey = "",currentKey = "";
+
+        public string DefaultKey { get { return defaultKey; } set { defaultKey = value; } }
+        public string CurrentKey { get { return currentKey; } set { currentKey = value; } }
+
         [SerializeField]
         public KV[] sourcesMap;
         protected IDictionary<string, StringSource> sources;

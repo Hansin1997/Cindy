@@ -2,6 +2,7 @@
 
 namespace Cindy.Control.Cameras.FreeLook
 {
+    [DisallowMultipleComponent]
     [AddComponentMenu("Cindy/Control/Camera/FreeLook", 1)]
     public class FreeLook : CameraBehaviourAttachment
     {

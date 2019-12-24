@@ -5,9 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Cindy.Control\Cindy.Control.csproj" />
-    <ProjectReference Include="..\Cindy.Storages\Cindy.Storages.csproj" />
-    <ProjectReference Include="..\Cindy.Strings\Cindy.Strings.csproj" />
+    <ProjectReference Include="..\Cindy.Core\Cindy.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

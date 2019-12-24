@@ -32,8 +32,7 @@ namespace Cindy.Control
         protected override bool IsPeek(Attachment attachment)
         {
             if (attachment != null && attachment.gameObject.activeSelf && attachment is ControllerAttachment controllerBehaviour
-                && controllerBehaviour.enabled 
-                && controllerBehaviour.Target != null)
+                && controllerBehaviour.enabled)
                 return true;
             return false;
         }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1308959594, guid: 74de566f635c9ad48b07f330091a6dee, type: 3}
+  m_Name: LanguageSwitch
+  m_EditorClassIdentifier: 
+  defaultKey: en
+  currentKey: en
+  sourcesMap:
+  - key: en
+    value: {fileID: 11400000, guid: 5e62ec6fa820d5844baaff5142afbe28, type: 2}
+  - key: zh
+    value: {fileID: 11400000, guid: 8446be15c20ef724395fea6538dd364d, type: 2}

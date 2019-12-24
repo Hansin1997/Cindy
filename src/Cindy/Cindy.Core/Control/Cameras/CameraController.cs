@@ -49,7 +49,7 @@ namespace Cindy.Control.Cameras
         {
             if(attachment is CameraBehaviourAttachment a)
             {
-                return a != null && a.Behaviour != null && a.CameraTarget != null
+                return a != null && a.Behaviour != null
                     && a.enabled && a.gameObject.activeSelf;
             }
             return false;
