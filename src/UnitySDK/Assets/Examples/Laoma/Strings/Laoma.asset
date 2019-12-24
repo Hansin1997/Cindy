@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1308959594, guid: 74de566f635c9ad48b07f330091a6dee, type: 3}
+  m_Name: Laoma
+  m_EditorClassIdentifier: 
+  defaultKey: zh
+  currentKey: en
+  sourcesMap:
+  - key: zh
+    value: {fileID: 11400000, guid: 2c58ff90d31b9354b8bd65305f3c442f, type: 2}
+  - key: en
+    value: {fileID: 11400000, guid: 23160f01eafe44b4f8a181b1674c6ec4, type: 2}

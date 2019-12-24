@@ -862,6 +862,7 @@ GameObject:
   - component: {fileID: 1016255965}
   - component: {fileID: 1016255968}
   - component: {fileID: 1016255969}
+  - component: {fileID: 1016255970}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -965,6 +966,19 @@ MonoBehaviour:
   detachOnDestroy: 1
   cameraTargetName: Player
   freeLookCamera: {fileID: 11400000, guid: 3ad710aa6a1d42a4cbd8a869e3aeefd9, type: 2}
+--- !u!114 &1016255970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016255964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1068763056, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attachments: []
 --- !u!1 &1079484449
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,7 +991,6 @@ GameObject:
   - component: {fileID: 1079484453}
   - component: {fileID: 1079484452}
   - component: {fileID: 1079484455}
-  - component: {fileID: 1079484454}
   - component: {fileID: 1079484456}
   - component: {fileID: 1079484457}
   - component: {fileID: 1079484451}
@@ -1011,13 +1024,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1079484449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 116856278, guid: 6553e29b71d4e0440bd55f6a9979354c, type: 3}
+  m_Script: {fileID: 502428318, guid: 6553e29b71d4e0440bd55f6a9979354c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  targetName: Main Camera
+  order: 0
+  attachOnStart: 1
+  detachOnDestroy: 1
+  controllerTargetName: Player
   axesMap:
     Horizontal: Horizontal
     Vertical: Vertical
+  jumpButton: Jump
+  useGravity: 1
+  mass: 1
+  movingPower: 10
+  jumpPower: 10
 --- !u!23 &1079484452
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1065,22 +1087,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1079484449}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1079484454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079484449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1999493636, guid: 6553e29b71d4e0440bd55f6a9979354c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isControllable: 1
-  useGravity: 1
-  mass: 1
-  movingPower: 10
 --- !u!143 &1079484455
 CharacterController:
   m_ObjectHideFlags: 0

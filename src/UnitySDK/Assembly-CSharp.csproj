@@ -63,7 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Examples\Laoma\SimpleTrigger.cs" />
+    <None Include="Assets\Examples\Laoma\Strings\text.xml" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Documents/git/Cindy/src/UnitySDK/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
@@ -268,17 +269,23 @@
     <Reference Include="UnityEngine.XRModule">
       <HintPath>D:/Program Files/Unity/Editor/2019.3.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
-    <Reference Include="Cindy.Storages">
-      <HintPath>D:/Documents/git/Cindy/src/UnitySDK/Assets/Cindy/Plugins/Cindy.Storages.dll</HintPath>
+    <Reference Include="Cindy.Control">
+      <HintPath>D:/Documents/git/Cindy/src/UnitySDK/Assets/Cindy/Plugins/Cindy.Control.dll</HintPath>
     </Reference>
     <Reference Include="Cindy">
       <HintPath>D:/Documents/git/Cindy/src/UnitySDK/Assets/Cindy/Plugins/Cindy.dll</HintPath>
     </Reference>
-    <Reference Include="Cindy.Control">
-      <HintPath>D:/Documents/git/Cindy/src/UnitySDK/Assets/Cindy/Plugins/Cindy.Control.dll</HintPath>
+    <Reference Include="Cindy.Storages">
+      <HintPath>D:/Documents/git/Cindy/src/UnitySDK/Assets/Cindy/Plugins/Cindy.Storages.dll</HintPath>
     </Reference>
     <Reference Include="Cindy.Strings">
       <HintPath>D:/Documents/git/Cindy/src/UnitySDK/Assets/Cindy/Plugins/Cindy.Strings.dll</HintPath>
+    </Reference>
+    <Reference Include="Cindy.UI">
+      <HintPath>D:/Documents/git/Cindy/src/UnitySDK/Assets/Cindy/Plugins/Cindy.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Cindy.Core">
+      <HintPath>D:/Documents/git/Cindy/src/UnitySDK/Assets/Cindy/Plugins/Cindy.Core.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>D:/Program Files/Unity/Editor/2019.3.0f1/Editor/Data/PlaybackEngines/AppleTVSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

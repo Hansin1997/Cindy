@@ -1,24 +1,41 @@
-﻿using System;
+﻿using Cindy.Util;
 using UnityEngine;
 
 namespace Cindy.Control
 {
-    public abstract class Controller : MonoBehaviour
+    [AddComponentMenu("Cindy/Control/Controller", 1)]
+    public class Controller : Attachable
     {
-        [Header("Controllable")]
-        public bool isControllable = true;
+        private ControllerAttachment selectedAttachment;
 
-        public virtual bool IsControllable()
+        protected override bool CheckAttachment(Attachment attachment)
         {
-            return isControllable && enabled;
+            return attachment is ControllerAttachment;
         }
 
-        public virtual void Move(Vector3 direction)
+        protected virtual void FixedUpdate()
         {
-            if (IsControllable() && enabled)
-                DoMove(direction);
+            ControllerAttachment top = Peek<ControllerAttachment>();
+            if (top != null)
+            {
+                if (top != selectedAttachment)
+                {
+                    if (selectedAttachment != null)
+                        selectedAttachment.OnControllerUnselect();
+                    top.OnControllerSelect();
+                }
+                top.OnControllerUpdate(Time.fixedDeltaTime);
+            }
+            selectedAttachment = top;
         }
 
-        protected abstract void DoMove(Vector3 direction);
+        protected override bool IsPeek(Attachment attachment)
+        {
+            if (attachment != null && attachment.gameObject.activeSelf && attachment is ControllerAttachment controllerBehaviour
+                && controllerBehaviour.enabled 
+                && controllerBehaviour.Target != null)
+                return true;
+            return false;
+        }
     }
 }

@@ -11,28 +11,27 @@ namespace Cindy.Control.Cameras
         [Tooltip("Target that camera focus on, it will be self if not set.")]
         public string cameraTargetName = "";
 
-        private CameraBehaviour _behaviour;
         public CameraBehaviour Behaviour
         {
             get
             {
-                if (_behaviour == null)
-                    _behaviour = GetCameraBehaviour();
-                return _behaviour;
+                return GetCameraBehaviour();
             }
 
         }
 
         private Transform _cameraTarget;
+        private string _cameraTargetName;
         public Transform CameraTarget
         {
             get
             {
                 if (cameraTargetName.Trim().Length > 0)
                 {
-                    if(_cameraTarget == null)
+                    if(!cameraTargetName.Equals(_cameraTargetName) || _cameraTarget == null)
                     {
                         GameObject obj = GameObject.Find(cameraTargetName);
+                        _cameraTargetName = cameraTargetName;
                         if (obj != null)
                             _cameraTarget = obj.transform;
                     }
