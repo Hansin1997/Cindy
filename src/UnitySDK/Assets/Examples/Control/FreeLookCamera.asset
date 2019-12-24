@@ -18,18 +18,18 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      time: 7.0387535
+      value: 1.1080264
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -40,8 +40,8 @@ MonoBehaviour:
   lookAtTarget: 1
   axesConfig:
     horizontalAxis: Mouse X
-    horizontalScale: 100
+    horizontalScale: 500
     verticalAxis: Mouse Y
-    verticalScale: -100
+    verticalScale: -500
   distance: 5
   verticalAngleLimit: 80

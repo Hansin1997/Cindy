@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Cindy.Core\Cindy.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\libs\UnityEngine.CoreModule.dll</HintPath>
       <Private>false</Private>
@@ -17,10 +21,6 @@
       <HintPath>..\libs\UnityEngine.PhysicsModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Cindy.Util\Cindy.Util.csproj" />
   </ItemGroup>
 
 </Project>

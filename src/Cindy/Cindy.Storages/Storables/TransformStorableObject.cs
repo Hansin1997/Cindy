@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace Cindy.Storages
+namespace Cindy.Storages.Storables
 {
     [AddComponentMenu("Cindy/Storage/StorableObject/TransformStorableObject", 1)]
     [DisallowMultipleComponent]

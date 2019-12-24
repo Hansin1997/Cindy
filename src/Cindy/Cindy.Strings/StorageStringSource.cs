@@ -1,7 +1,7 @@
 ﻿using Cindy.Storages;
 using UnityEngine;
 
-namespace Cindy.Strings.StringSources
+namespace Cindy.Strings
 {
 
     [CreateAssetMenu(fileName = "StorageStringSource", menuName = "Cindy/StringSources/StorageStringSource", order = 1)]

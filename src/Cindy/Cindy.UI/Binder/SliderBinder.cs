@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Cindy.UI.Binder.Binders
+namespace Cindy.UI.Binder
 {
 
     [AddComponentMenu("Cindy/UI/Binder/SliderBinder", 1)]

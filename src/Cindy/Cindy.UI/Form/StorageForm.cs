@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cindy.UI.Form.Form
+namespace Cindy.UI.Form
 {
 
     [AddComponentMenu("Cindy/UI/Form/StorageForm", 99)]

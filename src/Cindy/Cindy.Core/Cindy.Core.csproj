@@ -2,21 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Cindy.Storages</RootNamespace>
-    <AssemblyName>Cindy.Storages</AssemblyName>
+    <AssemblyName>Cindy.Core</AssemblyName>
+    <RootNamespace>Cindy</RootNamespace>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Cindy.Core\Cindy.Core.csproj" />
-  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\libs\UnityEngine.CoreModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="UnityEngine.JSONSerializeModule">
-      <HintPath>..\libs\UnityEngine.JSONSerializeModule.dll</HintPath>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\libs\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\libs\UnityEngine.PhysicsModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
