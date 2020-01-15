@@ -52,5 +52,10 @@ namespace Cindy.UI.Pages
             if (owner != null)
                 owner.FinishPage(this);
         }
+
+        public void Show()
+        {
+            PageContainer.Load<Page>(name);
+        }
     }
 }

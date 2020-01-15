@@ -104,5 +104,12 @@ namespace Cindy.UI.Pages
                 currentPage.OnPageFixedUpdate();
         }
 
+        public static T Load<T>(string name) where T : Page
+        {
+            PageContainer c = FindObjectOfType<PageContainer>();
+            if (c != null)
+                return c.LoadPage<T>(name);
+            return null;
+        }
     }
 }
