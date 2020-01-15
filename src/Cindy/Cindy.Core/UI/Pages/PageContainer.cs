@@ -44,7 +44,7 @@ namespace Cindy.UI.Pages
             {
                 if (p.name.Equals(name))
                 {
-                    target = Instantiate<T>(p, transform);
+                    target = Instantiate(p, transform);
                     break;
                 }
             }

@@ -12,7 +12,6 @@ namespace Cindy.UI.Pages
                 this.title.text = title;
             if (this.content != null)
                 this.content.text = content;
-
         }
 
         public void SetTitle(string title)

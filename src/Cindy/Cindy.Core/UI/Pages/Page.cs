@@ -57,5 +57,10 @@ namespace Cindy.UI.Pages
         {
             PageContainer.Load<Page>(name);
         }
+
+        public bool IsActive()
+        {
+            return owner != null && owner.pages != null && owner.pages.Count > 0 && owner.pages[owner.pages.Count - 1] == this;
+        }
     }
 }
