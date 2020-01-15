@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 324063364, guid: 74de566f635c9ad48b07f330091a6dee, type: 3}
-  m_Name: FormString
+  m_Name: FormStringSource
   m_EditorClassIdentifier: 
   storage: {fileID: 11400000, guid: 20846389475428c4bbd6e4980f929889, type: 2}

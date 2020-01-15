@@ -52,6 +52,5 @@ namespace Cindy.Util
             if (detachOnDestroy)
                 Detach();
         }
-
     }
 }

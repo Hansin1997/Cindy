@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Examples/Control/BaseExample/FreeLook.unity
+    guid: 5f15fb09f60d60a4f9f79fba7130a3d5
   m_configObjects: {}
