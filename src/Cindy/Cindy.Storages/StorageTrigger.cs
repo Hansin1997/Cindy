@@ -57,7 +57,7 @@ namespace Cindy.Storages
             List<AbstractStorableObject> tmp = new List<AbstractStorableObject>();
             foreach(AbstractStorableObject storableObject in storableObjects)
             {
-                if (storableObject.baseOptions.label.Equals(option.label))
+                if (storableObject.StorableOptions.label.Equals(option.label))
                     tmp.Add(storableObject);
             }
             return tmp.ToArray();

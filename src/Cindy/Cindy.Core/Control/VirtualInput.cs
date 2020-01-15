@@ -8,7 +8,6 @@ namespace Cindy
     {
         private static readonly Dictionary<string, ISet<VirtualAxis>> virtualAxes = new Dictionary<string, ISet<VirtualAxis>>();
         private static readonly Dictionary<string, ISet<VirtualButton>> virtualButtons = new Dictionary<string, ISet<VirtualButton>>();
-
         public static void Register(string name,VirtualAxis virtualAxis)
         {
             if (!virtualAxes.ContainsKey(name))
@@ -145,6 +144,16 @@ namespace Cindy
             }
             return false;
         }
+
+        public static Vector3 GetMousePosition()
+        {
+            return Input.mousePosition;
+        }
+
+        public static Vector3 GetMouseScrollDelta()
+        {
+            return Input.mouseScrollDelta;
+        }
     }
 
     public class ButtonState
@@ -155,4 +164,5 @@ namespace Cindy
     public delegate ButtonState VirtualButton();
 
     public delegate float VirtualAxis();
+
 }

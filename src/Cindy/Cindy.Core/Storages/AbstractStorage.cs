@@ -87,7 +87,7 @@ namespace Cindy.Storages
     public abstract class AbstractStorableObject : MonoBehaviour, IStorableObject
     {
         [SerializeField]
-        public StorableObjectOption baseOptions;
+        public StorableObjectOption StorableOptions;
 
         protected StringBuilder stringBuilder;
 
@@ -100,7 +100,7 @@ namespace Cindy.Storages
             stringBuilder.Append(GetType().FullName)
                 .Append("_")
                 .Append(name);
-            if(!baseOptions.globalUniqueness)
+            if(!StorableOptions.globalUniqueness)
             {
                 stringBuilder.Append("_").Append(gameObject.scene.name);
             }
