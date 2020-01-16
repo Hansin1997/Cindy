@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cindy.Core\Cindy.Core.csproj" />
+    <ProjectReference Include="..\Cindy.Storages\Cindy.Storages.csproj" />
   </ItemGroup>
 
   <ItemGroup>

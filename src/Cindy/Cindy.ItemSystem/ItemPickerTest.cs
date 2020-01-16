@@ -25,7 +25,7 @@ namespace Cindy.ItemSystem
                     Item item = hit.transform.GetComponent<Item>();
                     if (item != null)
                     {
-                        container.AddItem(item.item);
+                        item.Pick(container);
                     }
                 }
             }
