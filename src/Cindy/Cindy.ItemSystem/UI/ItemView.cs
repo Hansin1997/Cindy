@@ -18,7 +18,7 @@ namespace Cindy.ItemSystem.UI
         public void SetItem(SerializedItem item,StringSource stringSource = null)
         {
             this.item = item;
-            if(item == null)
+            if(item != null)
             {
                 SetText(itemName, item.name, stringSource);
                 SetText(itemContent, item.content, stringSource);

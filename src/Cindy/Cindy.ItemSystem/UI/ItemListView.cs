@@ -7,7 +7,7 @@ namespace Cindy.ItemSystem.UI
     [AddComponentMenu("Cindy/ItemSystem/UI/ItemListView", 1)]
     public class ItemListView : ListView<ItemView, ItemContainer>
     {
-        [Header("Item Option")]
+        [Header("Strings")]
         public StringSource stringSource;
 
         protected override void GenerateItem(ItemContainer source)
