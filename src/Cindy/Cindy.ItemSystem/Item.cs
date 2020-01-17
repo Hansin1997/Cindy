@@ -1,9 +1,9 @@
-﻿using Cindy.Storages.Storables;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Cindy.ItemSystem
 {
     [DisallowMultipleComponent]
+    [AddComponentMenu("Cindy/ItemSystem/Item", 2)]
     public class Item : MonoBehaviour
     {
         public SerializedItem item;

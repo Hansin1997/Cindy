@@ -2,6 +2,8 @@
 
 namespace Cindy.ItemSystem
 {
+    [DisallowMultipleComponent]
+    [AddComponentMenu("Cindy/ItemSystem/ItemPickerTest", 99)]
     public class ItemPickerTest : MonoBehaviour
     {
         public ItemContainer container;

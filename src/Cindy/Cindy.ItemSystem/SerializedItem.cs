@@ -16,10 +16,10 @@ namespace Cindy.ItemSystem
 
         public int amount = 1;
 
-        [Header("Preview")]
+        [Header("Entity")]
         public string entityName;
 
-        public string bindTag;
+        public string previewTag;
 
         public void Add(int count = 1)
         {
@@ -38,7 +38,7 @@ namespace Cindy.ItemSystem
                 mergeable = mergeable,
                 amount = count,
                 entityName = entityName,
-                bindTag = bindTag
+                previewTag = previewTag
             };
         }
 
@@ -51,6 +51,41 @@ namespace Cindy.ItemSystem
                     return item;
             }
             return null;
+        }
+
+        public Item Instantiate(Transform parent = null,bool worldPositionStay = false)
+        {
+            Item template = GetEntity();
+            if (template == null)
+                return null;
+            return UnityEngine.Object.Instantiate(template, parent, worldPositionStay);
+        }
+
+        public GameObject Preview(Transform parent = null, bool worldPositionStay = false)
+        {
+            Item template = GetEntity();
+            if (template == null)
+                return null;
+            Item instance = UnityEngine.Object.Instantiate(template, parent, worldPositionStay);
+            if (instance != null)
+            {
+                Behaviour[] behaviours = instance.GetComponentsInChildren<Behaviour>();
+                foreach (Behaviour behaviour in behaviours)
+                {
+                    if (behaviour is Animator)
+                        continue;
+                    behaviour.enabled = false;
+                }
+                Collider[] colliders = instance.GetComponentsInChildren<Collider>();
+                foreach (Collider collider in colliders)
+                {
+                    collider.enabled = false;
+                }
+                Rigidbody rigidbody = instance.GetComponent<Rigidbody>();
+                if (rigidbody != null)
+                    UnityEngine.Object.Destroy(rigidbody);
+            }
+            return instance.gameObject;
         }
     }
 }

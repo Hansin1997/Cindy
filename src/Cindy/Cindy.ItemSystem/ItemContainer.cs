@@ -7,6 +7,7 @@ using UnityEngine;
 namespace Cindy.ItemSystem
 {
     [DisallowMultipleComponent]
+    [AddComponentMenu("Cindy/ItemSystem/ItemContainer", 1)]
     public class ItemContainer : AbstractStorableObject
     {
         public List<SerializedItem> items;
