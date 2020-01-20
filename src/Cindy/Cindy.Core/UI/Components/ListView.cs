@@ -35,6 +35,8 @@ namespace Cindy.UI.Components
         protected ScrollRect scrollRect;
 
         public RectTransform Content { get { return scrollRect == null ? null : scrollRect.content; } }
+        public RectTransform Viewport { get { return Content == null || Content.parent == null ? null : Content.parent.GetComponent<RectTransform>(); } }
+
 
         protected virtual void Start()
         {
@@ -50,7 +52,7 @@ namespace Cindy.UI.Components
         {
             for(int i = 0;i < items.Count; i++)
             {
-                Destroy(items[i].gameObject);
+                Destroy(items[i].transform.gameObject);
             }
             items.Clear();
             GenerateItem(source);
@@ -63,6 +65,7 @@ namespace Cindy.UI.Components
                 throw new Exception("Template is null!");
             T result =  Instantiate(template, Content.transform);
             result.gameObject.SetActive(true);
+            result.gameObject.name = "Item" + items.Count;
             items.Add(result);
             return result;
         }
@@ -71,6 +74,7 @@ namespace Cindy.UI.Components
 
         public virtual void ReAdapte()
         {
+            
             switch (type)
             {
                 case ListType.Horizontal:
@@ -89,6 +93,8 @@ namespace Cindy.UI.Components
         protected virtual void HorizontalAdapte()
         {
             float width = padding.left,w;
+            Content.anchorMin = new Vector2(0, 0);
+            Content.anchorMax = new Vector2(0, 1);
             for(int i = 0, len = items.Count; i < len; i++)
             {
                 Transform child = items[i].transform;
@@ -99,7 +105,12 @@ namespace Cindy.UI.Components
                     rectTransform.anchorMax = new Vector2(0, 1);
                     w = rectTransform.rect.width;
                     Vector2 tmp = rectTransform.anchoredPosition;
-                    tmp.x = Content.anchoredPosition.x + w / 2 + width;
+                    tmp.x = Viewport.anchoredPosition.x + w / 2 + width;
+                    tmp.y = Viewport.anchoredPosition.y + padding.bottom;
+
+                    Vector2 tmp2 = rectTransform.sizeDelta;
+                    tmp2.y = Viewport.sizeDelta.y - (padding.top + padding.bottom);
+                    rectTransform.sizeDelta = tmp2;
 
                     width += w;
 
@@ -115,12 +126,15 @@ namespace Cindy.UI.Components
 
             Vector2 s = Content.sizeDelta;
             s.x = width + padding.right;
+            s.y = Viewport.sizeDelta.y;
             Content.sizeDelta = s;
         }
 
         protected virtual void VerticalAdapte()
         {
             float height = padding.top, h;
+            Content.anchorMin = new Vector2(0, 1);
+            Content.anchorMax = new Vector2(1, 1);
             for (int i = 0, len = items.Count; i < len; i++)
             {
                 Transform child = items[i].transform;
@@ -131,9 +145,15 @@ namespace Cindy.UI.Components
                 {
                     rectTransform.anchorMin = new Vector2(0, 1);
                     rectTransform.anchorMax = new Vector2(1, 1);
+                    
                     h = rectTransform.rect.height;
                     Vector2 tmp = rectTransform.anchoredPosition;
-                    tmp.y = Content.anchoredPosition.y - h / 2 - height;
+                    tmp.y = Viewport.anchoredPosition.y - h / 2 - height;
+                    tmp.x = Viewport.anchoredPosition.x + padding.left;
+
+                    Vector2 tmp2 = rectTransform.sizeDelta;
+                    tmp2.x = Viewport.sizeDelta.x - (padding.left + padding.right);
+                    rectTransform.sizeDelta = tmp2;
 
                     height += h;
 
@@ -149,6 +169,7 @@ namespace Cindy.UI.Components
 
             Vector2 s = Content.sizeDelta;
             s.y = height + padding.bottom;
+            s.x = Viewport.sizeDelta.x;
             Content.sizeDelta = s;
         }
     }
