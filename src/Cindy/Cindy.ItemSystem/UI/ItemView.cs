@@ -14,10 +14,15 @@ namespace Cindy.ItemSystem.UI
         public Text itemAmount;
 
         protected SerializedItem item;
+        protected ItemContainer container;
 
-        public void SetItem(SerializedItem item,StringSource stringSource = null)
+        public SerializedItem Item { get => item; }
+        public ItemContainer Container { get => container; }
+
+        public void SetItem(SerializedItem item,ItemContainer container,StringSource stringSource = null)
         {
             this.item = item;
+            this.container = container;
             if(item != null)
             {
                 SetText(itemName, item.name, stringSource);
@@ -35,6 +40,13 @@ namespace Cindy.ItemSystem.UI
                 else
                     target.text = stringSource.GetString(str, str);
             }
+        }
+
+        public void Abandon(int count = 1)
+        {
+            if (count < 0)
+                return;
+            container.AbandonItem(item.name, count);
         }
     }
 }

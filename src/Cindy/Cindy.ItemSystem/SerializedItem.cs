@@ -21,6 +21,9 @@ namespace Cindy.ItemSystem
 
         public string previewTag;
 
+        [NonSerialized]
+        public bool isSerialized;
+
         public void Add(int count = 1)
         {
             amount += count;
@@ -58,7 +61,10 @@ namespace Cindy.ItemSystem
             Item template = GetEntity();
             if (template == null)
                 return null;
-            return UnityEngine.Object.Instantiate(template, parent, worldPositionStay);
+            Item instance = UnityEngine.Object.Instantiate(template, parent, worldPositionStay);
+            instance.item = this;
+            instance.item.isSerialized = true;
+            return instance;
         }
 
         public GameObject Preview(Transform parent = null, bool worldPositionStay = false)
@@ -67,6 +73,8 @@ namespace Cindy.ItemSystem
             if (template == null)
                 return null;
             Item instance = UnityEngine.Object.Instantiate(template, parent, worldPositionStay);
+            instance.item = this;
+            instance.item.isSerialized = true;
             if (instance != null)
             {
                 Behaviour[] behaviours = instance.GetComponentsInChildren<Behaviour>();

@@ -15,7 +15,7 @@ namespace Cindy.ItemSystem.UI
             foreach(SerializedItem item in source.items)
             {
                 ItemView tmp = InstantiateTemplate();
-                tmp.SetItem(item, stringSource);
+                tmp.SetItem(item, source, stringSource);
             }
         }
     }
