@@ -106,7 +106,7 @@ namespace Cindy.UI.Components
                     w = rectTransform.rect.width;
                     Vector2 tmp = rectTransform.anchoredPosition;
                     tmp.x = Viewport.anchoredPosition.x + w / 2 + width;
-                    tmp.y = Viewport.anchoredPosition.y + padding.bottom;
+                    tmp.y = padding.bottom;
 
                     Vector2 tmp2 = rectTransform.sizeDelta;
                     tmp2.y = Viewport.sizeDelta.y - (padding.top + padding.bottom);
@@ -149,7 +149,7 @@ namespace Cindy.UI.Components
                     h = rectTransform.rect.height;
                     Vector2 tmp = rectTransform.anchoredPosition;
                     tmp.y = Viewport.anchoredPosition.y - h / 2 - height;
-                    tmp.x = Viewport.anchoredPosition.x + padding.left;
+                    tmp.x = padding.left;
 
                     Vector2 tmp2 = rectTransform.sizeDelta;
                     tmp2.x = Viewport.sizeDelta.x - (padding.left + padding.right);
