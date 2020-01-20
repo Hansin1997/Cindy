@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cindy.Util.Serializables;
+using System;
 
 namespace Cindy.ItemSystem
 {
@@ -7,11 +8,13 @@ namespace Cindy.ItemSystem
     {
         public SerializedItem item;
         public string scene;
+        public SerializedTransform transform;
 
-        public SceneItem(SerializedItem item,string scene)
+        public SceneItem(SerializedItem item,string scene,SerializedTransform transform = null)
         {
             this.item = item;
             this.scene = scene;
+            this.transform = transform;
         }
     }
 }

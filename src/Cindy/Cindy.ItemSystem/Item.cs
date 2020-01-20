@@ -29,7 +29,7 @@ namespace Cindy.ItemSystem
         {
             if (container == null)
                 return;
-            container.AddItem(item,name);
+            container.AddItem(this,name);
             AfterPick();
         }
 
