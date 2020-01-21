@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Cindy.Control.Controllers
 {
-    [DisallowMultipleComponent]
     [RequireComponent(typeof(CharacterController))]
     [AddComponentMenu("Cindy/Control/Controllers/SimpleController", 1)]
     public class SimpleController : ControllerAttachment

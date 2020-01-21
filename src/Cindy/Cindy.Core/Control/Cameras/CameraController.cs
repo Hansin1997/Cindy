@@ -34,13 +34,15 @@ namespace Cindy.Control.Cameras
             {
                 if (top != focusedAttachment)
                 {
-                    if (focusedAttachment != null)
+                    if (focusedAttachment != null && focusedAttachment.Behaviour != null)
                     {
                         focusedAttachment.Behaviour.OnCameraBlur(Camera, top);
                     }
-                    top.Behaviour.OnCameraFocus(Camera, top);
+                    if (top.Behaviour != null)
+                        top.Behaviour.OnCameraFocus(Camera, top);
                 }
-                top.Behaviour.OnCameraUpdate(Camera, top, Time.fixedDeltaTime);
+                if(top.Behaviour != null)
+                    top.Behaviour.OnCameraUpdate(Camera, top, Time.fixedDeltaTime);
             }
             focusedAttachment = top;
         }
@@ -49,8 +51,7 @@ namespace Cindy.Control.Cameras
         {
             if(attachment is CameraBehaviourAttachment a)
             {
-                return a != null && a.Behaviour != null
-                    && a.enabled && a.gameObject.activeSelf;
+                return a != null && a.enabled && a.gameObject.activeSelf;
             }
             return false;
         }

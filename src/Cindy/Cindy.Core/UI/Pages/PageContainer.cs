@@ -108,7 +108,14 @@ namespace Cindy.UI.Pages
         {
             PageContainer c = FindObjectOfType<PageContainer>();
             if (c != null)
-                return c.LoadPage<T>(name);
+            {
+                T page =  c.LoadPage<T>(name);
+                if(page != null)
+                {
+                    page.gameObject.SetActive(true);
+                }
+                return page;
+            }
             return null;
         }
     }
