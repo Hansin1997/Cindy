@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Cindy.ItemSystem.UI
 {
+    [DisallowMultipleComponent]
     [AddComponentMenu("Cindy/ItemSystem/UI/ItemListView", 1)]
     public class ItemListView : ListView<ItemView, ItemContainer>
     {

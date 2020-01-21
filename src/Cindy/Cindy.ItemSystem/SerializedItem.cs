@@ -63,7 +63,7 @@ namespace Cindy.ItemSystem
             return instance;
         }
 
-        public GameObject Preview(Transform parent = null, bool worldPositionStay = false)
+        public Item Preview(Transform parent = null, bool worldPositionStay = false)
         {
             Item template = GetEntity();
             if (template == null)
@@ -88,7 +88,7 @@ namespace Cindy.ItemSystem
                 if (rigidbody != null)
                     UnityEngine.Object.Destroy(rigidbody);
             }
-            return instance.gameObject;
+            return instance;
         }
     }
 }

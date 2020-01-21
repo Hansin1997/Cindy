@@ -60,5 +60,17 @@ namespace Cindy.ItemSystem.UI
         {
             Abandon(amount,null);
         }
+
+        public void ShowDetail(ItemDetailPage itemDetailPage)
+        {
+            itemDetailPage.itemContainer = container;
+            itemDetailPage.item = item;
+            itemDetailPage.Show<ItemDetailPage>();
+        }
+
+        public void ShowPreview(ItemPreview itemPreview)
+        {
+            itemPreview.SetItem(item);
+        }
     }
 }
