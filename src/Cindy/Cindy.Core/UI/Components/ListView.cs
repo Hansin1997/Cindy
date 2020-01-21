@@ -73,7 +73,6 @@ namespace Cindy.UI.Components
 
         public virtual void ReAdapte()
         {
-
             switch (type)
             {
                 case ListType.Horizontal:

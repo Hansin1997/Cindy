@@ -42,11 +42,23 @@ namespace Cindy.ItemSystem.UI
             }
         }
 
-        public void Abandon(int count = 1)
+        public Item Abandon(int count = 1,Transform position = null)
         {
             if (count < 0)
-                return;
-            container.AbandonItem(item.name, count);
+                return null;
+            Item instance = container.AbandonItem(item.name, count);
+            if (instance != null)
+            {
+                if (position == null)
+                    position = container.transform;
+                instance.transform.position = position.position;
+            }
+            return instance;
+        }
+
+        public void AbandonWithoutResult(int amount = 1)
+        {
+            Abandon(amount,null);
         }
     }
 }

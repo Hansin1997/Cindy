@@ -66,25 +66,25 @@ namespace Cindy.ItemSystem
             dataChangeListener.Invoke();
         }
 
-        public virtual SceneItem AbandonItem(string item,int amount = 1)
+        public virtual Item AbandonItem(string item,int amount = 1)
         {
             if (!map.ContainsKey(item) || map[item] == null || amount <= 0)
                 return null;
-            SceneItem result = new SceneItem(map[item].Sub(amount), gameObject.scene.name);
+            SceneItem sceneItem = new SceneItem(map[item].Sub(amount), gameObject.scene.name);
             if (map[item].amount <= 0)
             {
                 items.Remove(map[item]);
                 map.Remove(item);
             }
-            abandonedItems.Add(result);
+            abandonedItems.Add(sceneItem);
             if (abandonedItemMap == null)
                 abandonedItemMap = new Dictionary<Item, SceneItem>();
-            Item instance = GenerateAbandonedItem(result.item);
-            abandonedItemMap[instance] = result;
-            result.transform = new SerializedTransform(instance.transform);
+            Item instance = GenerateAbandonedItem(sceneItem.item);
+            abandonedItemMap[instance] = sceneItem;
+            sceneItem.transform = new SerializedTransform(instance.transform);
 
             dataChangeListener.Invoke();
-            return result;
+            return instance;
         }
 
         protected virtual Item GenerateAbandonedItem(SerializedItem item,bool WorldPositionStay = false)
