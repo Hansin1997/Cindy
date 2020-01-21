@@ -57,10 +57,10 @@ namespace Cindy.ItemSystem
             }
 
             if (map.ContainsKey(item.name))
-                map[item.name].Add(item.item.amount);
+                map[item.item.name].Add(item.item.amount);
             else
             {
-                map[item.name] = item.item;
+                map[item.item.name] = item.item;
                 items.Add(item.item);
             }
             dataChangeListener.Invoke();
@@ -68,10 +68,8 @@ namespace Cindy.ItemSystem
 
         public virtual SceneItem AbandonItem(string item,int amount = 1)
         {
-            if (!map.ContainsKey(item) || map[item] == null)
+            if (!map.ContainsKey(item) || map[item] == null || amount <= 0)
                 return null;
-            if (amount < 0)
-                amount = 0;
             SceneItem result = new SceneItem(map[item].Sub(amount), gameObject.scene.name);
             if (map[item].amount <= 0)
             {
