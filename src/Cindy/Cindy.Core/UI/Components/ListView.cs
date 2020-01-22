@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cindy.UI.Structs;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
