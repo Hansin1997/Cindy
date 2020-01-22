@@ -15,7 +15,6 @@ namespace Cindy.UI.Components
 
         public bool horizontal = true, vertical = true, button = true;
 
-        Vector2 lastPos;
         private PointerEventData ed;
         private VirtualAxis horizontalAxis, verticalAxis;
         private VirtualButton _btn;
@@ -41,7 +40,6 @@ namespace Cindy.UI.Components
             }
         }
 
-        // Update is called once per frame
         protected virtual void Update()
         {
             if (state == 1)

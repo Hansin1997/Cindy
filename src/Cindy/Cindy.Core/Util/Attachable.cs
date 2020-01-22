@@ -9,10 +9,10 @@ namespace Cindy.Util
         [SerializeField]
         public List<Attachment> attachments;
 
-        public virtual void Attach(Attachment attachment)
+        public virtual bool Attach(Attachment attachment)
         {
             if (attachments.Contains(attachment) || !CheckAttachment(attachment))
-                return;
+                return false;
             if (attachments.Count == 0)
                 attachments.Add(attachment);
             else
@@ -30,13 +30,14 @@ namespace Cindy.Util
                         break;
                     }
                 }
+            return true;
         }
 
-        public virtual void Detach(Attachment attachment)
+        public virtual bool Detach(Attachment attachment)
         {
             if (!attachments.Contains(attachment))
-                return;
-            attachments.Remove(attachment);
+                return false;
+            return attachments.Remove(attachment);
         }
 
         public Attachment Peek()
