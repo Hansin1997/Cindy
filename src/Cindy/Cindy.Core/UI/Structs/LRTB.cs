@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cindy.UI
+namespace Cindy.UI.Structs
 {
     [Serializable]
     public struct LRTB

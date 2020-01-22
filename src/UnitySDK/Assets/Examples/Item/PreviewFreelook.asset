@@ -39,9 +39,9 @@ MonoBehaviour:
   raycast: 1
   lookAtTarget: 1
   axesConfig:
-    horizontalAxis: Mouse X
+    horizontalAxis: H
     horizontalScale: 200
-    verticalAxis: Mouse Y
+    verticalAxis: V
     verticalScale: -200
   distance: 3
   verticalAngleLimit: 80

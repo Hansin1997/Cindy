@@ -1,7 +1,10 @@
-﻿using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace Cindy.UI.Pages
 {
+    [DisallowMultipleComponent]
+    [AddComponentMenu("Cindy/UI/Page/MessageBox")]
     public class MessageBox : Page
     {
         public Text title, content;
