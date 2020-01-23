@@ -7,7 +7,7 @@ namespace Cindy.UI.Components.UIAttachments
 {
     public abstract class UIAttachment : Attachment
     {
-        public abstract IList<RectTransform> GenerateComponents(GameObject root);
+        public abstract RectTransform[] GenerateComponents(GameObject root);
         public abstract bool IsActived();
         public virtual void OnHide(IList<RectTransform> rectTransforms)
         {
@@ -31,6 +31,7 @@ namespace Cindy.UI.Components.UIAttachments
 
             for (int i = 0;i < rectTransforms.Count; i++)
             {
+                rectTransforms[i].anchorMin = rectTransforms[i].anchorMax = Vector2.zero;
                 rectTransforms[i].anchoredPosition = position - Vector3.up * (h - rectTransforms[i].rect.height);
                 h -= rectTransforms[i].rect.height;
             }

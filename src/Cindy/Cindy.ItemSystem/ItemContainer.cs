@@ -15,7 +15,9 @@ namespace Cindy.ItemSystem
         public UnityEvent dataChangeListener;
 
         [Header("Monitor")]
+
         public List<SerializedItem> items;
+
         public List<SceneItem> abandonedItems;
 
         protected Dictionary<string, List<string>> picked;

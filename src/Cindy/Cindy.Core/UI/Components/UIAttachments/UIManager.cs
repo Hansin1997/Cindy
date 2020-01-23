@@ -1,28 +1,27 @@
 ﻿using Cindy.Util;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cindy.UI.Components.UIAttachments
 {
+    [AddComponentMenu("Cindy/UI/Components/UIAttachments/UIManager",99)]
     [RequireComponent(typeof(RectTransform))]
     public class UIManager : Attachable
     {
         public Camera targetCamera;
         protected RectTransform rectTransform;
-        protected List<GameObject> roots;
 
-        protected Camera Camera { get { return targetCamera != null ? targetCamera : Camera.main; } } 
+        public List<RectTransformGroup> transformGroups;
+
+        protected Camera Camera { get { return targetCamera == null ?  Camera.main : targetCamera; } } 
 
         public override bool Attach(Attachment attachment)
         {
             if (!base.Attach(attachment))
                 return false;
             UIAttachment a = attachment as UIAttachment;
-            if (roots == null)
-                roots = new List<GameObject>();
-            GameObject root = new GameObject((attachments.Count - 1).ToString());
-            a.GenerateComponents(root);
-            roots.Add(root);
+            transformGroups.Add(new RectTransformGroup(a.GenerateComponents(gameObject)));
             return true;
         }
 
@@ -31,8 +30,11 @@ namespace Cindy.UI.Components.UIAttachments
             int index = attachments.IndexOf(attachment);
             if (!base.Detach(attachment))
                 return false;
-            Destroy(roots[index]);
-            roots.RemoveAt(index);
+            foreach(RectTransform rect in transformGroups[index].rectTransforms)
+            {
+                Destroy(rect.gameObject);
+            }
+            transformGroups.RemoveAt(index);
             return true;
         }
 
@@ -50,16 +52,18 @@ namespace Cindy.UI.Components.UIAttachments
             foreach(Attachment attachment in attachments)
             {
                 UIAttachment a = attachment as UIAttachment;
-                
-                if (a.IsActived())
+                float angle = Vector3.Angle(Camera.transform.forward, a.transform.position - Camera.transform.position);
+
+                if (a.IsActived() && angle <= Camera.fieldOfView)
                 {
-                    a.OnShow(roots[i].GetComponentsInChildren<RectTransform>());
+                    a.OnShow(transformGroups[i].rectTransforms);
                     Vector3 position = Camera.WorldToScreenPoint(a.transform.position);
-                    a.OnAdapte(roots[i].GetComponentsInChildren<RectTransform>(), position);
+
+                    a.OnAdapte(transformGroups[i].rectTransforms, position);
                 }
                 else
                 {
-                    a.OnHide(roots[i].GetComponentsInChildren<RectTransform>());
+                    a.OnHide(transformGroups[i].rectTransforms);
                 }
                 i++;
             }
@@ -73,6 +77,17 @@ namespace Cindy.UI.Components.UIAttachments
         protected override bool IsPeek(Attachment attachment)
         {
             return attachment != null;
+        }
+
+        [Serializable]
+        public class RectTransformGroup
+        {
+            public RectTransform[] rectTransforms;
+
+            public RectTransformGroup(RectTransform[] rectTransforms)
+            {
+                this.rectTransforms = rectTransforms;
+            }
         }
     }
 }
