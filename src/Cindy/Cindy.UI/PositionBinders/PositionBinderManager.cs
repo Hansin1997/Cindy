@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cindy.UI.Components.UIAttachments
+namespace Cindy.UI.PositionBinders
 {
-    [AddComponentMenu("Cindy/UI/Components/UIAttachments/UIManager",99)]
+    [AddComponentMenu("Cindy/UI/PositionBinders/PositionBinderManager", 99)]
     [RequireComponent(typeof(RectTransform))]
-    public class UIManager : Attachable
+    public class PositionBinderManager : Attachable
     {
         public Camera targetCamera;
         protected RectTransform rectTransform;
@@ -20,7 +20,7 @@ namespace Cindy.UI.Components.UIAttachments
         {
             if (!base.Attach(attachment))
                 return false;
-            UIAttachment a = attachment as UIAttachment;
+            AbstractPositionBinder a = attachment as AbstractPositionBinder;
             transformGroups.Add(new RectTransformGroup(a.GenerateComponents(gameObject)));
             return true;
         }
@@ -51,7 +51,7 @@ namespace Cindy.UI.Components.UIAttachments
             int i = 0;
             foreach(Attachment attachment in attachments)
             {
-                UIAttachment a = attachment as UIAttachment;
+                AbstractPositionBinder a = attachment as AbstractPositionBinder;
                 float angle = Vector3.Angle(Camera.transform.forward, a.transform.position - Camera.transform.position);
 
                 if (a.IsActived() && angle <= Camera.fieldOfView)
@@ -71,7 +71,7 @@ namespace Cindy.UI.Components.UIAttachments
 
         protected override bool CheckAttachment(Attachment attachment)
         {
-            return attachment is UIAttachment;
+            return attachment is AbstractPositionBinder;
         }
 
         protected override bool IsPeek(Attachment attachment)

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cindy.UI.Components.UIAttachments
+namespace Cindy.UI.PositionBinders
 {
-    [AddComponentMenu("Cindy/UI/Components/UIAttachments/SimpleUIAttachment")]
-    public class SimpleUIAttachment : UIAttachment
+    [AddComponentMenu("Cindy/UI/PositionBinders/SimplePositionBinder")]
+    public class SimplePositionBinder : AbstractPositionBinder
     {
         [Header("Simple UI Attachment")]
         public bool actived = true;

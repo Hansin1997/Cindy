@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 493632983}
   - component: {fileID: 493632982}
   m_Layer: 5
-  m_Name: UIManager
+  m_Name: PositionBinderManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 493632980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -459369681, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
+  m_Script: {fileID: -1332692957, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attachments: []
@@ -887,10 +887,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1393070359}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1579128314, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
+  m_Script: {fileID: -2104719959, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetName: UIManager
+  targetName: PositionBinderManager
   order: 0
   attachOnStart: 1
   detachOnDestroy: 1

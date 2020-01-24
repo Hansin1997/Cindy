@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cindy.UI.Components.UIAttachments
+namespace Cindy.UI.PositionBinders
 {
-    public abstract class UIAttachment : Attachment
+    public abstract class AbstractPositionBinder : Attachment
     {
         public abstract RectTransform[] GenerateComponents(GameObject root);
         public abstract bool IsActived();
@@ -39,7 +39,7 @@ namespace Cindy.UI.Components.UIAttachments
 
         protected override Type GetAttachableType()
         {
-            return typeof(UIManager);
+            return typeof(PositionBinderManager);
         }
     }
 }

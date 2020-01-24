@@ -56,6 +56,7 @@ namespace Cindy
                     valueB = value;
             }catch(Exception e)
             {
+                Debug.LogWarning(e);
             }
             if (!virtualAxes.ContainsKey(name))
                 return valueA + valueB;
@@ -81,7 +82,7 @@ namespace Cindy
                     return true;
             }catch(Exception e)
             {
-
+                Debug.LogWarning(e);
             }
             if (!virtualButtons.ContainsKey(name))
                 return false;
@@ -105,7 +106,7 @@ namespace Cindy
             }
             catch (Exception e)
             {
-
+                Debug.LogWarning(e);
             }
             if (!virtualButtons.ContainsKey(name))
                 return false;
@@ -129,7 +130,7 @@ namespace Cindy
             }
             catch (Exception e)
             {
-
+                Debug.LogWarning(e);
             }
             if (!virtualButtons.ContainsKey(name))
                 return false;
