@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Cindy.Storages
 {
-    [CreateAssetMenu(fileName = "Storage", menuName = "Cindy/Storage/PlayerPrefsStorage", order = 1)]
+    [CreateAssetMenu(fileName = "PlayerPrefsStorage", menuName = "Cindy/Storage/PlayerPrefsStorage", order = 1)]
     public class PlayerPrefsStorage : AbstractStorage
     {
         public string prefix = "PREFIX_";
