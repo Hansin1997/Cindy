@@ -1,4 +1,5 @@
-﻿using Cindy.Strings;
+﻿using Cindy.Logic;
+using Cindy.Strings;
 using Cindy.Util.Serializables;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,8 @@ using UnityEngine.UI;
 
 namespace Cindy.UI.Pages
 {
+    [DisallowMultipleComponent]
+    [AddComponentMenu("Cindy/UI/Dialog/Dialog(Page)")]
     public class Dialog : Page
     {
         private Dictionary<string, Text> _map;
@@ -100,13 +103,35 @@ namespace Cindy.UI.Pages
         }
     }
 
+    [AddComponentMenu("Cindy/UI/Dialog/DialogObject")]
     public class DialogObject : MonoBehaviour
     {
         public DialogStruct data;
     }
 
+    [CreateAssetMenu(fileName = "DialogAsset", menuName = "Cindy/UI/Dialog/DialogAsset", order = 1)]
     public class DialogAsset : ScriptableObject
     {
         public DialogStruct data;
+    }
+
+    [DisallowMultipleComponent]
+    [RequireComponent(typeof(Dialog))]
+    [AddComponentMenu("Cindy/UI/Dialog/DialogNotEmptyCondition")]
+    public class DialogNotEmptyCondition : Condition
+    {
+        protected Dialog dialog;
+
+        protected virtual void Start()
+        {
+            dialog = GetComponent<Dialog>();
+        }
+
+        public override bool Check()
+        {
+            if (dialog == null)
+                return false;
+            return dialog.HasMore();
+        }
     }
 }
