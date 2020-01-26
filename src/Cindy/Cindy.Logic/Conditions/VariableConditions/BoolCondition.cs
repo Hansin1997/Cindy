@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Cindy.Logic.Conditions
 {
-    [AddComponentMenu("Cindy/Logic/Conditions/BoolCondition", 1)]
+    [AddComponentMenu("Cindy/Logic/Conditions/BoolCondition", 0)]
     public class BoolCondition : Condition
     {
         public BoolObject variable;

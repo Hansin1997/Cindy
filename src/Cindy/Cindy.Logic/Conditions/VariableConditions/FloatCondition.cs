@@ -1,7 +1,7 @@
 ﻿using Cindy.Logic.VariableObjects;
 using UnityEngine;
 
-namespace Cindy.Logic.Conditions.NumberVariableConditions
+namespace Cindy.Logic.Conditions
 {
     [AddComponentMenu("Cindy/Logic/Conditions/FloatCondition", 0)]
     public class FloatCondition : NumberVariableCondition<FloatObject,float>

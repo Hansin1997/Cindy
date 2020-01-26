@@ -1,7 +1,7 @@
 ﻿using Cindy.Logic.VariableObjects;
 using UnityEngine;
 
-namespace Cindy.Logic.Conditions.NumberVariableConditions
+namespace Cindy.Logic.Conditions
 {
     [AddComponentMenu("Cindy/Logic/Conditions/IntCondition", 0)]
     public class IntCondition : NumberVariableCondition<IntObject,int>

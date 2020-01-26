@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cindy.Logic.Conditions.NumberVariableConditions
+namespace Cindy.Logic.Conditions
 {
     public abstract class NumberVariableCondition<V,T> : Condition where V : VariableObject<T>
     {
