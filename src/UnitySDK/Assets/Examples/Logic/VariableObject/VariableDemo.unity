@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonKey: Fire1
-  type: 0
+  state: 0
 --- !u!114 &911346758
 MonoBehaviour:
   m_ObjectHideFlags: 0
