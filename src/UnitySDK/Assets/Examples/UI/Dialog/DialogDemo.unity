@@ -753,6 +753,7 @@ GameObject:
   - component: {fileID: 1415352911}
   - component: {fileID: 1415352912}
   - component: {fileID: 1415352913}
+  - component: {fileID: 1415352914}
   m_Layer: 5
   m_Name: Dialog
   m_TagString: Untagged
@@ -863,6 +864,22 @@ MonoBehaviour:
   gameObjects:
   - {fileID: 681895378}
   behaviours: []
+--- !u!114 &1415352914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415352907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1344179699, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 0
+  storage: {fileID: 0}
+  key: 
+  autoSave: 1
 --- !u!1 &1449823198
 GameObject:
   m_ObjectHideFlags: 0
