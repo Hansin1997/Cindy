@@ -1,4 +1,5 @@
 ﻿using Cindy.Logic;
+using Cindy.Logic.VariableObjects;
 using Cindy.Strings;
 using Cindy.Util.Serializables;
 using System;
@@ -113,6 +114,26 @@ namespace Cindy.UI.Pages
     public class DialogAsset : ScriptableObject
     {
         public DialogStruct data;
+    }
+
+    [DisallowMultipleComponent]
+    [RequireComponent(typeof(Dialog))]
+    [AddComponentMenu("Cindy/UI/Dialog/DialogQueueLength")]
+    public class DialogQueueLength : IntObject
+    {
+        protected Dialog dialog;
+
+        protected override void Start()
+        {
+            dialog = GetComponent<Dialog>();
+            base.Start();
+        }
+
+        protected override void Update()
+        {
+            value = dialog != null && dialog.queue != null ? dialog.queue.Count : 0;
+            base.Update();
+        }
     }
 
     [DisallowMultipleComponent]

@@ -47,7 +47,10 @@ namespace Cindy.Logic
         public void Save()
         {
             if (storage != null)
+            {
                 storage.Put(key, value);
+                _value = value;
+            }
         }
 
         public void SetValue(T value)

@@ -8,7 +8,7 @@ namespace Cindy.Storages
     public class TemporaryStroage : AbstractStorage
     {
         protected Dictionary<string, object> map;
-        protected Dictionary<string, object> Map { get { return map != null ? map : (map = new Dictionary<string, object>()); } }
+        protected Dictionary<string, object> Map { get { return map ?? (map = new Dictionary<string, object>()); } }
 
         public override void Clear()
         {
@@ -17,8 +17,8 @@ namespace Cindy.Storages
 
         public override string Get(string key)
         {
-            if (Map.ContainsKey(key))
-                return Map[key] as string;
+            if (Map.ContainsKey(key) && Map[key] != null)
+                return Map[key].ToString();
             return null;
         }
 
@@ -28,8 +28,8 @@ namespace Cindy.Storages
                 return new string[0];
             string[] result = new string[keys.Length];
             for (int i = 0; i < keys.Length; i++)
-                if (map.ContainsKey(keys[i]))
-                    result[i] = map[keys[i]] as string;
+                if (map.ContainsKey(keys[i]) && map[keys[i]] != null)
+                    result[i] = map[keys[i]].ToString();
             return result;
         }
 
