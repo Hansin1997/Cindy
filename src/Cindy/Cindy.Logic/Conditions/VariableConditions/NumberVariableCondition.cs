@@ -27,9 +27,9 @@ namespace Cindy.Logic.Conditions
                     case Operator.GreaterThanOrEqulas:
                         return Ge(variable.value, value);
                     case Operator.LessThan:
-                        return Gt(variable.value, value);
+                        return Lt(variable.value, value);
                     case Operator.LessThanOrEqulas:
-                        return Eq(variable.value, value);
+                        return Le(variable.value, value);
                     default:
                         return false;
                 }
