@@ -44,7 +44,7 @@ namespace Cindy.Logic
             }
         }
 
-        public void Save()
+        public virtual void Save()
         {
             if (storage != null)
             {

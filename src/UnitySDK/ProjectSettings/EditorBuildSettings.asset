@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Examples/Control/BaseExample/FreeLook.unity
     guid: 5f15fb09f60d60a4f9f79fba7130a3d5
+  - enabled: 1
+    path: Assets/Examples/Logic/Methods/SceneLoader/SceneLoader_1.unity
+    guid: 3cfb753af3e12e845b65478d39e31abd
+  - enabled: 1
+    path: Assets/Examples/Logic/Methods/SceneLoader/SceneLoader_2.unity
+    guid: ab6ddda1dce4fb54fb2dcb45c9d83847
   m_configObjects: {}
