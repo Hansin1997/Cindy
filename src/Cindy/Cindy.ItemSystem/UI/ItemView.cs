@@ -65,7 +65,7 @@ namespace Cindy.ItemSystem.UI
         {
             itemDetailPage.itemContainer = container;
             itemDetailPage.item = item;
-            itemDetailPage.Show<ItemDetailPage>();
+            itemDetailPage.ShowAndReturn<ItemDetailPage>();
         }
 
         public void ShowPreview(ItemPreview itemPreview)

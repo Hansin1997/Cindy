@@ -58,7 +58,7 @@ namespace Cindy.UI.Pages
             PageContainer.Load<Page>(name);
         }
 
-        public T Show<T>() where T : Page
+        public T ShowAndReturn<T>() where T : Page
         {
             return PageContainer.Load<T>(name);
         }
