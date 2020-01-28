@@ -6,6 +6,8 @@ namespace Cindy.Logic.VariableObjects
     [AddComponentMenu("Cindy/Logic/VariableObject/AxisValueObject")]
     public class AxisValueObject : FloatObject
     {
+
+        [Header("Axis")]
         public ReferenceString axisName;
 
         protected override void Start()

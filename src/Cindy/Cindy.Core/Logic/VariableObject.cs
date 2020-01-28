@@ -1,6 +1,7 @@
 ﻿using Cindy.Logic.ReferenceValues;
 using Cindy.Storages;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Cindy.Logic
 {
@@ -14,6 +15,9 @@ namespace Cindy.Logic
         public AbstractStorage storage;
         public ReferenceString key;
         public bool autoSave = true;
+
+        [Header("Events")]
+        public UnityEvent valueChangedEvent;
 
         protected object _value;
 
@@ -30,19 +34,24 @@ namespace Cindy.Logic
 
         protected virtual void Update()
         {
-            if(autoSave)
+            if(value == null || _value == null)
             {
-                if (value != null)
-                {
-                    if (!value.Equals(_value))
-                        Save();
-                }
-                else if (_value != null)
-                {
-                    if (!_value.Equals(value))
-                        Save();
-                }
+                if(!(value == null && _value == null))
+                    OnValueChanged();
             }
+            else
+            {
+                if (!value.Equals(_value))
+                    OnValueChanged();
+            }
+        }
+
+        protected virtual void OnValueChanged()
+        {
+            if (autoSave)
+                Save();
+            if (valueChangedEvent != null)
+                valueChangedEvent.Invoke();
         }
 
         public virtual void Save()

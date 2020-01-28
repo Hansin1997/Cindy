@@ -7,6 +7,7 @@ namespace Cindy.Control.Cameras
     [RequireComponent(typeof(Camera))]
     public class CameraController : Attachable
     {
+        public UpdateType updateType;
 
         protected Camera _camera;
 
@@ -27,7 +28,19 @@ namespace Cindy.Control.Cameras
             return attachment is CameraBehaviourAttachment;
         }
 
+        protected virtual void Update()
+        {
+            if (updateType == UpdateType.OnUpdate)
+                DoUpdate(Time.deltaTime);
+        }
+
         protected virtual void FixedUpdate()
+        {
+            if (updateType == UpdateType.OnFixedUpdate)
+                DoUpdate(Time.fixedDeltaTime);
+        }
+
+        protected virtual void DoUpdate(float deltaTime)
         {
             CameraBehaviourAttachment top = Peek<CameraBehaviourAttachment>();
             if (top != null)
@@ -41,8 +54,8 @@ namespace Cindy.Control.Cameras
                     if (top.Behaviour != null)
                         top.Behaviour.OnCameraFocus(Camera, top);
                 }
-                if(top.Behaviour != null)
-                    top.Behaviour.OnCameraUpdate(Camera, top, Time.fixedDeltaTime);
+                if (top.Behaviour != null)
+                    top.Behaviour.OnCameraUpdate(Camera, top, deltaTime);
             }
             focusedAttachment = top;
         }
@@ -54,6 +67,12 @@ namespace Cindy.Control.Cameras
                 return a != null && a.enabled && a.gameObject.activeSelf;
             }
             return false;
+        }
+
+        public enum UpdateType
+        {
+            OnUpdate,
+            OnFixedUpdate
         }
     }
 }
