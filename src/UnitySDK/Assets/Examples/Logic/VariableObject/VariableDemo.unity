@@ -398,7 +398,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: 8db2f57e91adf4a48b4f0a7e135ba878, type: 2}
-  key: number
+  key:
+    reference: {fileID: 109897625}
+    value: 
   allowUpdate: 1
   keyAsDefaultValue: 0
   target: {fileID: 0}
@@ -413,6 +415,7 @@ GameObject:
   - component: {fileID: 109897622}
   - component: {fileID: 109897624}
   - component: {fileID: 109897623}
+  - component: {fileID: 109897625}
   m_Layer: 5
   m_Name: NumberDemo
   m_TagString: Untagged
@@ -479,6 +482,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109897621}
   m_CullTransparentMesh: 0
+--- !u!114 &109897625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109897621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1946625789, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: number
+  storage: {fileID: 0}
+  key:
+    reference: {fileID: 0}
+    value: 
+  autoSave: 1
 --- !u!1 &272046083
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,7 +971,9 @@ MonoBehaviour:
   m_Script: {fileID: 1148539985, guid: 676116aa50be73540912abfa9afc8136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonKey: Fire1
+  buttonKey:
+    reference: {fileID: 0}
+    value: Fire1
   state: 0
 --- !u!114 &911346758
 MonoBehaviour:
@@ -1340,7 +1363,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 0
   storage: {fileID: 11400000, guid: 8db2f57e91adf4a48b4f0a7e135ba878, type: 2}
-  key: number
+  key:
+    reference: {fileID: 109897625}
+    value: 
   autoSave: 1
 --- !u!114 &1215061783
 MonoBehaviour:
@@ -1356,8 +1381,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   variable: {fileID: 1215061782}
   operator: 3
-  targetValue: {fileID: 0}
-  staticValue: 5
+  target:
+    reference: {fileID: 0}
+    value: 5
 --- !u!114 &1215061784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1480,8 +1506,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   variable: {fileID: 1215061782}
   operator: 4
-  targetValue: {fileID: 0}
-  staticValue: 10
+  target:
+    reference: {fileID: 0}
+    value: 10
 --- !u!114 &1215061790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1563,7 +1590,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: 1aea26d2ece1dd64bb3fb09cd3bd34b3, type: 2}
-  key: number
+  key:
+    reference: {fileID: 109897625}
+    value: 
   allowUpdate: 1
   keyAsDefaultValue: 0
   target: {fileID: 0}
@@ -1980,7 +2009,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 1
   storage: {fileID: 0}
-  key: 
+  key:
+    reference: {fileID: 0}
+    value: 
   autoSave: 1
 --- !u!114 &1661075224
 MonoBehaviour:
@@ -1996,8 +2027,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   variable: {fileID: 1661075223}
   operator: 0
-  targetVariable: {fileID: 0}
-  staticValue: 1
+  target:
+    reference: {fileID: 0}
+    value: 1
 --- !u!114 &1661075225
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cindy.Logic.ReferenceValues;
+using UnityEngine;
 
 namespace Cindy.UI.Binder
 {
@@ -7,8 +8,8 @@ namespace Cindy.UI.Binder
         [Header("Data Source")]
         [SerializeField]
         public S source;
-        [Multiline]
-        public string key;
+
+        public ReferenceString key;
 
         [Header("Option")]
         public bool allowUpdate;
@@ -28,9 +29,9 @@ namespace Cindy.UI.Binder
             if (source != null && target != null)
             {
                 if (keyAsDefaultValue)
-                    OnBind(target, GetValue(source, key, key));
+                    OnBind(target, GetValue(source, key.Value, key.Value));
                 else
-                    OnBind(target, GetValue(source,key));
+                    OnBind(target, GetValue(source,key.Value));
             }
         }
 

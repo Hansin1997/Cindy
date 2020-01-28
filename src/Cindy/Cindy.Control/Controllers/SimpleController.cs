@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cindy.Logic.ReferenceValues;
+using System;
 using UnityEngine;
 
 namespace Cindy.Control.Controllers
@@ -10,13 +11,13 @@ namespace Cindy.Control.Controllers
         [Serializable]
         public class AxesMap
         {
-            public string Horizontal = "Horizontal";
-            public string Vertical = "Vertical";
+            public ReferenceString Horizontal = new ReferenceString() { value = "Horizontal" };
+            public ReferenceString Vertical = new ReferenceString() { value = "Vertical" };
         }
 
         [Header("Simple Controller")]
         public AxesMap axesMap;
-        public string jumpButton = "Jump";
+        public ReferenceString jumpButton = new ReferenceString() { value = "Jump" };
 
         [Header("Physics")]
         public bool useGravity = true;
@@ -50,7 +51,7 @@ namespace Cindy.Control.Controllers
 
             if (selected)
             {
-                if (VirtualInput.GetButton(jumpButton) && !jumping)
+                if (VirtualInput.GetButton(jumpButton.Value) && !jumping)
                 {
                     jumping = true;
                     direction.y = jumpPower / mass;
@@ -76,7 +77,7 @@ namespace Cindy.Control.Controllers
             Camera camera = Camera.main;
             if (camera == null || characterController == null)
                 return;
-            Vector3 dir = Vector3.forward * VirtualInput.GetAxis(axesMap.Vertical) + Vector3.right * VirtualInput.GetAxis(axesMap.Horizontal);
+            Vector3 dir = Vector3.forward * VirtualInput.GetAxis(axesMap.Vertical.Value) + Vector3.right * VirtualInput.GetAxis(axesMap.Horizontal.Value);
             dir = Quaternion.Euler(0, camera.transform.rotation.eulerAngles.y, 0) * dir;
 
             float y = direction.y;

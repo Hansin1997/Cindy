@@ -953,7 +953,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: 20846389475428c4bbd6e4980f929889, type: 2}
-  key: SoundVolum
+  key:
+    reference: {fileID: 787632376}
+    value: 
   allowUpdate: 0
   keyAsDefaultValue: 1
   target: {fileID: 0}
@@ -969,7 +971,9 @@ MonoBehaviour:
   m_Script: {fileID: 1718144387, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Key: SoundVolum
+  Key:
+    reference: {fileID: 787632376}
+    value: 
   Source: {fileID: 0}
 --- !u!1 &545967863
 GameObject:
@@ -1308,6 +1312,7 @@ GameObject:
   - component: {fileID: 787632374}
   - component: {fileID: 787632373}
   - component: {fileID: 787632375}
+  - component: {fileID: 787632376}
   m_Layer: 5
   m_Name: Text (5)
   m_TagString: Untagged
@@ -1387,10 +1392,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: 9ce97571c49567f428421abfed1900c7, type: 2}
-  key: SoundVolum
+  key:
+    reference: {fileID: 787632376}
+    value: 
   allowUpdate: 1
   keyAsDefaultValue: 1
   target: {fileID: 0}
+--- !u!114 &787632376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787632371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1946625789, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: Volume
+  storage: {fileID: 0}
+  key:
+    reference: {fileID: 0}
+    value: 
+  autoSave: 1
 --- !u!1 &1046036268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,6 +1428,7 @@ GameObject:
   - component: {fileID: 1046036271}
   - component: {fileID: 1046036270}
   - component: {fileID: 1046036272}
+  - component: {fileID: 1046036273}
   m_Layer: 5
   m_Name: Text (4)
   m_TagString: Untagged
@@ -1482,10 +1508,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: 9ce97571c49567f428421abfed1900c7, type: 2}
-  key: PlayerName
+  key:
+    reference: {fileID: 1046036273}
+    value: 
   allowUpdate: 1
   keyAsDefaultValue: 1
   target: {fileID: 0}
+--- !u!114 &1046036273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046036268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1946625789, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: PlayerName
+  storage: {fileID: 0}
+  key:
+    reference: {fileID: 0}
+    value: 
+  autoSave: 1
 --- !u!1 &1169523405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,7 +1571,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.0000038147, y: -75}
+  m_AnchoredPosition: {x: 0.000024706, y: -112.2}
   m_SizeDelta: {x: 300, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1169523407
@@ -1640,7 +1686,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: 9ce97571c49567f428421abfed1900c7, type: 2}
-  key: PlayerName
+  key:
+    reference: {fileID: 1046036273}
+    value: 
   allowUpdate: 0
   keyAsDefaultValue: 1
   target: {fileID: 0}
@@ -1656,7 +1704,9 @@ MonoBehaviour:
   m_Script: {fileID: -1571970082, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Key: PlayerName
+  Key:
+    reference: {fileID: 1046036273}
+    value: 
   Source: {fileID: 0}
 --- !u!1 &1427905723
 GameObject:

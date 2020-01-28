@@ -1,4 +1,5 @@
-﻿using Cindy.Storages;
+﻿using Cindy.Logic.ReferenceValues;
+using Cindy.Storages;
 using UnityEngine;
 
 namespace Cindy.Logic
@@ -11,7 +12,7 @@ namespace Cindy.Logic
 
         [Header("Storage")]
         public AbstractStorage storage;
-        public string key;
+        public ReferenceString key;
         public bool autoSave = true;
 
         protected object _value;
@@ -20,7 +21,7 @@ namespace Cindy.Logic
         {
             if(storage != null)
             {
-                string val = storage.Get(key);
+                string val = storage.Get(key.Value);
                 if (val != null)
                     value = TransformTo(val);
             }
@@ -48,7 +49,7 @@ namespace Cindy.Logic
         {
             if (storage != null)
             {
-                storage.Put(key, value);
+                storage.Put(key.Value, value);
                 _value = value;
             }
         }

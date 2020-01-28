@@ -1,4 +1,5 @@
-﻿using Cindy.Logic.VariableObjects;
+﻿using Cindy.Logic.ReferenceValues;
+using Cindy.Logic.VariableObjects;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,7 +9,7 @@ namespace Cindy.Logic.Methods
     [AddComponentMenu("Cindy/Logic/Methods/SceneLoaders/SceneLoader")]
     public class SceneLoader : LogicNode
     {
-        public string sceneName;
+        public ReferenceString sceneName;
 
         protected AsyncOperation operation;
 
@@ -25,7 +26,7 @@ namespace Cindy.Logic.Methods
 
         public virtual IEnumerator LoadScene()
         {
-            operation = SceneManager.LoadSceneAsync(sceneName);
+            operation = SceneManager.LoadSceneAsync(sceneName.Value);
             operation.allowSceneActivation = false;
             while (operation.progress < 0.9f)
             {
@@ -36,7 +37,7 @@ namespace Cindy.Logic.Methods
 
         public void SetSceneName(string sceneName)
         {
-            this.sceneName = sceneName;
+            this.sceneName.Value = sceneName;
         }
     }
 

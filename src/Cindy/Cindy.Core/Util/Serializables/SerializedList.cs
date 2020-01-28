@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Cindy.Util.Serializables
 {
     [Serializable]
     public class SerializedList
     {
-
+        [Multiline]
         public string[] array;
         public SerializedList(IList<string> ts)
         {

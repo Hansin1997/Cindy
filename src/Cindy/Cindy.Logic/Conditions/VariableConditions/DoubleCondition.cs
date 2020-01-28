@@ -1,10 +1,11 @@
-﻿using Cindy.Logic.VariableObjects;
+﻿using Cindy.Logic.ReferenceValues;
+using Cindy.Logic.VariableObjects;
 using UnityEngine;
 
 namespace Cindy.Logic.Conditions
 {
     [AddComponentMenu("Cindy/Logic/Conditions/DoubleCondition",0)]
-    public class DoubleCondition : NumberVariableCondition<DoubleObject,double>
+    public class DoubleCondition : NumberVariableCondition<DoubleObject,double,ReferenceDouble>
     {
         protected override bool Eq(double variableValue, double value)
         {

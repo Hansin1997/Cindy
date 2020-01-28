@@ -554,7 +554,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: 48f199d0bf133c94a8b4b7f4943af9f7, type: 2}
-  key: title
+  key:
+    reference: {fileID: 0}
+    value: title
   allowUpdate: 1
   keyAsDefaultValue: 1
   target: {fileID: 0}
@@ -726,7 +728,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: 48f199d0bf133c94a8b4b7f4943af9f7, type: 2}
-  key: tips
+  key:
+    reference: {fileID: 0}
+    value: tips
   allowUpdate: 1
   keyAsDefaultValue: 1
   target: {fileID: 0}
@@ -950,7 +954,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: 48f199d0bf133c94a8b4b7f4943af9f7, type: 2}
-  key: content
+  key:
+    reference: {fileID: 0}
+    value: content
   allowUpdate: 1
   keyAsDefaultValue: 1
   target: {fileID: 0}
@@ -1161,9 +1167,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'English
-
-'
+  m_Text: English
 --- !u!222 &1926229411
 CanvasRenderer:
   m_ObjectHideFlags: 0

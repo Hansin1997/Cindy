@@ -1,4 +1,5 @@
-﻿using Cindy.Logic.VariableObjects;
+﻿using Cindy.Logic.ReferenceValues;
+using Cindy.Logic.VariableObjects;
 using System;
 using UnityEngine;
 
@@ -9,14 +10,13 @@ namespace Cindy.Logic.Conditions
     {
         public BoolObject variable;
         public Operator @operator;
-        public BoolObject targetVariable;
-        public bool staticValue;
+        public ReferenceBool target;
 
         public override bool Check()
         {
             if (variable == null)
                 return false;
-            bool value = targetVariable != null ? targetVariable.value : staticValue;
+            bool value = target.Value;
 
             switch (@operator)
             {

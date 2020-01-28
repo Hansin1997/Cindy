@@ -388,8 +388,10 @@ MonoBehaviour:
   m_Script: {fileID: 1380912491, guid: e3afbb288bf1c374f80602b257b9da75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseOptions:
-    label: default
+  StorableOptions:
+    label:
+      reference: {fileID: 0}
+      value: default
     globalUniqueness: 0
   transformOptions:
     position: 1
@@ -518,8 +520,10 @@ MonoBehaviour:
   m_Script: {fileID: 1380912491, guid: e3afbb288bf1c374f80602b257b9da75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseOptions:
-    label: default
+  StorableOptions:
+    label:
+      reference: {fileID: 0}
+      value: default
     globalUniqueness: 0
   transformOptions:
     position: 1
@@ -648,8 +652,10 @@ MonoBehaviour:
   m_Script: {fileID: 1380912491, guid: e3afbb288bf1c374f80602b257b9da75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseOptions:
-    label: default
+  StorableOptions:
+    label:
+      reference: {fileID: 0}
+      value: default
     globalUniqueness: 0
   transformOptions:
     position: 1
@@ -778,8 +784,10 @@ MonoBehaviour:
   m_Script: {fileID: 1380912491, guid: e3afbb288bf1c374f80602b257b9da75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseOptions:
-    label: default
+  StorableOptions:
+    label:
+      reference: {fileID: 0}
+      value: default
     globalUniqueness: 0
   transformOptions:
     position: 1
@@ -908,8 +916,10 @@ MonoBehaviour:
   m_Script: {fileID: 1380912491, guid: e3afbb288bf1c374f80602b257b9da75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseOptions:
-    label: default
+  StorableOptions:
+    label:
+      reference: {fileID: 0}
+      value: default
     globalUniqueness: 0
   transformOptions:
     position: 1
@@ -960,7 +970,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storage: {fileID: 11400000, guid: ee9d87d3b9b93a0479360a270aab4569, type: 2}
   option:
-    label: default
+    label:
+      reference: {fileID: 0}
+      value: default
     loadOnStart: 1
     saveOnPause: 1
     saveOnQuit: 1
@@ -1087,8 +1099,10 @@ MonoBehaviour:
   m_Script: {fileID: 1380912491, guid: e3afbb288bf1c374f80602b257b9da75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseOptions:
-    label: default
+  StorableOptions:
+    label:
+      reference: {fileID: 0}
+      value: default
     globalUniqueness: 0
   transformOptions:
     position: 1
@@ -1405,8 +1419,10 @@ MonoBehaviour:
   m_Script: {fileID: 1380912491, guid: e3afbb288bf1c374f80602b257b9da75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseOptions:
-    label: default
+  StorableOptions:
+    label:
+      reference: {fileID: 0}
+      value: default
     globalUniqueness: 0
   transformOptions:
     position: 1
@@ -1668,8 +1684,10 @@ MonoBehaviour:
   m_Script: {fileID: 1380912491, guid: e3afbb288bf1c374f80602b257b9da75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseOptions:
-    label: default
+  StorableOptions:
+    label:
+      reference: {fileID: 0}
+      value: default
     globalUniqueness: 0
   transformOptions:
     position: 1
@@ -1927,8 +1945,10 @@ MonoBehaviour:
   m_Script: {fileID: 1380912491, guid: e3afbb288bf1c374f80602b257b9da75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseOptions:
-    label: default
+  StorableOptions:
+    label:
+      reference: {fileID: 0}
+      value: default
     globalUniqueness: 0
   transformOptions:
     position: 1
@@ -2087,8 +2107,10 @@ MonoBehaviour:
   m_Script: {fileID: 1380912491, guid: e3afbb288bf1c374f80602b257b9da75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseOptions:
-    label: default
+  StorableOptions:
+    label:
+      reference: {fileID: 0}
+      value: default
     globalUniqueness: 0
   transformOptions:
     position: 1
@@ -2738,8 +2760,10 @@ MonoBehaviour:
   m_Script: {fileID: 1380912491, guid: e3afbb288bf1c374f80602b257b9da75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseOptions:
-    label: default
+  StorableOptions:
+    label:
+      reference: {fileID: 0}
+      value: default
     globalUniqueness: 0
   transformOptions:
     position: 1
@@ -2803,6 +2827,7 @@ GameObject:
   - component: {fileID: 2081559906}
   - component: {fileID: 2081559905}
   - component: {fileID: 2081559907}
+  - component: {fileID: 2081559908}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2822,7 +2847,9 @@ MonoBehaviour:
   m_Script: {fileID: -1873511729, guid: 6553e29b71d4e0440bd55f6a9979354c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetName: Main Camera
+  targetName:
+    reference: {fileID: 2081559908}
+    value: 
   order: 0
   attachOnStart: 1
   detachOnDestroy: 1
@@ -2840,14 +2867,22 @@ MonoBehaviour:
   m_Script: {fileID: 502428318, guid: 6553e29b71d4e0440bd55f6a9979354c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetName: Main Camera
+  targetName:
+    reference: {fileID: 2081559908}
+    value: 
   order: 0
   attachOnStart: 1
   detachOnDestroy: 1
   axesMap:
-    Horizontal: Horizontal
-    Vertical: Vertical
-  jumpButton: Jump
+    Horizontal:
+      reference: {fileID: 0}
+      value: Horizontal
+    Vertical:
+      reference: {fileID: 0}
+      value: Vertical
+  jumpButton:
+    reference: {fileID: 0}
+    value: Jump
   useGravity: 1
   mass: 1
   movingPower: 10
@@ -2973,10 +3008,30 @@ MonoBehaviour:
   m_Script: {fileID: 1380912491, guid: e3afbb288bf1c374f80602b257b9da75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseOptions:
-    label: default
+  StorableOptions:
+    label:
+      reference: {fileID: 0}
+      value: default
     globalUniqueness: 0
   transformOptions:
     position: 1
     rotation: 1
     scale: 1
+--- !u!114 &2081559908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081559898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1946625789, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: Main Camera
+  storage: {fileID: 0}
+  key:
+    reference: {fileID: 0}
+    value: 
+  autoSave: 1

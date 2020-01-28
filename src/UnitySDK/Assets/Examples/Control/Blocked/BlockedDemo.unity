@@ -721,6 +721,7 @@ GameObject:
   - component: {fileID: 916012496}
   - component: {fileID: 916012495}
   - component: {fileID: 916012497}
+  - component: {fileID: 916012498}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -815,14 +816,22 @@ MonoBehaviour:
   m_Script: {fileID: 502428318, guid: 6553e29b71d4e0440bd55f6a9979354c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetName: Main Camera
+  targetName:
+    reference: {fileID: 916012498}
+    value: 
   order: 0
   attachOnStart: 1
   detachOnDestroy: 1
   axesMap:
-    Horizontal: Horizontal
-    Vertical: Vertical
-  jumpButton: Jump
+    Horizontal:
+      reference: {fileID: 0}
+      value: Horizontal
+    Vertical:
+      reference: {fileID: 0}
+      value: Vertical
+  jumpButton:
+    reference: {fileID: 0}
+    value: Jump
   useGravity: 1
   mass: 1
   movingPower: 10
@@ -857,11 +866,29 @@ MonoBehaviour:
   m_Script: {fileID: 963846946, guid: 6553e29b71d4e0440bd55f6a9979354c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetName: Main Camera
+  targetName:
+    reference: {fileID: 916012498}
+    value: 
   order: 0
   attachOnStart: 1
   detachOnDestroy: 1
   freeLookCamera: {fileID: 11400000, guid: ce9fbdfa8857f54468d72b0031fecc69, type: 2}
+--- !u!114 &916012498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916012490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1946625789, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: Main Camera
+  storage: {fileID: 0}
+  key: 
+  autoSave: 1
 --- !u!1 &1103303344
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,7 +996,9 @@ MonoBehaviour:
   m_Script: {fileID: -889492492, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetName: Main Camera
+  targetName:
+    reference: {fileID: 916012498}
+    value: 
   order: 99
   attachOnStart: 1
   detachOnDestroy: 1
@@ -985,7 +1014,9 @@ MonoBehaviour:
   m_Script: {fileID: 875691721, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetName: Main Camera
+  targetName:
+    reference: {fileID: 916012498}
+    value: 
   order: 99
   attachOnStart: 1
   detachOnDestroy: 1

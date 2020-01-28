@@ -1,10 +1,11 @@
-﻿using Cindy.Logic.VariableObjects;
+﻿using Cindy.Logic.ReferenceValues;
+using Cindy.Logic.VariableObjects;
 using UnityEngine;
 
 namespace Cindy.Logic.Conditions
 {
     [AddComponentMenu("Cindy/Logic/Conditions/FloatCondition", 0)]
-    public class FloatCondition : NumberVariableCondition<FloatObject,float>
+    public class FloatCondition : NumberVariableCondition<FloatObject,float,ReferenceFloat>
     {
         protected override bool Eq(float variableValue, float value)
         {

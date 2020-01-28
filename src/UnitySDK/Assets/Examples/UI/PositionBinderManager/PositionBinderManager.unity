@@ -628,14 +628,22 @@ MonoBehaviour:
   m_Script: {fileID: 502428318, guid: 6553e29b71d4e0440bd55f6a9979354c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetName: Main Camera
+  targetName:
+    reference: {fileID: 0}
+    value: Main Camera
   order: 0
   attachOnStart: 1
   detachOnDestroy: 1
   axesMap:
-    Horizontal: Horizontal
-    Vertical: Vertical
-  jumpButton: Jump
+    Horizontal:
+      reference: {fileID: 0}
+      value: Horizontal
+    Vertical:
+      reference: {fileID: 0}
+      value: Vertical
+  jumpButton:
+    reference: {fileID: 0}
+    value: Jump
   useGravity: 1
   mass: 1
   movingPower: 10
@@ -890,7 +898,9 @@ MonoBehaviour:
   m_Script: {fileID: -2104719959, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetName: PositionBinderManager
+  targetName:
+    reference: {fileID: 0}
+    value: PositionBinderManager
   order: 0
   attachOnStart: 1
   detachOnDestroy: 1

@@ -2,18 +2,17 @@
 
 namespace Cindy.Logic.Conditions
 {
-    public abstract class NumberVariableCondition<V,T> : Condition where V : VariableObject<T>
+    public abstract class NumberVariableCondition<V,T,R> : Condition where V : VariableObject<T> where R : ReferenceValue<T,V>
     {
         public V variable;
         public Operator @operator;
-        public V targetValue;
-        public T staticValue;
+        public R target;
 
         public override bool Check()
         {
             if(variable != null)
             {
-                T value = targetValue != null && targetValue.value != null ? targetValue.value : staticValue;
+                T value = target.Value;
                 if (variable.value == null || value == null)
                     return false;
                 switch(@operator)

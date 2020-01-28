@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cindy.Logic.ReferenceValues;
+using System;
 using UnityEngine;
 
 namespace Cindy.Util
@@ -6,7 +7,7 @@ namespace Cindy.Util
     public abstract class Attachment : MonoBehaviour
     {
         [Header("Attachment")]
-        public string targetName = "";
+        public ReferenceString targetName;
         public int order = 0;
 
         public bool attachOnStart = false;
@@ -33,7 +34,7 @@ namespace Cindy.Util
             UnityEngine.Object[] objs = FindObjectsOfType(GetAttachableType());
             foreach (UnityEngine.Object obj in objs)
             {
-                if (obj is Attachable attachable && attachable.gameObject.name.Equals(targetName))
+                if (obj is Attachable attachable && attachable.gameObject.name.Equals(targetName.Value))
                 {
                     return attachable;
                 }

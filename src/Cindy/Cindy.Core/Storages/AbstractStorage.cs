@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cindy.Logic.ReferenceValues;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -116,7 +117,7 @@ namespace Cindy.Storages
     [Serializable]
     public class StorableObjectOption
     {
-        public string label = "default";
+        public ReferenceString label = new ReferenceString() { value = "default" };
         public bool globalUniqueness = false;
     }
 }

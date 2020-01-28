@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Cindy.Util.Serializables
 {
@@ -7,6 +8,8 @@ namespace Cindy.Util.Serializables
     public class SerializedDictionary
     {
         public string[] paramsKey;
+
+        [Multiline]
         public string[] paramsVal;
 
         public SerializedDictionary(Dictionary<string, string> dictonary)

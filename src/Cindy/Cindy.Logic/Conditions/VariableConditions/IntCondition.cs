@@ -1,10 +1,11 @@
-﻿using Cindy.Logic.VariableObjects;
+﻿using Cindy.Logic.ReferenceValues;
+using Cindy.Logic.VariableObjects;
 using UnityEngine;
 
 namespace Cindy.Logic.Conditions
 {
     [AddComponentMenu("Cindy/Logic/Conditions/IntCondition", 0)]
-    public class IntCondition : NumberVariableCondition<IntObject,int>
+    public class IntCondition : NumberVariableCondition<IntObject,int,ReferenceInt>
     {
         protected override bool Eq(int variableValue, int value)
         {

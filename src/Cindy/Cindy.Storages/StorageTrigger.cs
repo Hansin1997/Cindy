@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cindy.Logic.ReferenceValues;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace Cindy.Storages
         [Serializable]
         public class StorageTriggerOption
         {
-            public string label = "default";
+            public ReferenceString label = new ReferenceString() { value = "default" };
             public bool loadOnStart = true;
             public bool saveOnPause = true;
             public bool saveOnQuit = true;

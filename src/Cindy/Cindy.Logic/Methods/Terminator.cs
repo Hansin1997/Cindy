@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cindy.Logic.ReferenceValues;
+using UnityEngine;
 
 namespace Cindy.Logic.Methods
 {
@@ -6,11 +7,11 @@ namespace Cindy.Logic.Methods
     [AddComponentMenu("Cindy/Logic/Methods/Terminator")]
     public class Terminator : LogicNode
     {
-        public int exitCode;
+        public ReferenceInt exitCode;
 
         protected override void Run()
         {
-            Application.Quit(exitCode);
+            Application.Quit(exitCode.Value);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Cindy.UI.Form
             IDictionary<string, object> result = new Dictionary<string, object>();
             Scan();
             foreach(AbstractFormItem item in items) {
-                result[item.Key] = item.Value;
+                result[item.Key.Value] = item.Value;
             }
             return result;
         }

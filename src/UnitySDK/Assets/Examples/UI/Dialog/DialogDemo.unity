@@ -878,8 +878,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 0
   storage: {fileID: 0}
-  key: 
-  autoSave: 1
+  key:
+    reference: {fileID: 0}
+    value: 
+  autoSave: 0
 --- !u!1 &1449823198
 GameObject:
   m_ObjectHideFlags: 0
