@@ -1141,6 +1141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachments: []
+  updateType: 0
 --- !u!114 &665563940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3035,3 +3036,6 @@ MonoBehaviour:
     reference: {fileID: 0}
     value: 
   autoSave: 1
+  valueChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []

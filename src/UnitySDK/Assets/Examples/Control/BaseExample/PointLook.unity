@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachments: []
+  updateType: 0
 --- !u!114 &183241399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,8 +617,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: Main Camera
   storage: {fileID: 0}
-  key: 
+  key:
+    reference: {fileID: 0}
+    value: 
   autoSave: 1
+  valueChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1669016636
 GameObject:
   m_ObjectHideFlags: 0

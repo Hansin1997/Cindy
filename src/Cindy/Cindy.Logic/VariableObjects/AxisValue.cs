@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Cindy.Logic.VariableObjects
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/AxisValueObject")]
-    public class AxisValueObject : FloatObject
+    [AddComponentMenu("Cindy/Logic/VariableObject/AxisValue")]
+    public class AxisValue : FloatObject
     {
 
         [Header("Axis")]
