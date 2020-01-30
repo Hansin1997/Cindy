@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Cindy.Logic.ReferenceValues;
+using UnityEngine;
+using static Cindy.Logic.Conditions.ButtonCondition;
 
 namespace Cindy.Logic.VariableObjects
 {
@@ -7,16 +9,17 @@ namespace Cindy.Logic.VariableObjects
     public class ButtonValue : BoolObject
     {
         [Header("Button")]
-        public string buttonName;
+        public ReferenceString buttonKey;
+        public ButtonType state;
 
         protected override void Start()
         {
-            value = VirtualInput.GetButton(buttonName);
+            value = GetValue(state, buttonKey.Value);
         }
 
         protected override void Update()
         {
-            value = VirtualInput.GetButton(buttonName);
+            value = GetValue(state, buttonKey.Value);
             base.Update();
         }
     }

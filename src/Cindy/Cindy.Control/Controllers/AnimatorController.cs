@@ -29,7 +29,6 @@ namespace Cindy.Control.Controllers
         public override void OnControllerSelect()
         {
             animator = GetComponent<Animator>();
-
             foreach (NamedBool namedBool in boolParameters)
             {
                 UnityAction action = () => animator.SetBool(namedBool.key, namedBool.value.value);
@@ -76,7 +75,6 @@ namespace Cindy.Control.Controllers
 
         public override void OnControllerUpdate(float deltaTime)
         {
-
         }
 
 

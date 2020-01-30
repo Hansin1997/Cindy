@@ -7,26 +7,31 @@ namespace Cindy.Logic.Conditions
     public class ButtonCondition : Condition
     {
         public ReferenceString buttonKey;
-        public Type state;
+        public ButtonType state;
 
         public override bool Check()
         {
-            if (buttonKey == null || buttonKey.Value.Trim().Length == 0)
+            return GetValue(state, buttonKey.Value);
+        }
+
+        public static bool GetValue(ButtonType state, string buttonKey)
+        {
+            if (buttonKey == null || buttonKey.Trim().Length == 0)
                 return false;
             switch (state)
             {
-                case Type.Normal:
-                    return VirtualInput.GetButton(buttonKey.Value);
-                case Type.Down:
-                    return VirtualInput.GetButtonDown(buttonKey.Value);
-                case Type.Up:
-                    return VirtualInput.GetButtonUp(buttonKey.Value);
+                case ButtonType.Normal:
+                    return VirtualInput.GetButton(buttonKey);
+                case ButtonType.Down:
+                    return VirtualInput.GetButtonDown(buttonKey);
+                case ButtonType.Up:
+                    return VirtualInput.GetButtonUp(buttonKey);
                 default:
                     return false;
             }
         }
 
-        public enum Type
+        public enum ButtonType
         {
             Normal,
             Down,

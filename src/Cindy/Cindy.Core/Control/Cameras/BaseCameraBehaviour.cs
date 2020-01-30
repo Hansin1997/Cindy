@@ -5,7 +5,8 @@ namespace Cindy.Control.Cameras
     public abstract class BaseCameraBehaviour : CameraBehaviour
     {
         [Header("Base Config")]
-        public AnimationCurve cameraSpeed;
+        public AnimationCurve cameraMovingSpeed;
+        public AnimationCurve cameraLookSpeed;
         public bool raycast = true;
         public bool lookAtTarget = true;
 
@@ -26,10 +27,16 @@ namespace Cindy.Control.Cameras
                 newPosition = ProcessRaycast(camera, attachment, newPosition, deltaTime);
 
             Vector3 dir = camera.transform.position - newPosition;
-            float t = cameraSpeed.Evaluate(dir.magnitude);
+            float t = cameraMovingSpeed.Evaluate(dir.magnitude);
             camera.transform.position = Vector3.Lerp(camera.transform.position, newPosition, t);
             if (lookAtTarget)
-                camera.transform.LookAt(attachment.transform);
+            {
+                dir = attachment.transform.position - camera.transform.position;
+                float angle = Vector3.Angle(camera.transform.forward, dir);
+                t = cameraLookSpeed.Evaluate(angle);
+                Vector3 tmp = Vector3.Lerp(camera.transform.forward, dir, t);
+                camera.transform.forward = tmp;
+            }
         }
 
         protected abstract Vector3 GetPosition(Camera camera, CameraBehaviourAttachment attachment, float deltaTime);
