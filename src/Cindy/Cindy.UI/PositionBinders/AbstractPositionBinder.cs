@@ -26,13 +26,13 @@ namespace Cindy.UI.PositionBinders
             float h = 0;
             foreach (RectTransform rectTransform in rectTransforms)
             {
-                h += rectTransform.rect.height;
+                h += rectTransform.sizeDelta.y;
             }
 
             for (int i = 0;i < rectTransforms.Count; i++)
             {
                 rectTransforms[i].anchorMin = rectTransforms[i].anchorMax = Vector2.zero;
-                rectTransforms[i].anchoredPosition = position - Vector3.up * (h - rectTransforms[i].rect.height);
+                rectTransforms[i].position = position - Vector3.up * (h - rectTransforms[i].rect.height);
                 h -= rectTransforms[i].rect.height;
             }
         }
