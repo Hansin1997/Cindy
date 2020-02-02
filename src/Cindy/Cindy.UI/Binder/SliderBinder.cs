@@ -15,7 +15,7 @@ namespace Cindy.UI.Binder
                 target.value = float.Parse(value);
             }catch(Exception e)
             {
-                Debug.LogError(e, this);
+                Debug.LogWarning(e, this);
             }
         }
     }

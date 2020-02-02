@@ -26,7 +26,7 @@ namespace Cindy.UI.PositionBinders
             float h = 0;
             foreach (RectTransform rectTransform in rectTransforms)
             {
-                h += rectTransform.sizeDelta.y;
+                h += rectTransform.rect.height;
             }
 
             for (int i = 0;i < rectTransforms.Count; i++)

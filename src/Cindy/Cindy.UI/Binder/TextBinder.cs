@@ -8,7 +8,8 @@ namespace Cindy.UI.Binder
     {
         protected override void OnBind(Text target,string value)
         {
-            target.text = value;
+            if(value != null)
+                target.text = value;
         }
     }
 }
