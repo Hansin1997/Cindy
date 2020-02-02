@@ -6,21 +6,30 @@ namespace Cindy.Logic.VariableObjects
     [AddComponentMenu("Cindy/Logic/VariableObject/AxisValue")]
     public class AxisValue : FloatObject
     {
-
         [Header("Axis")]
         public ReferenceString axisName;
 
         protected override void Start()
         {
-            if (axisName != null && axisName.Value != null && axisName.Value.Trim().Length > 0)
-                value = VirtualInput.GetAxis(axisName.Value);
+            GetValue();
         }
 
         protected override void Update()
         {
+            GetValue();
+            base.Update();
+        }
+
+        public override float GetValue()
+        {
             if (axisName != null && axisName.Value != null && axisName.Value.Trim().Length > 0)
                 value = VirtualInput.GetAxis(axisName.Value);
-            base.Update();
+            return base.GetValue();
+        }
+
+        public override void SetValue(float value)
+        {
+
         }
     }
 }

@@ -13,22 +13,22 @@ namespace Cindy.Logic.Conditions
             if(variable != null)
             {
                 T value = target.Value;
-                if (variable.value == null || value == null)
+                if (variable.Value == null || value == null)
                     return false;
                 switch(@operator)
                 {
                     case Operator.Equlas:
-                        return Eq(variable.value, value);
+                        return Eq(variable.Value, value);
                     case Operator.NotEqulas:
-                        return !Eq(variable.value, value);
+                        return !Eq(variable.Value, value);
                     case Operator.GreaterThan:
-                        return Gt(variable.value, value);
+                        return Gt(variable.Value, value);
                     case Operator.GreaterThanOrEqulas:
-                        return Ge(variable.value, value);
+                        return Ge(variable.Value, value);
                     case Operator.LessThan:
-                        return Lt(variable.value, value);
+                        return Lt(variable.Value, value);
                     case Operator.LessThanOrEqulas:
-                        return Le(variable.value, value);
+                        return Le(variable.Value, value);
                     default:
                         return false;
                 }

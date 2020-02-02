@@ -12,13 +12,13 @@ namespace Cindy.Logic
 
         public T GetValue()
         {
-            return reference != null && reference.value != null ? reference.value : value;
+            return reference != null && reference.Value != null ? reference.Value : value;
         }
 
         public void SetValue(T value)
         {
             if (reference != null)
-                reference.value = value;
+                reference.Value = value;
             this.value = value;
         }
 
@@ -41,10 +41,10 @@ namespace Cindy.Logic
             }else if(obj is V c)
             {
                 if (Value == null)
-                    return c == null || c.value == null;
+                    return c == null || c.Value == null;
                 if (c == null)
                     return false;
-                return Value.Equals(c.value);
+                return Value.Equals(c.Value);
             }
             return base.Equals(obj);
         }

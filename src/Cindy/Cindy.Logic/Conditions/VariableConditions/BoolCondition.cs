@@ -21,9 +21,9 @@ namespace Cindy.Logic.Conditions
             switch (@operator)
             {
                 case Operator.Equlas:
-                    return variable.value == value;
+                    return variable.Value == value;
                 case Operator.NotEqulas:
-                    return variable.value != value;
+                    return variable.Value != value;
                 default:
                     return false;
             }

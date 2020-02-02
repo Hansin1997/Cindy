@@ -1,6 +1,6 @@
-﻿using Cindy.Logic.ReferenceValues;
+﻿using Cindy.Logic.Conditions;
+using Cindy.Logic.ReferenceValues;
 using UnityEngine;
-using static Cindy.Logic.Conditions.ButtonCondition;
 
 namespace Cindy.Logic.VariableObjects
 {
@@ -10,17 +10,28 @@ namespace Cindy.Logic.VariableObjects
     {
         [Header("Button")]
         public ReferenceString buttonKey;
-        public ButtonType state;
+        public ButtonCondition.ButtonType state;
 
         protected override void Start()
         {
-            value = GetValue(state, buttonKey.Value);
+            GetValue();
         }
 
         protected override void Update()
         {
-            value = GetValue(state, buttonKey.Value);
+            GetValue();
             base.Update();
+        }
+
+        public override bool GetValue()
+        {
+            value = ButtonCondition.GetValue(state, buttonKey.Value);
+            return value;
+        }
+
+        public override void SetValue(bool value)
+        {
+
         }
     }
 }

@@ -18,5 +18,10 @@ namespace Cindy.Logic.VariableObjects
             value = condition != null && condition.Check();
             base.Update();
         }
+
+        public override void SetValue(bool value)
+        {
+
+        }
     }
 }

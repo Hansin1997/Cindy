@@ -111,5 +111,10 @@ namespace Cindy.Logic.VariableObjects
                     return camera;
             return defaultCamera;
         }
+
+        public override void SetValue(float value)
+        {
+
+        }
     }
 }
