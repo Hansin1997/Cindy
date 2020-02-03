@@ -16,6 +16,7 @@ namespace Cindy.Storages
             public bool loadOnStart = true;
             public bool saveOnPause = true;
             public bool saveOnQuit = true;
+            public bool saveOnDestroy = true;
         }
         public AbstractStorage storage;
 
@@ -40,19 +41,25 @@ namespace Cindy.Storages
                 SaveObjects();
         }
 
-        public void LoadObjects()
+        public virtual void OnDestroy()
+        {
+            if (option.saveOnDestroy)
+                SaveObjects();
+        }
+
+        public virtual void LoadObjects()
         {
             if(storage != null)
                 storage.LoadObjects(FindObjects());
         }
 
-        public void SaveObjects()
+        public virtual void SaveObjects()
         {
             if (storage != null)
                 storage.PutObjects(FindObjects());
         }
 
-        protected AbstractStorableObject[] FindObjects()
+        protected virtual AbstractStorableObject[] FindObjects()
         {
             AbstractStorableObject[] storableObjects = FindObjectsOfType<AbstractStorableObject>();
             List<AbstractStorableObject> tmp = new List<AbstractStorableObject>();
