@@ -18,31 +18,56 @@ namespace Cindy.Logic.VariableObjects
         protected override void OnValueLoad(bool val)
         {
             base.OnValueLoad(val);
-            toggle.isOn = val;
+
+            if (toggle == null)
+                toggle = GetComponent<Toggle>();
+            if (toggle != null)
+                toggle.isOn = val;
         }
 
         protected override void Update()
         {
-            value = toggle.isOn;
+            if (toggle != null)
+                value = toggle.isOn;
             base.Update();
         }
 
         protected override void OnValueChanged()
         {
             base.OnValueChanged();
-            toggle.isOn = value;
+            if(toggle != null)
+             toggle.isOn = value;
         }
 
         public override bool GetValue()
         {
-            value = toggle.isOn;
-            return base.GetValue();
+            if (toggle == null)
+                toggle = GetComponent<Toggle>();
+            if(toggle != null)
+            {
+                value = toggle.isOn;
+                return base.GetValue();
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public override void SetValue(bool value)
         {
-            toggle.isOn = value;
-            base.SetValue(value);
+            if (toggle == null)
+                toggle = GetComponent<Toggle>();
+            if (toggle != null)
+            {
+                toggle.isOn = value;
+
+                base.SetValue(value);
+            }
+            else
+            {
+                base.SetValue(false);
+            }
         }
     }
 }
