@@ -49,11 +49,7 @@ namespace Cindy.Logic.Methods
         protected override void Start()
         {
             if (sceneLoader == null)
-                sceneLoader = GetComponent<SceneLoader>();
-            if (sceneLoader != null)
-            {
-                value = sceneLoader.Progress;
-            }
+                SetSceneLoader(GetComponent<SceneLoader>());
         }
 
         protected override void Update()
@@ -63,6 +59,15 @@ namespace Cindy.Logic.Methods
                 value = sceneLoader.Progress;
             }
             base.Update();
+        }
+
+        public void SetSceneLoader(SceneLoader sceneLoader)
+        {
+            this.sceneLoader = sceneLoader;
+            if (sceneLoader != null)
+            {
+                value = sceneLoader.Progress;
+            }
         }
     }
 
@@ -73,11 +78,7 @@ namespace Cindy.Logic.Methods
         protected override void Start()
         {
             if (sceneLoader == null)
-                sceneLoader = GetComponent<SceneLoader>();
-            if (sceneLoader != null)
-            {
-                value = sceneLoader.IsLoading;
-            }
+                SetSceneLoader(GetComponent<SceneLoader>());
         }
 
         protected override void Update()
@@ -87,6 +88,15 @@ namespace Cindy.Logic.Methods
                 value = sceneLoader.IsLoading;
             }
             base.Update();
+        }
+
+        public void SetSceneLoader(SceneLoader sceneLoader)
+        {
+            this.sceneLoader = sceneLoader;
+            if (sceneLoader != null)
+            {
+                value = sceneLoader.IsLoading;
+            }
         }
     }
 }
