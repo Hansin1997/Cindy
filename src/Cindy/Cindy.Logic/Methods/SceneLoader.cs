@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace Cindy.Logic.Methods
 {
+    [DisallowMultipleComponent]
     [AddComponentMenu("Cindy/Logic/Methods/SceneLoaders/SceneLoader")]
     public class SceneLoader : LogicNode
     {
@@ -13,20 +14,36 @@ namespace Cindy.Logic.Methods
 
         protected AsyncOperation operation;
 
+        public bool async = true;
+
+        public LoadSceneMode loadSceneMode = LoadSceneMode.Single;
+
+        public LocalPhysicsMode localPhysicsMode = LocalPhysicsMode.None;
+
         public float Progress { get { return operation != null ? operation.progress : 0; } }
 
         public bool IsLoading { get { return operation != null && !operation.isDone; } }
+
+        public bool Async { get { return async; } set { async = value; } }
+
+        public LoadSceneMode LoadSceneMode { get { return loadSceneMode; } set { loadSceneMode = value; } }
+
+        public LocalPhysicsMode LocalPhysicsMode { get { return localPhysicsMode; } set { localPhysicsMode = value; } }
 
         protected override void Run()
         {
             if (IsLoading)
                 return;
-            StartCoroutine("LoadScene");
+
+            if (async)
+                StartCoroutine("LoadScene");
+            else
+                SceneManager.LoadScene(sceneName.Value, new LoadSceneParameters(loadSceneMode, localPhysicsMode));
         }
 
         public virtual IEnumerator LoadScene()
         {
-            operation = SceneManager.LoadSceneAsync(sceneName.Value);
+            operation = SceneManager.LoadSceneAsync(sceneName.Value, new LoadSceneParameters(loadSceneMode, localPhysicsMode));
             operation.allowSceneActivation = false;
             while (operation.progress < 0.9f)
             {
@@ -38,6 +55,84 @@ namespace Cindy.Logic.Methods
         public void SetSceneName(string sceneName)
         {
             this.sceneName.Value = sceneName;
+        }
+
+        public void SetSceneName(StringObject stringObject)
+        {
+            sceneName.Value = stringObject != null ? stringObject.Value : "";
+        }
+    }
+
+    [AddComponentMenu("Cindy/Logic/Methods/SceneLoaders/SceneLoaderProxy")]
+    public class SceneLoaderProxy : LogicNode
+    {
+        public ReferenceString sceneName;
+        public ReferenceString sceneLoaderName;
+        public bool anyLoader = true;
+
+        public bool async = true;
+
+        public LoadSceneMode loadSceneMode = LoadSceneMode.Single;
+
+        public LocalPhysicsMode localPhysicsMode = LocalPhysicsMode.None;
+
+        public bool Async { get { return async; } set { async = value; } }
+
+        public LoadSceneMode LoadSceneMode { get { return loadSceneMode; } set { loadSceneMode = value; } }
+
+        public LocalPhysicsMode LocalPhysicsMode { get { return localPhysicsMode; } set { localPhysicsMode = value; } }
+
+        protected override void Run()
+        {
+            SceneLoader loader = FindLoader();
+            if (loader == null)
+                Debug.LogError("SceneLoaderProxy can not find a SceneLoader!", this);
+            else
+            {
+                loader.SetSceneName(sceneName.Value);
+                loader.async = async;
+                loader.loadSceneMode = loadSceneMode;
+                loader.localPhysicsMode = localPhysicsMode;
+                loader.Execute();
+            }
+        }
+
+        protected virtual SceneLoader FindLoader()
+        {
+            if (anyLoader)
+            {
+                return FindObjectOfType<SceneLoader>();
+            }
+            else
+            {
+                if (sceneLoaderName.Value.Trim().Length == 0)
+                    return null;
+                SceneLoader[] loaders = FindObjectsOfType<SceneLoader>();
+                foreach (SceneLoader loader in loaders)
+                    if (loader.gameObject.name.Equals(sceneLoaderName.Value))
+                        return loader;
+                return null;
+            }
+        }
+
+        public void SetSceneLoaderName(string sceneLoaderName)
+        {
+            this.sceneLoaderName.Value = sceneLoaderName;
+        }
+
+        public void SetSceneLoaderName(StringObject stringObject)
+        {
+            sceneLoaderName.Value = stringObject != null ? stringObject.Value : "";
+        }
+
+        public void SetSceneName(string sceneName)
+        {
+            this.sceneName.Value = sceneName;
+        }
+
+        public void SetSceneName(StringObject stringObject)
+        {
+            sceneName.Value = stringObject != null ? stringObject.Value : "";
         }
     }
 
