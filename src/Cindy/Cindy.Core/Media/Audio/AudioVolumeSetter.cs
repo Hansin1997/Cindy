@@ -24,6 +24,13 @@ namespace Cindy.Logic.VariableObjects
             base.OnValueLoad(val);
         }
 
+        protected override void OnValueLoadEmpty()
+        {
+            foreach (AudioSource source in audioSources)
+                source.volume = 1;
+            value = 1;
+        }
+
         protected override void OnValueChanged()
         {
             foreach (AudioSource source in audioSources)

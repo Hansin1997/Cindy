@@ -13,6 +13,7 @@ namespace Cindy.ItemSystem
     {
 
         public UnityEvent dataChangeListener;
+        public bool preview = true;
 
         [Header("Monitor")]
 
@@ -23,6 +24,7 @@ namespace Cindy.ItemSystem
         protected Dictionary<string, List<string>> picked;
         protected Dictionary<string, SerializedItem> map;
         protected Dictionary<Item, SceneItem> abandonedItemMap;
+        protected Dictionary<SerializedItem, ItemPreviewer> previewMap;
 
         private readonly string ABANDONED_ITEMS = "ABANDONED_ITEMS";
 
@@ -65,6 +67,7 @@ namespace Cindy.ItemSystem
                 map[item.item.name] = item.item;
                 items.Add(item.item);
             }
+            TryPreview(item.item);
             dataChangeListener.Invoke();
         }
 
@@ -84,7 +87,14 @@ namespace Cindy.ItemSystem
             Item instance = GenerateAbandonedItem(sceneItem.item);
             abandonedItemMap[instance] = sceneItem;
             sceneItem.transform = new SerializedTransform(instance.transform);
-
+            if(previewMap != null)
+            {
+                if(previewMap.ContainsKey(sceneItem.item))
+                {
+                    previewMap[sceneItem.item].CancelPreview();
+                    previewMap.Remove(sceneItem.item);
+                }
+            }
             dataChangeListener.Invoke();
             return instance;
         }
@@ -102,6 +112,21 @@ namespace Cindy.ItemSystem
                 parent.SetParent(root.transform);
             }
             return item.Instantiate(parent, WorldPositionStay);
+        }
+
+        protected virtual void TryPreview(SerializedItem item)
+        {
+            if (preview)
+            {
+                if (previewMap == null)
+                    previewMap = new Dictionary<SerializedItem, ItemPreviewer>();
+                ItemPreviewer p = ItemPreviewer.FindPreviewer(item.previewTag);
+                if (p != null)
+                {
+                    p.Preview(item);
+                    previewMap[item] = p;
+                }
+            }
         }
 
         public override object GetStorableObject()
@@ -140,7 +165,10 @@ namespace Cindy.ItemSystem
 
                     }
                 }
-
+                foreach(SerializedItem item in items)
+                {
+                    TryPreview(item);
+                }
                 abandonedItemMap = new Dictionary<Item, SceneItem>();
                 foreach(SceneItem item in abandonedItems)
                 {

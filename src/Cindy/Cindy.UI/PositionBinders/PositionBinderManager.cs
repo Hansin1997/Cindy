@@ -76,7 +76,8 @@ namespace Cindy.UI.PositionBinders
 
         protected override bool IsPeek(Attachment attachment)
         {
-            return attachment != null;
+            return attachment != null && attachment is AbstractPositionBinder positionBinder
+                && positionBinder.enabled;
         }
 
         [Serializable]

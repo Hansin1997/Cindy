@@ -7,6 +7,16 @@ namespace Cindy.UI.Pages
     {
         public List<Page> pages;
         protected Page currentPage;
+        public static int Count
+        {
+            get
+            {
+                PageContainer pc = FindObjectOfType<PageContainer>();
+                if (pc == null)
+                    return -1;
+                return pc.pages.Count;
+            }
+        }
 
         protected virtual void Push(Page page)
         {

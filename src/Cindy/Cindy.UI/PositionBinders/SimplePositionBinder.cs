@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Cindy.Logic.ReferenceValues;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cindy.UI.PositionBinders
@@ -7,7 +8,7 @@ namespace Cindy.UI.PositionBinders
     public class SimplePositionBinder : AbstractPositionBinder
     {
         [Header("Simple UI Attachment")]
-        public bool actived = true;
+        public ReferenceBool actived = new ReferenceBool() { value = true };
         public RectTransform[] templates;
 
         public override RectTransform[] GenerateComponents(GameObject root)
@@ -23,7 +24,7 @@ namespace Cindy.UI.PositionBinders
 
         public override bool IsActived()
         {
-            return actived;
+            return actived.Value;
         }
     }
 }

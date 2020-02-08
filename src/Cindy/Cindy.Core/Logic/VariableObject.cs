@@ -34,10 +34,10 @@ namespace Cindy.Logic
             if (storage != null)
             {
                 string val = storage.Get(key.Value);
-                if (val != null)
+                if (val != null && val.Length > 0)
                     OnValueLoad(TransformTo(val));
                 else
-                    OnValueLoad(default);
+                    OnValueLoadEmpty();
             }
             _value = value;
         }
@@ -46,6 +46,11 @@ namespace Cindy.Logic
         {
             if (val != default)
                 value = val;
+        }
+
+        protected virtual void OnValueLoadEmpty()
+        {
+
         }
 
         protected virtual void Update()

@@ -1,6 +1,8 @@
 ﻿using Cindy.Logic;
+using Cindy.Logic.ReferenceValues;
 using Cindy.Logic.VariableObjects;
 using Cindy.Strings;
+using Cindy.Util;
 using Cindy.Util.Serializables;
 using System;
 using System.Collections.Generic;
@@ -121,38 +123,80 @@ namespace Cindy.UI.Pages
     [AddComponentMenu("Cindy/UI/Dialog/DialogQueueLength")]
     public class DialogQueueLength : IntObject
     {
+        public ReferenceString dialogName = new ReferenceString() { value = "Dialog" };
         protected Dialog dialog;
-
-        protected override void Start()
-        {
-            dialog = GetComponent<Dialog>();
-            base.Start();
-        }
 
         protected override void Update()
         {
+            if (dialog == null)
+                dialog = Finder.Find<Dialog>(dialogName.Value);
             value = dialog != null && dialog.queue != null ? dialog.queue.Count : 0;
             base.Update();
         }
     }
 
-    [DisallowMultipleComponent]
-    [RequireComponent(typeof(Dialog))]
     [AddComponentMenu("Cindy/UI/Dialog/DialogNotEmptyCondition")]
     public class DialogNotEmptyCondition : Condition
     {
+        public ReferenceString dialogName = new ReferenceString() { value = "Dialog" };
         protected Dialog dialog;
-
-        protected virtual void Start()
-        {
-            dialog = GetComponent<Dialog>();
-        }
 
         public override bool Check()
         {
             if (dialog == null)
+                dialog = Finder.Find<Dialog>(dialogName.Value);
+            if (dialog == null)
                 return false;
             return dialog.HasMore();
+        }
+    }
+
+    [AddComponentMenu("Cindy/UI/Dialog/DialogObjectShower")]
+    public class DialogObjectShower : LogicNode
+    {
+        public Dialog dialog;
+        public bool singleton = true;
+        public DialogObject[] dialogObjects;
+
+        protected override void Run()
+        {
+            if (dialog == null)
+                return;
+            Dialog instance = null;
+            if (singleton)
+            {
+                instance = FindObjectOfType(dialog.GetType()) as Dialog;
+            }
+            if (instance == null)
+            {
+                instance = dialog.ShowAndReturn<Dialog>();
+            }
+            foreach (DialogObject dialogObject in dialogObjects)
+                instance.Enqueue(dialogObject);
+        }
+    }
+    [AddComponentMenu("Cindy/UI/Dialog/DialogAssetShower")]
+    public class DialogAssetShower : LogicNode
+    {
+        public Dialog dialog;
+        public bool singleton = true;
+        public DialogAsset[] dialogAssets;
+
+        protected override void Run()
+        {
+            if (dialog == null)
+                return;
+            Dialog instance = null;
+            if (singleton)
+            {
+                instance = FindObjectOfType(dialog.GetType()) as Dialog;
+            }
+            if (instance == null)
+            {
+                instance = dialog.ShowAndReturn<Dialog>();
+            }
+            foreach (DialogAsset dialogAsset in dialogAssets)
+                instance.Enqueue(dialogAsset);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Cindy.Media.Audio
 
         protected override bool IsPeek(Attachment attachment)
         {
-            return attachment is AudioAttachment;
+            return attachment is AudioAttachment audioAttachment && audioAttachment.enabled && audioAttachment.gameObject.activeSelf;
         }
 
         public override bool Attach(Attachment attachment)
