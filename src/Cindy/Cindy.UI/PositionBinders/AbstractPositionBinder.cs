@@ -1,4 +1,5 @@
-﻿using Cindy.Util;
+﻿using Cindy.Logic;
+using Cindy.Util;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,9 @@ namespace Cindy.UI.PositionBinders
 {
     public abstract class AbstractPositionBinder : Attachment
     {
+        [Header("PositionBinder")]
+        public Context context;
+
         public abstract RectTransform[] GenerateComponents(GameObject root);
         public abstract bool IsActived();
         public virtual void OnHide(IList<RectTransform> rectTransforms)

@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using Cindy.Logic.VariableObjects;
+using Cindy.Util;
+using System;
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace Cindy.ItemSystem
 {
@@ -10,6 +14,10 @@ namespace Cindy.ItemSystem
         [Header("Actions After Pick")]
         public bool destroySelf = true;
         public GameObject[] destroyList = new GameObject[] { };
+        public UnityEvent listener;
+
+        [NonSerialized]
+        public bool serialized;
 
         protected virtual void Start()
         {
@@ -31,7 +39,17 @@ namespace Cindy.ItemSystem
                 return;
             container.AddItem(this,name);
             AfterPick();
+            listener.Invoke();
         }
 
+        public virtual void Pick(string containerName)
+        {
+            Pick(Finder.Find<ItemContainer>(containerName));
+        }
+
+        public virtual void Pick(StringObject containerName)
+        {
+            Pick(Finder.Find<ItemContainer>(containerName.Value));
+        }
     }
 }

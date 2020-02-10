@@ -1,4 +1,5 @@
-﻿using Cindy.Util.Serializables;
+﻿using Cindy.Logic.ReferenceValues;
+using Cindy.Util.Serializables;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,11 @@ using UnityEngine.Events;
 
 namespace Cindy.Logic
 {
+    [AddComponentMenu("Cindy/Logic/LogicNode")]
     public class LogicNode : MonoBehaviour
     {
+        [Header("LogicNode")]
+        public ReferenceString nodeName;
         public UnityEvent events;
         public Switch[] nextNodes;
 

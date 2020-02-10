@@ -10,6 +10,17 @@ namespace Cindy.UI.PositionBinders
         [Header("Simple UI Attachment")]
         public ReferenceBool actived = new ReferenceBool() { value = true };
         public RectTransform[] templates;
+        public bool keepRelativePosition = true;
+        protected Vector3 orginVector;
+
+        protected override void Start()
+        {
+            if(transform.parent != null)
+            {
+                orginVector = transform.position - transform.parent.position;
+            }
+            base.Start();
+        }
 
         public override RectTransform[] GenerateComponents(GameObject root)
         {
@@ -17,9 +28,16 @@ namespace Cindy.UI.PositionBinders
             foreach(RectTransform template in templates)
             {
                 GameObject instance =  Instantiate(template.gameObject,root.transform);
+                instance.name = template.name;
                 instances.Add(instance.GetComponent<RectTransform>());
             }
             return instances.ToArray();
+        }
+
+        protected virtual void Update()
+        {
+            if (keepRelativePosition && transform.parent != null)
+                transform.position = transform.parent.position + orginVector;
         }
 
         public override bool IsActived()

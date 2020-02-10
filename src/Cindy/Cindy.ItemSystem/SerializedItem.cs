@@ -21,6 +21,7 @@ namespace Cindy.ItemSystem
 
         public string previewTag;
 
+
         public void Add(int count = 1)
         {
             amount += count;
@@ -60,6 +61,7 @@ namespace Cindy.ItemSystem
                 return null;
             Item instance = UnityEngine.Object.Instantiate(template, parent, worldPositionStay);
             instance.item = this;
+            instance.serialized = true;
             return instance;
         }
 
@@ -88,6 +90,8 @@ namespace Cindy.ItemSystem
                 if (rigidbody != null)
                     UnityEngine.Object.Destroy(rigidbody);
             }
+
+            instance.serialized = true;
             return instance;
         }
     }

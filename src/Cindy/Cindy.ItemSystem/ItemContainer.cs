@@ -46,7 +46,7 @@ namespace Cindy.ItemSystem
             if (picked == null)
                 picked = new Dictionary<string, List<string>>();
 
-            if(abandonedItemMap == null || !abandonedItemMap.ContainsKey(item))
+            if((abandonedItemMap == null || !abandonedItemMap.ContainsKey(item)) && !item.serialized)
             {
                 if (!picked.ContainsKey(gameObject.scene.name) || picked[gameObject.scene.name] == null)
                     picked[gameObject.scene.name] = new List<string>();
@@ -60,7 +60,7 @@ namespace Cindy.ItemSystem
                 abandonedItemMap.Remove(item);
             }
 
-            if (map.ContainsKey(item.name))
+            if (map.ContainsKey(item.item.name))
                 map[item.item.name].Add(item.item.amount);
             else
             {
@@ -180,6 +180,8 @@ namespace Cindy.ItemSystem
                     }
                 }
                 Remap();
+
+                dataChangeListener.Invoke();
             }
         }
 

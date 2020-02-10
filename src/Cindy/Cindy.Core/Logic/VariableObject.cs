@@ -8,6 +8,7 @@ namespace Cindy.Logic
     public abstract class VariableObject<T> : MonoBehaviour
     {
         [Header("Variable")]
+        public string variableName;
         [SerializeField]
         protected T value;
 

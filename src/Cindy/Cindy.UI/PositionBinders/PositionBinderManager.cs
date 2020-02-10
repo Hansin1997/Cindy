@@ -1,4 +1,5 @@
-﻿using Cindy.Util;
+﻿using Cindy.Logic;
+using Cindy.Util;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ namespace Cindy.UI.PositionBinders
 
         public List<RectTransformGroup> transformGroups;
 
+        public Dictionary<Attachment, RectTransformGroup> map;
+
         protected Camera Camera { get { return targetCamera == null ?  Camera.main : targetCamera; } } 
 
         public override bool Attach(Attachment attachment)
@@ -21,20 +24,40 @@ namespace Cindy.UI.PositionBinders
             if (!base.Attach(attachment))
                 return false;
             AbstractPositionBinder a = attachment as AbstractPositionBinder;
-            transformGroups.Add(new RectTransformGroup(a.GenerateComponents(gameObject)));
+            if (map == null)
+                map = new Dictionary<Attachment, RectTransformGroup>();
+            RectTransformGroup group = new RectTransformGroup(a.GenerateComponents(gameObject));
+            foreach(RectTransform rectTransform in group.rectTransforms)
+            {
+                ContextProxy[] contexts = rectTransform.GetComponentsInChildren<ContextProxy>();
+                foreach (ContextProxy context in contexts)
+                    context.realContext = a.context;
+            }
+            transformGroups.Add(group);
+            map[attachment] = group;
             return true;
         }
 
         public override bool Detach(Attachment attachment)
         {
-            int index = attachments.IndexOf(attachment);
             if (!base.Detach(attachment))
                 return false;
-            foreach(RectTransform rect in transformGroups[index].rectTransforms)
+
+            if (map == null)
+                map = new Dictionary<Attachment, RectTransformGroup>();
+            if (map.ContainsKey(attachment))
             {
-                Destroy(rect.gameObject);
+                RectTransformGroup group = map[attachment];
+                if(group != null)
+                {
+                    foreach (RectTransform rect in group.rectTransforms)
+                    {
+                        Destroy(rect.gameObject);
+                    }
+
+                    transformGroups.Remove(group);
+                }
             }
-            transformGroups.RemoveAt(index);
             return true;
         }
 
@@ -48,24 +71,22 @@ namespace Cindy.UI.PositionBinders
 
         protected virtual void Update()
         {
-            int i = 0;
             foreach(Attachment attachment in attachments)
             {
                 AbstractPositionBinder a = attachment as AbstractPositionBinder;
                 float angle = Vector3.Angle(Camera.transform.forward, a.transform.position - Camera.transform.position);
-
+                RectTransformGroup group = map[attachment];
                 if (a.IsActived() && angle <= Camera.fieldOfView)
                 {
-                    a.OnShow(transformGroups[i].rectTransforms);
+                    a.OnShow(group.rectTransforms);
                     Vector3 position = Camera.WorldToScreenPoint(a.transform.position);
 
-                    a.OnAdapte(transformGroups[i].rectTransforms, position);
+                    a.OnAdapte(group.rectTransforms, position);
                 }
                 else
                 {
-                    a.OnHide(transformGroups[i].rectTransforms);
+                    a.OnHide(group.rectTransforms);
                 }
-                i++;
             }
         }
 

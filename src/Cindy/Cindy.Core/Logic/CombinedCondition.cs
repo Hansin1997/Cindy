@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Cindy.Logic
 {
+    [AddComponentMenu("Cindy/Logic/CombinedCondition")]
     public class CombinedCondition : Condition
     {
         public Operate operate;
