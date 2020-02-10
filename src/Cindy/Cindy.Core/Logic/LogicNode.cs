@@ -15,7 +15,7 @@ namespace Cindy.Logic
         public UnityEvent events;
         public Switch[] nextNodes;
 
-        public void Execute()
+        public virtual void Execute()
         {
             try
             {

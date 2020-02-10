@@ -14,7 +14,7 @@ namespace Cindy.ItemSystem
         [Header("Actions After Pick")]
         public bool destroySelf = true;
         public GameObject[] destroyList = new GameObject[] { };
-        public UnityEvent listener;
+        public UnityEvent pickListener;
 
         [NonSerialized]
         public bool serialized;
@@ -39,7 +39,7 @@ namespace Cindy.ItemSystem
                 return;
             container.AddItem(this,name);
             AfterPick();
-            listener.Invoke();
+            pickListener.Invoke();
         }
 
         public virtual void Pick(string containerName)

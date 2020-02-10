@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Cindy.Logic.Methods
 {
-
     [AddComponentMenu("Cindy/Logic/Methods/Logger")]
     public class Logger : LogicNode
     {

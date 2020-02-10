@@ -1,5 +1,6 @@
 ﻿using Cindy.Logic.ReferenceValues;
 using Cindy.Storages;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,6 +12,10 @@ namespace Cindy.Logic
         public string variableName;
         [SerializeField]
         protected T value;
+
+        [Header("Proxy")]
+        public Context proxyContext;
+        public ReferenceString proxyTarget;
 
         [Header("Storage")]
         public AbstractStorage storage;
@@ -56,6 +61,12 @@ namespace Cindy.Logic
 
         protected virtual void Update()
         {
+            if(proxyContext != null)
+            {
+                VariableObject<T> target = proxyContext.GetVariable<VariableObject<T>, T>(proxyTarget.Value);
+                if (target != null)
+                    value = target.GetValue();
+            }
             if(value == null || _value == null)
             {
                 if(!(value == null && _value == null))
@@ -89,14 +100,25 @@ namespace Cindy.Logic
 
         public virtual void SetValue(T value)
         {
+            if (proxyContext != null)
+            {
+                VariableObject<T> target = proxyContext.GetVariable<VariableObject<T>, T>(proxyTarget.Value);
+                if (target != null)
+                    target.SetValue(value);
+            }
             this.value = value;
         }
 
         public virtual T GetValue()
         {
+            if(proxyContext != null)
+            {
+                VariableObject<T> target = proxyContext.GetVariable<VariableObject<T>, T>(proxyTarget.Value);
+                if (target != null)
+                    value = target.GetValue();
+            }
             return value;
         }
         protected abstract T TransformTo(string value);
-
     }
 }
