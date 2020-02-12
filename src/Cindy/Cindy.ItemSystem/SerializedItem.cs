@@ -48,7 +48,7 @@ namespace Cindy.ItemSystem
             Item[] items = Resources.FindObjectsOfTypeAll<Item>();
             foreach(Item item in items)
             {
-                if (item.name.Equals(entityName))
+                if (item.name.Equals(entityName) && !item.serialized)
                     return item;
             }
             return null;
@@ -60,7 +60,7 @@ namespace Cindy.ItemSystem
             if (template == null)
                 return null;
             Item instance = UnityEngine.Object.Instantiate(template, parent, worldPositionStay);
-            instance.item = this;
+            instance.item = Clone();
             instance.serialized = true;
             return instance;
         }
@@ -71,7 +71,7 @@ namespace Cindy.ItemSystem
             if (template == null)
                 return null;
             Item instance = UnityEngine.Object.Instantiate(template, parent, worldPositionStay);
-            instance.item = this;
+            instance.item = Clone();
             if (instance != null)
             {
                 Behaviour[] behaviours = instance.GetComponentsInChildren<Behaviour>();
@@ -93,6 +93,19 @@ namespace Cindy.ItemSystem
 
             instance.serialized = true;
             return instance;
+        }
+
+        public SerializedItem Clone()
+        {
+            return new SerializedItem()
+            {
+                name = name,
+                content = content,
+                mergeable = mergeable,
+                amount = amount,
+                entityName = entityName,
+                previewTag = previewTag
+            };
         }
     }
 }

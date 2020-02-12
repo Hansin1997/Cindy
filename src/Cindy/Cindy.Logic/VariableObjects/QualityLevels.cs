@@ -12,12 +12,6 @@ namespace Cindy.Logic.VariableObjects
                 QualitySettings.SetQualityLevel(val); 
         }
 
-        protected override void Update()
-        {
-            base.Update();
-            value = QualitySettings.GetQualityLevel();
-        }
-
         public override int GetValue()
         {
             value = QualitySettings.GetQualityLevel();
@@ -41,12 +35,6 @@ namespace Cindy.Logic.VariableObjects
             OnValueChanged();
         }
 
-        protected override void Update()
-        {
-            value = QualitySettings.names.Length;
-            base.Update();
-        }
-
         public override void SetValue(int value)
         {
 
@@ -66,12 +54,6 @@ namespace Cindy.Logic.VariableObjects
         {
             value = QualitySettings.names[QualitySettings.GetQualityLevel()];
             OnValueChanged();
-        }
-
-        protected override void Update()
-        {
-            value = QualitySettings.names[QualitySettings.GetQualityLevel()];
-            base.Update();
         }
 
         public override void SetValue(string value)

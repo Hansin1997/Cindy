@@ -26,7 +26,10 @@ namespace Cindy.ItemSystem
             if(template != null)
             {
                 for (int i = 0;i < count.Value; i++){
-                    Item item = template.item.Instantiate(RandomTransform());
+                    Item item = template.item.Instantiate();
+                    Transform t = RandomTransform();
+                    item.transform.position = t.position;
+                    item.transform.SetParent(t, true);
                     item.pickListener.AddListener(() =>
                     {
                         if (items != null)

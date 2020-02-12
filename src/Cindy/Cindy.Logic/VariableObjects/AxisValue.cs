@@ -14,12 +14,6 @@ namespace Cindy.Logic.VariableObjects
             GetValue();
         }
 
-        protected override void Update()
-        {
-            GetValue();
-            base.Update();
-        }
-
         public override float GetValue()
         {
             if (axisName != null && axisName.Value != null && axisName.Value.Trim().Length > 0)

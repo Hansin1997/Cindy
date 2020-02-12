@@ -147,13 +147,18 @@ namespace Cindy.Logic.Methods
                 SetSceneLoader(GetComponent<SceneLoader>());
         }
 
-        protected override void Update()
+        public override float GetValue()
         {
             if (sceneLoader != null)
             {
                 value = sceneLoader.Progress;
             }
-            base.Update();
+            return base.GetValue();
+        }
+
+        public override void SetValue(float value)
+        {
+
         }
 
         public void SetSceneLoader(SceneLoader sceneLoader)
@@ -176,13 +181,19 @@ namespace Cindy.Logic.Methods
                 SetSceneLoader(GetComponent<SceneLoader>());
         }
 
-        protected override void Update()
+        public override bool GetValue()
         {
+
             if (sceneLoader != null)
             {
                 value = sceneLoader.IsLoading;
             }
-            base.Update();
+            return base.GetValue();
+        }
+
+        public override void SetValue(bool value)
+        {
+
         }
 
         public void SetSceneLoader(SceneLoader sceneLoader)

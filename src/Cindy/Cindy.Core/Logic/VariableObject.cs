@@ -1,6 +1,5 @@
 ﻿using Cindy.Logic.ReferenceValues;
 using Cindy.Storages;
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,6 +15,7 @@ namespace Cindy.Logic
         [Header("Proxy")]
         public Context proxyContext;
         public ReferenceString proxyTarget;
+        protected VariableObject<T> _proxyTarget;
 
         [Header("Storage")]
         public AbstractStorage storage;
@@ -61,12 +61,6 @@ namespace Cindy.Logic
 
         protected virtual void Update()
         {
-            if(proxyContext != null)
-            {
-                VariableObject<T> target = proxyContext.GetVariable<VariableObject<T>, T>(proxyTarget.Value);
-                if (target != null)
-                    value = target.GetValue();
-            }
             if(value == null || _value == null)
             {
                 if(!(value == null && _value == null))
@@ -100,9 +94,12 @@ namespace Cindy.Logic
 
         public virtual void SetValue(T value)
         {
+            
             if (proxyContext != null)
             {
-                VariableObject<T> target = proxyContext.GetVariable<VariableObject<T>, T>(proxyTarget.Value);
+                if (_proxyTarget == null || !_proxyTarget.variableName.Equals(proxyTarget.Value))
+                    _proxyTarget = proxyContext.GetVariable<VariableObject<T>, T>(proxyTarget.Value);
+                VariableObject<T> target = _proxyTarget;
                 if (target != null)
                     target.SetValue(value);
             }
@@ -113,7 +110,9 @@ namespace Cindy.Logic
         {
             if(proxyContext != null)
             {
-                VariableObject<T> target = proxyContext.GetVariable<VariableObject<T>, T>(proxyTarget.Value);
+                if (_proxyTarget == null || !_proxyTarget.variableName.Equals(proxyTarget.Value))
+                    _proxyTarget = proxyContext.GetVariable<VariableObject<T>, T>(proxyTarget.Value);
+                VariableObject<T> target = _proxyTarget;
                 if (target != null)
                     value = target.GetValue();
             }

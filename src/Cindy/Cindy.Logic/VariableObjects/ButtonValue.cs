@@ -17,12 +17,6 @@ namespace Cindy.Logic.VariableObjects
             GetValue();
         }
 
-        protected override void Update()
-        {
-            GetValue();
-            base.Update();
-        }
-
         public override bool GetValue()
         {
             value = ButtonCondition.GetValue(state, buttonKey.Value);

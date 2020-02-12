@@ -126,12 +126,17 @@ namespace Cindy.UI.Pages
         public ReferenceString dialogName = new ReferenceString() { value = "Dialog" };
         protected Dialog dialog;
 
-        protected override void Update()
+        public override int GetValue()
         {
             if (dialog == null)
                 dialog = Finder.Find<Dialog>(dialogName.Value);
             value = dialog != null && dialog.queue != null ? dialog.queue.Count : 0;
-            base.Update();
+            return base.GetValue();
+        }
+
+        public override void SetValue(int value)
+        {
+
         }
     }
 

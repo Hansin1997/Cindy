@@ -25,13 +25,6 @@ namespace Cindy.Logic.VariableObjects
                 toggle.isOn = val;
         }
 
-        protected override void Update()
-        {
-            if (toggle != null)
-                value = toggle.isOn;
-            base.Update();
-        }
-
         protected override void OnValueChanged()
         {
             base.OnValueChanged();

@@ -23,12 +23,6 @@ namespace Cindy.Logic.VariableObjects
             value = GetVelocityValue();
         }
 
-        protected override void Update()
-        {
-            value = GetVelocityValue();
-            base.Update();
-        }
-
         protected virtual float GetVelocityValue()
         {
             if (characterController == null)
@@ -44,6 +38,12 @@ namespace Cindy.Logic.VariableObjects
                 default:
                     return 0;
             }
+        }
+
+        public override float GetValue()
+        {
+            value = GetVelocityValue();
+            return base.GetValue();
         }
 
         public override void SetValue(float value)

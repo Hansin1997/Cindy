@@ -35,6 +35,15 @@ namespace Cindy.ItemSystem
                 map[i.name] = i;
         }
 
+        public virtual SerializedItem GetItem(string name)
+        {
+            if (map == null)
+                Remap();
+            if (map.ContainsKey(name))
+                return map[name];
+            return null;
+        }
+
         public virtual void AddItem(Item item,string name = null)
         {
             if (item == null)

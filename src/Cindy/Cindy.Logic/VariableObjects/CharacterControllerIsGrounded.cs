@@ -18,13 +18,18 @@ namespace Cindy.Logic.VariableObjects
                 value = false;
         }
 
-        protected override void Update()
+        public override bool GetValue()
         {
             if (characterController != null)
                 value = characterController.isGrounded;
             else
                 value = false;
-            base.Update();
+            return base.GetValue();
+        }
+
+        public override void SetValue(bool value)
+        {
+
         }
     }
 }

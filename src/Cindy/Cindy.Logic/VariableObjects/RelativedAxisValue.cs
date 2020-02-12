@@ -26,16 +26,6 @@ namespace Cindy.Logic.VariableObjects
             FindObj();
         }
 
-        protected override void Update()
-        {
-            if (cameraName.Value != null && !cameraName.Value.Equals(lastNameCam))
-                FindCam();
-            if (objectName.Value != null && !objectName.Value.Equals(lastNameObj))
-                FindObj();
-            ComputeValue();
-            base.Update();
-        }
-
         protected virtual void FindCam()
         {
             lastNameCam = cameraName.Value;
@@ -115,6 +105,16 @@ namespace Cindy.Logic.VariableObjects
         public override void SetValue(float value)
         {
 
+        }
+
+        public override float GetValue()
+        {
+            if (cameraName.Value != null && !cameraName.Value.Equals(lastNameCam))
+                FindCam();
+            if (objectName.Value != null && !objectName.Value.Equals(lastNameObj))
+                FindObj();
+            ComputeValue();
+            return base.GetValue();
         }
     }
 }

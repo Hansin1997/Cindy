@@ -60,7 +60,7 @@ namespace Cindy.Logic
             return collection.ToArray();
         }
 
-        protected virtual V[] Find<V>() where V : UnityEngine.Object
+        public virtual V[] Find<V>() where V : UnityEngine.Object
         {
             V[] results = null;
             switch (scanScope)
@@ -110,7 +110,6 @@ namespace Cindy.Logic
         }
 
     }
-
 
     [AddComponentMenu("Cindy/Logic/Context/ContextProxy")]
     public class ContextProxy : Context

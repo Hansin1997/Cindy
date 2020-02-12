@@ -12,12 +12,6 @@ namespace Cindy.Logic.VariableObjects
             
         }
 
-        protected override void Update()
-        {
-            GetValue();
-            base.Update();
-        }
-
         public override string GetValue()
         {
             value = loadFromStorage ? value : gameObject.scene.name;
