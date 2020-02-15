@@ -25,12 +25,11 @@ namespace Cindy.ItemSystem
                 container = Finder.Find<ItemContainer>(itemContainerName.Value);
             if(container != null)
             {
-                SerializedItem item = container.GetItem(itemName.Value);
-                if (item == null || item.amount < amount.Value)
+                SerializedItem item = container.Custom(itemName.Value, amount.Value);
+                if (item == null)
                     onFail.Invoke();
                 else
                 {
-                    item.Sub(amount.Value);
                     onSucess.Invoke();
                 }
             }

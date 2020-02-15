@@ -108,6 +108,22 @@ namespace Cindy.ItemSystem
             return instance;
         }
 
+        public virtual SerializedItem Custom(string item, int amount = 1)
+        {
+            if (!map.ContainsKey(item) || map[item] == null || amount <= 0)
+                return null;
+            SerializedItem i = map[item];
+            if (amount > i.amount)
+                return null;
+            SerializedItem r = i.Sub(amount);
+            if (map[item].amount <= 0)
+            {
+                items.Remove(map[item]);
+                map.Remove(item);
+            }
+            return r;
+        }
+
         protected virtual Item GenerateAbandonedItem(SerializedItem item,bool WorldPositionStay = false)
         {
             GameObject root = GameObject.Find(ABANDONED_ITEMS);
