@@ -13,7 +13,7 @@ namespace Cindy.ItemSystem.UI
 
         public ItemListView ItemListView;
 
-        public override void OnPageBlur()
+        protected virtual void Start()
         {
             ItemListView.source = Finder.Find<ItemContainer>(itemContainerName.Value);
             ItemListView.Refresh();

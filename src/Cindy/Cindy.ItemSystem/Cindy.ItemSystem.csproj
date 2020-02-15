@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ItemPreviewer.cs~RF22fbee04.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Cindy.Core\Cindy.Core.csproj" />
     <ProjectReference Include="..\Cindy.Storages\Cindy.Storages.csproj" />
     <ProjectReference Include="..\Cindy.UI\Cindy.UI.csproj" />

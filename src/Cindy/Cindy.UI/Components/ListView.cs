@@ -35,13 +35,15 @@ namespace Cindy.UI.Components
 
         protected ScrollRect scrollRect;
 
-        public RectTransform Content { get { return scrollRect == null ? null : scrollRect.content; } }
+        public ScrollRect ScrollRect { get { return scrollRect == null ? (scrollRect = GetComponent<ScrollRect>()) : scrollRect;  } }
+
+        public RectTransform Content { get { return ScrollRect == null ? null : ScrollRect.content; } }
         public RectTransform Viewport { get { return Content == null || Content.parent == null ? null : Content.parent.GetComponent<RectTransform>(); } }
 
         protected virtual void Start()
         {
-            scrollRect = GetComponent<ScrollRect>();
-            template.gameObject.SetActive(templateActived);
+            if(template != null)
+                template.gameObject.SetActive(templateActived);
             if (refreshOnStart)
                 Refresh();
             if (items == null)
@@ -63,7 +65,11 @@ namespace Cindy.UI.Components
         {
             if (template == null)
                 throw new Exception("Template is null!");
+            if (Content == null)
+                return null;
             T result = Instantiate(template, Content.transform);
+            if (result == null)
+                return null;
             result.gameObject.SetActive(true);
             result.gameObject.name = "Item" + items.Count;
             items.Add(result);

@@ -16,7 +16,8 @@ namespace Cindy.ItemSystem.UI
         protected override void Start()
         {
             base.Start();
-            source.dataChangeListener.AddListener(RefreshOnDataChange);
+            if(source != null)
+                source.dataChangeListener.AddListener(RefreshOnDataChange);
         }
 
         protected virtual void RefreshOnDataChange()
@@ -29,6 +30,8 @@ namespace Cindy.ItemSystem.UI
 
         protected override void GenerateItem(ItemContainer source)
         {
+            if (source == null)
+                return;
             foreach(SerializedItem item in source.items)
             {
                 ItemView tmp = InstantiateTemplate();
@@ -38,7 +41,8 @@ namespace Cindy.ItemSystem.UI
 
         protected void OnDestroy()
         {
-            source.dataChangeListener.RemoveListener(RefreshOnDataChange);
+            if (source != null)
+                source.dataChangeListener.RemoveListener(RefreshOnDataChange);
         }
     }
 }

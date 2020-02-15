@@ -15,6 +15,7 @@ namespace Cindy.ItemSystem.UI
 
         protected SerializedItem item;
         protected ItemContainer container;
+        protected StringSource stringSource;
 
         public SerializedItem Item { get => item; }
         public ItemContainer Container { get => container; }
@@ -23,6 +24,7 @@ namespace Cindy.ItemSystem.UI
         {
             this.item = item;
             this.container = container;
+            this.stringSource = stringSource;
             if(item != null)
             {
                 SetText(itemName, item.name, stringSource);
@@ -71,6 +73,16 @@ namespace Cindy.ItemSystem.UI
         public void ShowPreview(ItemPreview itemPreview)
         {
             itemPreview.SetItem(item);
+        }
+
+        public void ShowItemName(Text text)
+        {
+            SetText(text, item.name, stringSource);
+        }
+
+        public void ShowItemContent(Text text)
+        {
+            SetText(text, item.content, stringSource);
         }
     }
 }
