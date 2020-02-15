@@ -17,7 +17,7 @@ namespace Cindy.Logic
         [Header("Condition Trigger")]
         public Condition condition;
         public bool invert;
-        public UpdateType updateType;
+        public UpdateType updateType = UpdateType.OnUpdate;
 
         protected abstract void Handle(bool val);
 
