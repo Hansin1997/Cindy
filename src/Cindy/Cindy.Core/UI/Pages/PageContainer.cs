@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Cindy.Logic;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cindy.UI.Pages
@@ -18,11 +19,17 @@ namespace Cindy.UI.Pages
             }
         }
 
-        protected virtual void Push(Page page)
+        protected virtual void Push(Page page,Context context = null)
         {
             if (!pages.Contains(page))
                 pages.Add(page);
+            ContextProxy[] contextProxies = page.GetComponentsInChildren<ContextProxy>();
+            foreach(ContextProxy contextProxy in contextProxies)
+            {
+                contextProxy.realContext = context;
+            }
             page.SetContainer(this);
+            page.SetContext(context);
             page.OnPageStart();
         }
 
@@ -41,12 +48,12 @@ namespace Cindy.UI.Pages
             LoadPage(name);
         }
 
-        public virtual Page LoadPage(string name)
+        public virtual Page LoadPage(string name, Context context = null)
         {
-            return LoadPage<Page>(name);
+            return LoadPage<Page>(name, context);
         }
 
-        public virtual T LoadPage<T>(string name) where T : Page
+        public virtual T LoadPage<T>(string name,Context context = null) where T : Page
         {
             T[] pages = Resources.FindObjectsOfTypeAll<T>();
             T target = null;
@@ -55,11 +62,12 @@ namespace Cindy.UI.Pages
                 if (p.name.Equals(name))
                 {
                     target = Instantiate(p, transform);
+                    target.name = p.name;
                     break;
                 }
             }
             if (target != null)
-                Push(target);
+                Push(target,context);
             return target;
         }
 
@@ -114,12 +122,12 @@ namespace Cindy.UI.Pages
                 currentPage.OnPageFixedUpdate();
         }
 
-        public static T Load<T>(string name) where T : Page
+        public static T Load<T>(string name,Context context = null) where T : Page
         {
             PageContainer c = FindObjectOfType<PageContainer>();
             if (c != null)
             {
-                T page =  c.LoadPage<T>(name);
+                T page =  c.LoadPage<T>(name, context);
                 if(page != null)
                 {
                     page.gameObject.SetActive(true);

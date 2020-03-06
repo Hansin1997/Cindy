@@ -7,7 +7,9 @@ using Cindy.Util.Serializables;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+using static Cindy.UI.Pages.DialogStruct;
 
 namespace Cindy.UI.Pages
 {
@@ -16,6 +18,13 @@ namespace Cindy.UI.Pages
     public class Dialog : Page
     {
         private Dictionary<string, Text> _map;
+
+        public StringSource source;
+
+        public RectTransform ButtonGroup;
+
+        protected DialogStruct last;
+        protected List<Button> buttons;
 
         public virtual Dictionary<string,Text> Texts
         {
@@ -41,6 +50,11 @@ namespace Cindy.UI.Pages
             queue.Add(data);
         }
 
+        public virtual void Enqueue(DialogStruct[] data)
+        {
+            queue.AddRange(data);
+        }
+
         public virtual void Enqueue(DialogObject dialogObject)
         {
             Enqueue(dialogObject.data);
@@ -53,16 +67,61 @@ namespace Cindy.UI.Pages
 
         public virtual void Dispose()
         {
+            DoDispose();
+        }
+
+        protected virtual void DoDispose()
+        {
+            if (buttons == null)
+                buttons = new List<Button>();
+            foreach (Button btn in buttons)
+            {
+                Destroy(btn.gameObject);
+            }
+            buttons.Clear();
+            if (last != null)
+                last.events.Invoke();
             if (!HasMore())
                 return;
             DialogStruct data = queue[0];
+            last = data;
             queue.RemoveAt(0);
             Dictionary<string, Text> map = Texts;
-            foreach (KeyValuePair<string,string> kv in data.ComputedData)
+            Dictionary<string, string> sm = ComputedData(data);
+            foreach (KeyValuePair<string, string> kv in sm)
             {
                 if (map.ContainsKey(kv.Key))
                     map[kv.Key].text = kv.Value;
             }
+            foreach (ButtonMap btnMap in data.buttonMap)
+            {
+                Button btn = Instantiate<Button>(btnMap.key, ButtonGroup);
+                buttons.Add(btn);
+                btn.onClick.AddListener(() => { btnMap.value.Invoke(); });
+            }
+        }
+
+        public override void OnPageFinish()
+        {
+            if (last != null)
+                last.events.Invoke();
+        }
+
+        public virtual Dictionary<string, string> ComputedData(DialogStruct data)
+        {
+
+            Dictionary<string, string> result = new Dictionary<string, string>();
+            if (source != null)
+            {
+                foreach (SerializedKeyValuePair<string, string> kv in data.stringMap)
+                    result[kv.key] = source.GetString(kv.value, kv.value);
+            }
+            else
+            {
+                foreach (SerializedKeyValuePair<string, string> kv in data.stringMap)
+                    result[kv.key] = kv.value;
+            }
+            return result;
         }
 
         public virtual bool HasMore()
@@ -75,26 +134,8 @@ namespace Cindy.UI.Pages
     public class DialogStruct
     {
         public StringMap[] stringMap;
-        public StringSource source;
-
-        public virtual Dictionary<string, string> ComputedData
-        {
-            get
-            {
-                Dictionary<string, string> result = new Dictionary<string, string>();
-                if (source != null)
-                {
-                    foreach (SerializedKeyValuePair<string, string> kv in stringMap)
-                        result[kv.key] = source.GetString(kv.value, kv.value);
-                }
-                else
-                {
-                    foreach (SerializedKeyValuePair<string, string> kv in stringMap)
-                        result[kv.key] = kv.value;
-                }
-                return result;
-            }
-        }
+        public ButtonMap[] buttonMap;
+        public UnityEvent events;
 
         [Serializable]
         public class StringMap : SerializedKeyValuePair<string,string>
@@ -104,18 +145,27 @@ namespace Cindy.UI.Pages
 
             }
         }
+
+        [Serializable]
+        public class ButtonMap : SerializedKeyValuePair<Button,UnityEvent>
+        {
+            public ButtonMap(KeyValuePair<Button, UnityEvent> keyValuePair) : base(keyValuePair)
+            {
+
+            }
+        }
     }
 
     [AddComponentMenu("Cindy/UI/Dialog/DialogObject")]
     public class DialogObject : MonoBehaviour
     {
-        public DialogStruct data;
+        public DialogStruct[] data;
     }
 
     [CreateAssetMenu(fileName = "DialogAsset", menuName = "Cindy/UI/Dialog/DialogAsset", order = 1)]
     public class DialogAsset : ScriptableObject
     {
-        public DialogStruct data;
+        public DialogStruct[] data;
     }
 
     [DisallowMultipleComponent]
@@ -162,6 +212,7 @@ namespace Cindy.UI.Pages
         public Dialog dialog;
         public bool singleton = true;
         public DialogObject[] dialogObjects;
+        public bool autoDispose = true;
 
         protected override void Run()
         {
@@ -170,7 +221,7 @@ namespace Cindy.UI.Pages
             Dialog instance = null;
             if (singleton)
             {
-                instance = FindObjectOfType(dialog.GetType()) as Dialog;
+                instance = Finder.Find<Dialog>(dialog.name);
             }
             if (instance == null)
             {
@@ -178,6 +229,8 @@ namespace Cindy.UI.Pages
             }
             foreach (DialogObject dialogObject in dialogObjects)
                 instance.Enqueue(dialogObject);
+            if (autoDispose)
+                instance.Dispose();
         }
     }
     [AddComponentMenu("Cindy/UI/Dialog/DialogAssetShower")]
@@ -186,6 +239,7 @@ namespace Cindy.UI.Pages
         public Dialog dialog;
         public bool singleton = true;
         public DialogAsset[] dialogAssets;
+        public bool autoDispose = true;
 
         protected override void Run()
         {
@@ -194,7 +248,7 @@ namespace Cindy.UI.Pages
             Dialog instance = null;
             if (singleton)
             {
-                instance = FindObjectOfType(dialog.GetType()) as Dialog;
+                instance = Finder.Find<Dialog>(dialog.name);
             }
             if (instance == null)
             {
@@ -202,6 +256,8 @@ namespace Cindy.UI.Pages
             }
             foreach (DialogAsset dialogAsset in dialogAssets)
                 instance.Enqueue(dialogAsset);
+            if (autoDispose)
+                instance.Dispose();
         }
     }
 }

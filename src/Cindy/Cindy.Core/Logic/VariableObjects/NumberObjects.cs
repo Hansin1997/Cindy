@@ -22,7 +22,7 @@ namespace Cindy.Logic.VariableObjects
             value -= number;
         }
 
-        protected override int TransformTo(string value)
+        protected override int TransformFrom(string value)
         {
             int result;
             if (int.TryParse(value, out result))
@@ -43,7 +43,7 @@ namespace Cindy.Logic.VariableObjects
         {
             value -= number;
         }
-        protected override float TransformTo(string value)
+        protected override float TransformFrom(string value)
         {
             float result;
             if (float.TryParse(value, out result))
@@ -65,7 +65,7 @@ namespace Cindy.Logic.VariableObjects
             value -= number;
         }
 
-        protected override double TransformTo(string value)
+        protected override double TransformFrom(string value)
         {
             double result;
             if (double.TryParse(value, out result))

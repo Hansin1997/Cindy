@@ -32,6 +32,7 @@ namespace Cindy.Control.Controllers
             foreach (NamedBool namedBool in boolParameters)
             {
                 UnityAction action = () => animator.SetBool(namedBool.key, namedBool.value.Value);
+                action.Invoke();
                 namedBool.value.valueChangedEvent.AddListener(action);
                 actions.Add(() =>
                 {
@@ -46,6 +47,7 @@ namespace Cindy.Control.Controllers
                     if (namedTrigger.value.Value)
                         animator.SetTrigger(namedTrigger.key);
                 };
+                action.Invoke();
                 namedTrigger.value.valueChangedEvent.AddListener(action);
                 actions.Add(() =>
                 {
@@ -55,7 +57,7 @@ namespace Cindy.Control.Controllers
             foreach (NamedFloat namedFloat in floatParameters)
             {
                 UnityAction action = () => animator.SetFloat(namedFloat.key, namedFloat.value.Value);
-
+                action.Invoke();
                 namedFloat.value.valueChangedEvent.AddListener(action);
                 actions.Add(() =>
                 {

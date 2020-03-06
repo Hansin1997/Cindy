@@ -23,6 +23,10 @@ namespace Cindy.ItemSystem
             {
                 value = serializedItem.amount;
             }
+            else
+            {
+                value = 0;
+            }
             return base.GetValue();
         }
 

@@ -7,6 +7,11 @@ namespace Cindy.Logic.VariableObjects
     {
         public bool loadFromStorage = false;
 
+        protected override void Start()
+        {
+            base.Start();
+            GetValue();
+        }
         public override void SetValue(string value)
         {
             

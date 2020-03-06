@@ -17,6 +17,8 @@ namespace Cindy.UI.PositionBinders
 
         public Dictionary<Attachment, RectTransformGroup> map;
 
+        protected int block;
+
         protected Camera Camera { get { return targetCamera == null ?  Camera.main : targetCamera; } } 
 
         public override bool Attach(Attachment attachment)
@@ -24,6 +26,8 @@ namespace Cindy.UI.PositionBinders
             if (!base.Attach(attachment))
                 return false;
             AbstractPositionBinder a = attachment as AbstractPositionBinder;
+            if (a is BlockedPositionBinder)
+                block++;
             if (map == null)
                 map = new Dictionary<Attachment, RectTransformGroup>();
             RectTransformGroup group = new RectTransformGroup(a.GenerateComponents(gameObject));
@@ -42,7 +46,8 @@ namespace Cindy.UI.PositionBinders
         {
             if (!base.Detach(attachment))
                 return false;
-
+            if (attachment is BlockedPositionBinder)
+                block--;
             if (map == null)
                 map = new Dictionary<Attachment, RectTransformGroup>();
             if (map.ContainsKey(attachment))
@@ -76,7 +81,7 @@ namespace Cindy.UI.PositionBinders
                 AbstractPositionBinder a = attachment as AbstractPositionBinder;
                 float angle = Vector3.Angle(Camera.transform.forward, a.transform.position - Camera.transform.position);
                 RectTransformGroup group = map[attachment];
-                if (a.IsActived() && angle <= Camera.fieldOfView)
+                if (a.IsActived() && angle <= Camera.fieldOfView && block == 0)
                 {
                     a.OnShow(group.rectTransforms);
                     Vector3 position = Camera.WorldToScreenPoint(a.transform.position);

@@ -41,7 +41,7 @@ namespace Cindy.Logic
             {
                 string val = storage.Get(key.Value);
                 if (val != null && val.Length > 0)
-                    OnValueLoad(TransformTo(val));
+                    OnValueLoad(TransformFrom(val));
                 else
                     OnValueLoadEmpty();
             }
@@ -87,7 +87,7 @@ namespace Cindy.Logic
         {
             if (storage != null)
             {
-                storage.Put(key.Value, value);
+                storage.Put(key.Value, TramsfromTo(value));
                 _value = value;
             }
         }
@@ -118,6 +118,11 @@ namespace Cindy.Logic
             }
             return value;
         }
-        protected abstract T TransformTo(string value);
+        protected abstract T TransformFrom(string value);
+
+        protected virtual object TramsfromTo(T value)
+        {
+            return value;
+        }
     }
 }

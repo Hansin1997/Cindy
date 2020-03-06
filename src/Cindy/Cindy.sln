@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cindy.Core", "Cindy.Core\Ci
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cindy.ItemSystem", "Cindy.ItemSystem\Cindy.ItemSystem.csproj", "{CCD9D99C-EE5A-416E-A107-E31E7DCCAE20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cindy.Logic", "Cindy.Logic\Cindy.Logic.csproj", "{CB137026-E1AE-4EBE-806B-FD189FFA1DA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cindy.Logic", "Cindy.Logic\Cindy.Logic.csproj", "{CB137026-E1AE-4EBE-806B-FD189FFA1DA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cindy.DialogSystem", "Cindy.DialogSystem\Cindy.DialogSystem.csproj", "{872493F3-4CE7-4C72-893F-D24E6FD287D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{CB137026-E1AE-4EBE-806B-FD189FFA1DA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB137026-E1AE-4EBE-806B-FD189FFA1DA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB137026-E1AE-4EBE-806B-FD189FFA1DA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{872493F3-4CE7-4C72-893F-D24E6FD287D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{872493F3-4CE7-4C72-893F-D24E6FD287D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{872493F3-4CE7-4C72-893F-D24E6FD287D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{872493F3-4CE7-4C72-893F-D24E6FD287D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

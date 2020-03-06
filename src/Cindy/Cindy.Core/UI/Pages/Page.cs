@@ -1,15 +1,27 @@
-﻿using UnityEngine;
+﻿using Cindy.Logic;
+using UnityEngine;
 
 namespace Cindy.UI.Pages
 {
     public class Page : MonoBehaviour
     {
         protected PageContainer owner;
+        protected Context context;
         public string[] cancelButtons = new string[] { "Cancel" };
 
         public void SetContainer(PageContainer owner)
         {
             this.owner = owner;
+        }
+
+        public void SetContext(Context context)
+        {
+            this.context = context;
+        }
+
+        public Context GetContext()
+        {
+            return this.context;
         }
 
         public virtual void OnPageStart()
@@ -53,14 +65,35 @@ namespace Cindy.UI.Pages
                 owner.FinishPage(this);
         }
 
-        public void Show()
+        public void ShowSingleton(Context context)
         {
-            PageContainer.Load<Page>(name);
+            if (FindObjectOfType(GetType()) is Page p)
+            {
+                p.SetContext(context);
+            }
+            else
+            {
+                Show(context);
+            }
+        }
+        public void ShowSingleton()
+        {
+            ShowSingleton(null);
         }
 
-        public T ShowAndReturn<T>() where T : Page
+        public void Show(Context context)
         {
-            return PageContainer.Load<T>(name);
+            PageContainer.Load<Page>(name, context);
+        }
+
+        public void Show()
+        {
+            Show(null);
+        }
+
+        public T ShowAndReturn<T>(Context context = null) where T : Page
+        {
+            return PageContainer.Load<T>(name, context);
         }
 
         public bool IsActive()
