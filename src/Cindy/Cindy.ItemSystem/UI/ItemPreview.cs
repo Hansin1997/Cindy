@@ -44,6 +44,8 @@ namespace Cindy.ItemSystem.UI
                     Destroy(preview.gameObject);
                 }
                 preview = item.Preview(transform);
+                if (preview == null)
+                    return;
                 preview.gameObject.layer = LayerMask.NameToLayer(previewLayer);
             }
         }

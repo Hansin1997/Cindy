@@ -15,7 +15,7 @@ namespace Cindy.Logic
         [Header("Proxy")]
         public Context proxyContext;
         public ReferenceString proxyTarget;
-        protected VariableObject<T> _proxyTarget;
+        protected VariableObject<T> _proxyTarget, _proxyTargetOld;
 
         [Header("Storage")]
         public AbstractStorage storage;
@@ -33,6 +33,14 @@ namespace Cindy.Logic
         protected virtual void Start()
         {
             LoadFromStorage();
+        }
+
+        protected virtual void OnDestroy()
+        {
+            if (_proxyTarget != null)
+                _proxyTarget.valueChangedEvent.RemoveListener(OnProxyValueChanged);
+            if(_proxyTargetOld != null)
+                _proxyTargetOld.valueChangedEvent.RemoveListener(OnProxyValueChanged);
         }
 
         protected virtual void LoadFromStorage()
@@ -77,10 +85,25 @@ namespace Cindy.Logic
 
         protected virtual void Update()
         {
+            if(_proxyTarget != _proxyTargetOld)
+            {
+                if (_proxyTargetOld != null)
+                    _proxyTargetOld.valueChangedEvent.RemoveListener(OnProxyValueChanged);
+                _proxyTarget.valueChangedEvent.AddListener(OnProxyValueChanged);
+                _proxyTargetOld = _proxyTarget;
+            }
             if(IsValueChanged())
                 OnValueChanged();
             if (updateFromStorage)
                 LoadFromStorage();
+        }
+
+        protected virtual void OnProxyValueChanged()
+        {
+            if(_proxyTarget != null)
+            {
+                value = _proxyTarget.value;
+            }
         }
 
         protected virtual void OnValueChanged(bool save = true,bool notify = true)
@@ -102,7 +125,6 @@ namespace Cindy.Logic
 
         public virtual void SetValue(T value)
         {
-            
             if (proxyContext != null)
             {
                 if (_proxyTarget == null || !_proxyTarget.variableName.Equals(proxyTarget.Value))
