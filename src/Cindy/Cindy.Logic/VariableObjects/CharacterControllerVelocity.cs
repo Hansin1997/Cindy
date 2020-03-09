@@ -2,7 +2,7 @@
 
 namespace Cindy.Logic.VariableObjects
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/CharacterControllerVelocity")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Float/CharacterControllerVelocity")]
     public class CharacterControllerVelocity : FloatObject
     {
         [Header("CharacterController")]

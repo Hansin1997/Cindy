@@ -45,7 +45,8 @@ namespace Cindy.Logic
                 else
                     OnValueLoadEmpty();
             }
-            _value = value;
+            if (IsValueChanged())
+                OnValueChanged(false);
         }
 
         protected virtual void OnValueLoad(T val)
@@ -59,28 +60,36 @@ namespace Cindy.Logic
 
         }
 
-        protected virtual void Update()
+        protected bool IsValueChanged()
         {
-            if(value == null || _value == null)
+            if (value == null || _value == null)
             {
-                if(!(value == null && _value == null))
-                    OnValueChanged();
+                if (!(value == null && _value == null))
+                    return true;
             }
             else
             {
                 if (!value.Equals(_value))
-                    OnValueChanged();
+                    return true;
             }
+            return false;
+        }
+
+        protected virtual void Update()
+        {
+            if(IsValueChanged())
+                OnValueChanged();
             if (updateFromStorage)
                 LoadFromStorage();
         }
 
-        protected virtual void OnValueChanged()
+        protected virtual void OnValueChanged(bool save = true,bool notify = true)
         {
-            if (autoSave)
+            if (autoSave && save)
                 Save();
-            if (valueChangedEvent != null)
+            if (valueChangedEvent != null && notify)
                 valueChangedEvent.Invoke();
+            _value = value;
         }
 
         public virtual void Save()
@@ -88,7 +97,6 @@ namespace Cindy.Logic
             if (storage != null)
             {
                 storage.Put(key.Value, TramsfromTo(value));
-                _value = value;
             }
         }
 

@@ -3,80 +3,57 @@ using Cindy.Util.Serializables;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Cindy.Control.Controllers
 {
-    [RequireComponent(typeof(Animator))]
     [AddComponentMenu("Cindy/Control/Controllers/AnimatorController", 1)]
     public class AnimatorController : ControllerAttachment
     {
+
+        public Animator animator;
         [Header("Animator Parameters")]
         public NamedBool[] boolParameters;
         public NamedFloat[] floatParameters;
         public NamedBool[] triggerParameters;
 
-        protected Animator animator;
-
-        protected List<UnityAction> actions;
-
         protected override void Start()
         {
             base.Start();
-            actions = new List<UnityAction>();
         }
 
         public override void OnControllerSelect()
         {
-            animator = GetComponent<Animator>();
-            foreach (NamedBool namedBool in boolParameters)
-            {
-                UnityAction action = () => animator.SetBool(namedBool.key, namedBool.value.Value);
-                action.Invoke();
-                namedBool.value.valueChangedEvent.AddListener(action);
-                actions.Add(() =>
-                {
-                    namedBool.value.valueChangedEvent.RemoveListener(action);
-                });
-            }
-
-            foreach (NamedBool namedTrigger in triggerParameters)
-            {
-                UnityAction action = () =>
-                {
-                    if (namedTrigger.value.Value)
-                        animator.SetTrigger(namedTrigger.key);
-                };
-                action.Invoke();
-                namedTrigger.value.valueChangedEvent.AddListener(action);
-                actions.Add(() =>
-                {
-                    namedTrigger.value.valueChangedEvent.RemoveListener(action);
-                });
-            }
-            foreach (NamedFloat namedFloat in floatParameters)
-            {
-                UnityAction action = () => animator.SetFloat(namedFloat.key, namedFloat.value.Value);
-                action.Invoke();
-                namedFloat.value.valueChangedEvent.AddListener(action);
-                actions.Add(() =>
-                {
-                    namedFloat.value.valueChangedEvent.RemoveListener(action);
-                });
-            }
+            if(animator == null)
+                animator = GetComponent<Animator>();
         }
 
         public override void OnControllerUnselect()
         {
-            foreach (UnityAction action in actions)
+            foreach (NamedBool namedBool in boolParameters)
             {
-                action.Invoke();
+                animator.SetBool(namedBool.key, false);
             }
-            actions.Clear();
+            foreach (NamedFloat namedFloat in floatParameters)
+            {
+                animator.SetFloat(namedFloat.key, 0);
+            }
         }
 
         public override void OnControllerUpdate(float deltaTime)
         {
+            foreach (NamedBool namedBool in boolParameters)
+            {
+                animator.SetBool(namedBool.key, namedBool.value.Value);
+            }
+            foreach (NamedBool namedTrigger in triggerParameters)
+            {
+                if (namedTrigger.value.Value)
+                    animator.SetTrigger(namedTrigger.key);
+            }
+            foreach (NamedFloat namedFloat in floatParameters)
+            {
+                animator.SetFloat(namedFloat.key, namedFloat.value.Value);
+            }
         }
 
 

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Cindy.Logic.VariableObjects
 {
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/ButtonValue")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Bool/ButtonValue")]
     public class ButtonValue : BoolObject
     {
         [Header("Button")]

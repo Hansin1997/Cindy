@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace Cindy.Logic.VariableObjects
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/ToggleValue")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Bool/ToggleValue")]
     public class ToggleValue : BoolObject
     {
         public Toggle toggle;
@@ -25,9 +25,9 @@ namespace Cindy.Logic.VariableObjects
                 toggle.isOn = val;
         }
 
-        protected override void OnValueChanged()
+        protected override void OnValueChanged(bool save = true,bool notify = true)
         {
-            base.OnValueChanged();
+            base.OnValueChanged(save, notify);
             if(toggle != null)
              toggle.isOn = value;
         }

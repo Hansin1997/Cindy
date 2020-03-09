@@ -1,4 +1,5 @@
 ﻿using Cindy.Logic.ReferenceValues;
+using Cindy.Storages;
 using Cindy.Strings;
 using System.Text;
 using UnityEngine;
@@ -50,6 +51,26 @@ namespace Cindy.Logic.VariableObjects
         public override void SetValue(string value)
         {
 
+        }
+    }
+
+    [AddComponentMenu("Cindy/Logic/VariableObject/Strings/Name")]
+    public class Name : StringObject
+    {
+        public GameObject target;
+
+        public override void SetValue(string value)
+        {
+
+        }
+
+        public override string GetValue()
+        {
+            if (target == null)
+                value = gameObject.name;
+            else
+                value = target.name;
+            return base.GetValue();
         }
     }
 }

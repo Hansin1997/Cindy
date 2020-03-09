@@ -2,7 +2,7 @@
 
 namespace Cindy.Logic.VariableObjects
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/CharacterControllerIsGrounded")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Bool/CharacterControllerIsGrounded")]
     public class CharacterControllerIsGrounded : BoolObject
     {
         [Header("CharacterController")]

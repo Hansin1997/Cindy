@@ -31,11 +31,11 @@ namespace Cindy.Logic.VariableObjects
             value = 1;
         }
 
-        protected override void OnValueChanged()
+        protected override void OnValueChanged(bool save = true,bool notify = true)
         {
             foreach (AudioSource source in audioSources)
                 source.volume = value;
-            base.OnValueChanged();
+            base.OnValueChanged(save,notify);
         }
 
         protected virtual List<AudioSource> DoScan()

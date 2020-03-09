@@ -1,4 +1,5 @@
 ﻿using Cindy.Logic.ReferenceValues;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,8 +13,22 @@ namespace Cindy.Logic.Conditions
         public TriggerType triggerType;
         public ReferenceString[] targets;
 
+        [Header("Listener")]
+        public UnityEvent onConditionMatch;
+
         protected bool value;
-        public UnityEvent listener;
+
+        protected virtual void OnConditionMatch()
+        {
+            try
+            {
+                onConditionMatch.Invoke();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+            }
+        }
 
         public override bool Check()
         {
@@ -30,7 +45,7 @@ namespace Cindy.Logic.Conditions
             if (IsTarget(other.gameObject) && triggerType == TriggerType.Enter)
             {
                 value = true;
-                listener.Invoke();
+                OnConditionMatch();
             }
         }
 
@@ -39,7 +54,7 @@ namespace Cindy.Logic.Conditions
             if (IsTarget(other.gameObject) && triggerType == TriggerType.Exit)
             {
                 value = true;
-                listener.Invoke();
+                OnConditionMatch();
             }
         }
 
@@ -48,7 +63,7 @@ namespace Cindy.Logic.Conditions
             if (IsTarget(other.gameObject) && triggerType == TriggerType.Stay)
             {
                 value = true;
-                listener.Invoke();
+                OnConditionMatch();
             }
         }
 

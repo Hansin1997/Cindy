@@ -76,8 +76,14 @@ namespace Cindy.UI.PositionBinders
 
         protected virtual void Update()
         {
+            HashSet<Attachment> nullSet = new HashSet<Attachment>();
             foreach(Attachment attachment in attachments)
             {
+                if (attachment == null)
+                {
+                    nullSet.Add(attachment);
+                    continue;
+                }
                 AbstractPositionBinder a = attachment as AbstractPositionBinder;
                 float angle = Vector3.Angle(Camera.transform.forward, a.transform.position - Camera.transform.position);
                 RectTransformGroup group = map[attachment];
@@ -92,6 +98,10 @@ namespace Cindy.UI.PositionBinders
                 {
                     a.OnHide(group.rectTransforms);
                 }
+            }
+            foreach(Attachment attachment in nullSet)
+            {
+                Detach(attachment);
             }
         }
 

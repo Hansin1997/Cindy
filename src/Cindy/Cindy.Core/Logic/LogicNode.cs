@@ -20,15 +20,31 @@ namespace Cindy.Logic
             try
             {
                 Run();
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Debug.LogError(e);
             }
-            events.Invoke();
-            foreach(Switch nextNode in nextNodes)
+            try
+            {
+
+                events.Invoke();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+            }
+            foreach (Switch nextNode in nextNodes)
             {
                 if (nextNode.value != null && (nextNode.key == null || nextNode.key.Check()))
-                    nextNode.value.Execute();
+                    try
+                    {
+                        nextNode.value.Execute();
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogError(e);
+                    }
             }
         }
 

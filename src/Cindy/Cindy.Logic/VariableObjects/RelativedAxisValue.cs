@@ -4,7 +4,7 @@ using static UnityEngine.RectTransform;
 
 namespace Cindy.Logic.VariableObjects
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/RelativedAxis")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Float/RelativedAxis")]
     public class RelativedAxis : FloatObject
     {
         [Header("Axis")]

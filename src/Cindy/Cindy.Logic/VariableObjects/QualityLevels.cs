@@ -2,7 +2,7 @@
 
 namespace Cindy.Logic.VariableObjects
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/QualityLevel")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Int/QualityLevel")]
     public class QualityLevel : IntObject
     {
         protected override void OnValueLoad(int val)

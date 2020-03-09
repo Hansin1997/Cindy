@@ -17,8 +17,9 @@ namespace Cindy.Logic
 
         public void SetValue(T value)
         {
-            if (reference != null)
+            if (reference != null) { 
                 reference.Value = value;
+            }
             this.value = value;
         }
 

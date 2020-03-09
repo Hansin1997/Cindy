@@ -2,7 +2,7 @@
 
 namespace Cindy.Logic.VariableObjects
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/SceneName")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Strings/SceneName")]
     public class SceneName : StringObject
     {
         public bool loadFromStorage = false;
