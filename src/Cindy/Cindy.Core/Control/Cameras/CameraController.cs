@@ -1,78 +1,35 @@
 ﻿using Cindy.Util;
-using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 namespace Cindy.Control.Cameras
 {
-    [AddComponentMenu("Cindy/Control/CameraController", 1)]
-    [RequireComponent(typeof(Camera))]
-    public class CameraController : Attachable
+    public abstract class CameraController : Attachment
     {
-        public UpdateType updateType;
-
-        protected Camera _camera;
-
-        protected CameraBehaviourAttachment focusedAttachment;
-
-        public Camera Camera
+        public CameraBehaviour Behaviour
         {
             get
             {
-                if (_camera == null)
-                    _camera = GetComponent<Camera>();
-                return _camera;
+                return GetCameraBehaviour();
             }
+
         }
 
-        protected override bool CheckAttachment(Attachment attachment)
+        private Dictionary<string, object> temp;
+        public Dictionary<string,object> Temp
         {
-            return attachment is CameraBehaviourAttachment;
-        }
-
-        protected virtual void Update()
-        {
-            if (updateType == UpdateType.OnUpdate)
-                DoUpdate(Time.deltaTime);
-        }
-
-        protected virtual void FixedUpdate()
-        {
-            if (updateType == UpdateType.OnFixedUpdate)
-                DoUpdate(Time.fixedDeltaTime);
-        }
-
-        protected virtual void DoUpdate(float deltaTime)
-        {
-            CameraBehaviourAttachment top = Peek<CameraBehaviourAttachment>();
-            if (top != null)
+            get
             {
-                if (top != focusedAttachment)
-                {
-                    if (focusedAttachment != null && focusedAttachment.Behaviour != null)
-                    {
-                        focusedAttachment.Behaviour.OnCameraBlur(Camera, top);
-                    }
-                    if (top.Behaviour != null)
-                        top.Behaviour.OnCameraFocus(Camera, top);
-                }
-                if (top.Behaviour != null)
-                    top.Behaviour.OnCameraUpdate(Camera, top, deltaTime);
+                if (temp == null)
+                    temp = new Dictionary<string, object>();
+                return temp;
             }
-            focusedAttachment = top;
+        }
+        protected override Type GetAttachableType()
+        {
+            return typeof(CameraControllerStack);
         }
 
-        protected override bool IsPeek(Attachment attachment)
-        {
-            if(attachment is CameraBehaviourAttachment a)
-            {
-                return a != null && a.enabled && a.gameObject.activeSelf;
-            }
-            return false;
-        }
-
-        public enum UpdateType
-        {
-            OnUpdate,
-            OnFixedUpdate
-        }
+        protected abstract CameraBehaviour GetCameraBehaviour();
     }
 }

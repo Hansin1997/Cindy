@@ -4,7 +4,7 @@ namespace Cindy.Control
 {
 
     [AddComponentMenu("Cindy/Control/Controllers/BlockedController", 0)]
-    public class BlockedController : ControllerAttachment
+    public class BlockedController : Controller
     {
         public override void OnControllerSelect()
         {

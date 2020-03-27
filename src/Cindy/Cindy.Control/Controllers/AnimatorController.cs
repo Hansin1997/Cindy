@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Cindy.Control.Controllers
 {
     [AddComponentMenu("Cindy/Control/Controllers/AnimatorController", 1)]
-    public class AnimatorController : ControllerAttachment
+    public class AnimatorController : Controller
     {
 
         public Animator animator;

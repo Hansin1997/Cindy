@@ -12,7 +12,7 @@ namespace Cindy.Control.Cameras
         [Range(0, 90)]
         public float verticalAngleLimit = 80;
 
-        public override void OnCameraFocus(Camera camera, CameraBehaviourAttachment attachment)
+        public override void OnCameraFocus(Camera camera, CameraController attachment)
         {
             Vector3 dir = (camera.transform.position - attachment.transform.position);
             Vector3 xz = dir;
@@ -25,7 +25,7 @@ namespace Cindy.Control.Cameras
             attachment.Temp["r"] = r;
         }
 
-        protected override Vector3 GetPosition(Camera camera, CameraBehaviourAttachment attachment, float deltaTime)
+        protected override Vector3 GetPosition(Camera camera, CameraController attachment, float deltaTime)
         {
 
             Vector2 r = Vector2.zero;

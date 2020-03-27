@@ -10,17 +10,17 @@ namespace Cindy.Control.Cameras
         public bool raycast = true;
         public bool lookAtTarget = true;
 
-        public override void OnCameraBlur(Camera camera, CameraBehaviourAttachment attachment)
+        public override void OnCameraBlur(Camera camera, CameraController attachment)
         {
 
         }
 
-        public override void OnCameraFocus(Camera camera, CameraBehaviourAttachment attachment)
+        public override void OnCameraFocus(Camera camera, CameraController attachment)
         {
 
         }
 
-        public override void OnCameraUpdate(Camera camera, CameraBehaviourAttachment attachment, float deltaTime)
+        public override void OnCameraUpdate(Camera camera, CameraController attachment, float deltaTime)
         {
             Vector3 newPosition = GetPosition(camera, attachment, deltaTime);
             if (raycast)
@@ -39,9 +39,9 @@ namespace Cindy.Control.Cameras
             }
         }
 
-        protected abstract Vector3 GetPosition(Camera camera, CameraBehaviourAttachment attachment, float deltaTime);
+        protected abstract Vector3 GetPosition(Camera camera, CameraController attachment, float deltaTime);
 
-        protected virtual Vector3 ProcessRaycast(Camera camera, CameraBehaviourAttachment attachment, Vector3 newPosition, float deltaTime)
+        protected virtual Vector3 ProcessRaycast(Camera camera, CameraController attachment, Vector3 newPosition, float deltaTime)
         {
             Vector3 direction = newPosition - attachment.transform.position;
             RaycastHit[] hits = Physics.RaycastAll(attachment.transform.position, direction, direction.magnitude);

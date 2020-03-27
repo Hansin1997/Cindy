@@ -3,7 +3,7 @@
 namespace Cindy.Control.Cameras.PointLook
 {
     [AddComponentMenu("Cindy/Control/Camera/PointLook", 1)]
-    public class PointLook : CameraBehaviourAttachment
+    public class PointLook : CameraController
     {
         public PointLookCamera pointLookCamera;
 

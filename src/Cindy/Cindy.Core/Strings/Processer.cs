@@ -19,7 +19,7 @@ namespace Cindy.Strings
             if (startChar == endChar)
                 throw new System.Exception("start char can't equal to end char!");
             if (startChar == 0 || endChar == 0)
-                throw new System.Exception("start char or end char can't be zero!");
+                throw new System.Exception("start char or end char can't be empty!");
             if (handler != null)
                 map[("" + startChar + endChar)] = handler;
             return this;

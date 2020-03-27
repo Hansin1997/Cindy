@@ -6,7 +6,7 @@ namespace Cindy.Control.Controllers
 {
     [RequireComponent(typeof(CharacterController))]
     [AddComponentMenu("Cindy/Control/Controllers/SimpleController", 1)]
-    public class SimpleController : ControllerAttachment
+    public class SimpleController : Controller
     {
         [Serializable]
         public class AxesMap

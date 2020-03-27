@@ -6,7 +6,7 @@ namespace Cindy.Control.Cameras.PointLook
     public class PointLookCamera : BaseCameraBehaviour
     {
 
-        protected override Vector3 GetPosition(Camera camera, CameraBehaviourAttachment attachment, float deltaTime)
+        protected override Vector3 GetPosition(Camera camera, CameraController attachment, float deltaTime)
         {
             if(attachment is PointLook pointLook && pointLook.point != null)
             {
