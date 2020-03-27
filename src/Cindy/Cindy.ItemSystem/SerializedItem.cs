@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cindy.Util;
+using System;
 using UnityEngine;
 
 namespace Cindy.ItemSystem
@@ -45,13 +46,7 @@ namespace Cindy.ItemSystem
 
         public Item GetEntity()
         {
-            Item[] items = Resources.FindObjectsOfTypeAll<Item>();
-            foreach(Item item in items)
-            {
-                if (item.name.Equals(entityName) && !item.serialized)
-                    return item;
-            }
-            return null;
+            return Finder.Find<Item>(entityName, true, item => !item.serialized);
         }
 
         public Item Instantiate(Transform parent = null,bool worldPositionStay = false)

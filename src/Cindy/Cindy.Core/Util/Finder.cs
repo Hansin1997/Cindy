@@ -1,31 +1,37 @@
-﻿namespace Cindy.Util
+﻿using UnityEngine;
+
+namespace Cindy.Util
 {
     public class Finder
     {
-        public static T Find<T>(string name = null) where T : UnityEngine.Object
+        public delegate bool Filter<T>(T target);
+
+        public static T Find<T>(string name = null,bool includingResources = true,Filter<T> filter = null) where T : Object
         {
             if (name == null)
-                return UnityEngine.Object.FindObjectOfType<T>();
-            T[] objects = UnityEngine.Object.FindObjectsOfType<T>();
+                return Object.FindObjectOfType<T>();
+            T[] objects = Object.FindObjectsOfType<T>();
             foreach(T obj in objects)
             {
-                if (obj.name.Equals(name))
+                if (obj.name.Equals(name) && (filter == null || filter(obj)))
                     return obj;
             }
-            return null;
+            return includingResources ? FindResource(name, filter) : null;
         }
 
-        public static T FindResource<T>(string name = null) where T : UnityEngine.Object
+        public static T FindResource<T>(string name, Filter<T> filter = null) where T : Object
         {
-            T[] objects = UnityEngine.Resources.FindObjectsOfTypeAll<T>();
             if (name == null)
-                return objects.Length > 0 ? objects[0] : null;
-            foreach(T obj in objects)
-            {
-                if (obj.name.Equals(name))
-                    return obj;
-            }
-            return null;
+                return null;
+            T result = Resources.Load<T>(name);
+            if (filter == null || result == null)
+                return result;
+            return filter(result) ? result : null;
+        }
+
+        public static T[] LoadResourceAll<T>(string path) where T : Object
+        {
+            return Resources.LoadAll<T>(path);
         }
     }
 }
