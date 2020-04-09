@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Cindy.Control.Cameras
 {
-    [AddComponentMenu("Cindy/Control/CameraController", 1)]
+    [AddComponentMenu("Cindy/Control/CameraControllerStack", 1)]
     [RequireComponent(typeof(Camera))]
     public class CameraControllerStack : Attachable
     {

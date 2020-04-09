@@ -9,21 +9,21 @@ namespace Cindy.Control.Controllers
     public class SimpleController : Controller
     {
         [Serializable]
-        public class AxesMap
+        public class AxisValue
         {
-            public ReferenceString Horizontal = new ReferenceString() { value = "Horizontal" };
-            public ReferenceString Vertical = new ReferenceString() { value = "Vertical" };
+            public ReferenceFloat Horizontal;
+            public ReferenceFloat Vertical;
+            public ReferenceBool Jump;
         }
 
         [Header("Simple Controller")]
-        public AxesMap axesMap;
-        public ReferenceString jumpButton = new ReferenceString() { value = "Jump" };
+        public AxisValue axesValue;
 
         [Header("Physics")]
-        public bool useGravity = true;
-        public float mass = 1f;
-        public float movingPower = 1f;
-        public float jumpPower = 1f;
+        public ReferenceBool useGravity = new ReferenceBool() {  value = true };
+        public ReferenceFloat mass = new ReferenceFloat() { value = 1f };
+        public ReferenceFloat movingPower = new ReferenceFloat() { value = 1f };
+        public ReferenceFloat jumpPower = new ReferenceFloat() { value = 1f };
 
         protected Vector3 direction;
         protected bool jumping;
@@ -35,7 +35,7 @@ namespace Cindy.Control.Controllers
         {
             if (characterController == null)
                 return;
-            if (useGravity)
+            if (useGravity.Value)
             {
                 if (characterController.isGrounded)
                 {
@@ -51,10 +51,10 @@ namespace Cindy.Control.Controllers
 
             if (selected)
             {
-                if (VirtualInput.GetButton(jumpButton.Value) && !jumping)
+                if (axesValue.Jump.Value && !jumping)
                 {
                     jumping = true;
-                    direction.y = jumpPower / mass;
+                    direction.y = jumpPower.Value / mass.Value;
                 }
             }
             characterController.Move(direction * Time.fixedDeltaTime);
@@ -74,14 +74,13 @@ namespace Cindy.Control.Controllers
         {
             if (characterController == null)
                 return;
-            Camera camera = Camera.main;
-            if (camera == null || characterController == null)
+            if (characterController == null || !characterController.enabled)
                 return;
-            Vector3 dir = Vector3.forward * VirtualInput.GetAxis(axesMap.Vertical.Value) + Vector3.right * VirtualInput.GetAxis(axesMap.Horizontal.Value);
-            dir = Quaternion.Euler(0, camera.transform.rotation.eulerAngles.y, 0) * dir;
+            Vector3 dir = Vector3.forward * axesValue.Vertical.Value + Vector3.right * axesValue.Horizontal.Value;
+            dir = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0) * dir;
 
             float y = direction.y;
-            direction = dir * (movingPower / mass);
+            direction = dir * (movingPower.Value / mass.Value);
             direction.y = y;
         }
 
