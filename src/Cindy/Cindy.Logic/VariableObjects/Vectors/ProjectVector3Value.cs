@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Cindy.Logic.VariableObjects.Vectors
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/Vectors/ProjectVector3Value")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Vectors/ProjectVector3Value (Float)")]
     public class ProjectVector3Value : FloatObject
     {
         public ReferenceVector3 vector, normal;

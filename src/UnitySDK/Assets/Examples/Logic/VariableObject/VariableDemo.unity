@@ -379,7 +379,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1472085364}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 10
+  m_MaxValue: 5
   m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
@@ -394,16 +394,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 54579603}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 20808954, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
+  m_Script: {fileID: 1992418722, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 11400000, guid: 8db2f57e91adf4a48b4f0a7e135ba878, type: 2}
-  key:
-    reference: {fileID: 109897625}
-    value: 
-  allowUpdate: 1
-  keyAsDefaultValue: 0
-  target: {fileID: 0}
+  slider: {fileID: 0}
+  valueVariable: {fileID: 1215061782}
+  minValue:
+    reference: {fileID: 0}
+    value: 0
+  maxValue:
+    reference: {fileID: 0}
+    value: 5
 --- !u!1 &109897621
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,12 +495,21 @@ MonoBehaviour:
   m_Script: {fileID: 1946625789, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  variableName: 
   value: number
+  proxyContext: {fileID: 0}
+  proxyTarget:
+    reference: {fileID: 0}
+    value: 
   storage: {fileID: 0}
   key:
     reference: {fileID: 0}
     value: 
   autoSave: 1
+  updateFromStorage: 0
+  valueChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &272046083
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,6 +981,9 @@ MonoBehaviour:
   m_Script: {fileID: 1148539985, guid: 676116aa50be73540912abfa9afc8136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  conditionName:
+    reference: {fileID: 0}
+    value: 
   buttonKey:
     reference: {fileID: 0}
     value: Fire1
@@ -1361,12 +1374,21 @@ MonoBehaviour:
   m_Script: {fileID: 2134968528, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  variableName: 
   value: 0
+  proxyContext: {fileID: 0}
+  proxyTarget:
+    reference: {fileID: 0}
+    value: 
   storage: {fileID: 11400000, guid: 8db2f57e91adf4a48b4f0a7e135ba878, type: 2}
   key:
     reference: {fileID: 109897625}
     value: 
   autoSave: 1
+  updateFromStorage: 0
+  valueChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1215061783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1379,6 +1401,9 @@ MonoBehaviour:
   m_Script: {fileID: -682729365, guid: 676116aa50be73540912abfa9afc8136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  conditionName:
+    reference: {fileID: 0}
+    value: 
   variable: {fileID: 1215061782}
   operator: 3
   target:
@@ -1504,11 +1529,14 @@ MonoBehaviour:
   m_Script: {fileID: -682729365, guid: 676116aa50be73540912abfa9afc8136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  conditionName:
+    reference: {fileID: 0}
+    value: 
   variable: {fileID: 1215061782}
   operator: 4
   target:
     reference: {fileID: 0}
-    value: 10
+    value: 5
 --- !u!114 &1215061790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1551,6 +1579,7 @@ GameObject:
   - component: {fileID: 1256970906}
   - component: {fileID: 1256970905}
   - component: {fileID: 1256970904}
+  - component: {fileID: 1256970907}
   m_Layer: 5
   m_Name: Count
   m_TagString: Untagged
@@ -1586,16 +1615,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1256970902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1398018891, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
+  m_Script: {fileID: 1946625789, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 11400000, guid: 1aea26d2ece1dd64bb3fb09cd3bd34b3, type: 2}
+  variableName: 
+  value: 
+  proxyContext: {fileID: 0}
+  proxyTarget:
+    reference: {fileID: 0}
+    value: 
+  storage: {fileID: 11400000, guid: 8db2f57e91adf4a48b4f0a7e135ba878, type: 2}
   key:
     reference: {fileID: 109897625}
     value: 
-  allowUpdate: 1
-  keyAsDefaultValue: 0
-  target: {fileID: 0}
+  autoSave: 0
+  updateFromStorage: 1
+  valueChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1256970905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1636,6 +1673,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256970902}
   m_CullTransparentMesh: 0
+--- !u!114 &1256970907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256970902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 189739747, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1256970905}
+  stringObject: {fileID: 1256970904}
 --- !u!1 &1472085363
 GameObject:
   m_ObjectHideFlags: 0
@@ -2007,12 +2058,21 @@ MonoBehaviour:
   m_Script: {fileID: -2019879265, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  variableName: 
   value: 1
+  proxyContext: {fileID: 0}
+  proxyTarget:
+    reference: {fileID: 0}
+    value: 
   storage: {fileID: 0}
   key:
     reference: {fileID: 0}
     value: 
   autoSave: 1
+  updateFromStorage: 0
+  valueChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1661075224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2025,6 +2085,9 @@ MonoBehaviour:
   m_Script: {fileID: 1562705346, guid: 676116aa50be73540912abfa9afc8136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  conditionName:
+    reference: {fileID: 0}
+    value: 
   variable: {fileID: 1661075223}
   operator: 0
   target:

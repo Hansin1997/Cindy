@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 namespace Cindy.Logic.VariableObjects.Vectors
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/Vectors/NavigationVector3")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Vectors/NavigationVector3 (Vector3)")]
     public class NavigationVector3 : Vector3Object
     {
         public NavMeshAgent agent;

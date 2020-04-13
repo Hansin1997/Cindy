@@ -216,6 +216,148 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158813355}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &481258474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 481258476}
+  - component: {fileID: 481258475}
+  m_Layer: 0
+  m_Name: Vertical
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &481258475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481258474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 911376511, guid: 676116aa50be73540912abfa9afc8136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variableName: 
+  value: 0
+  proxyContext: {fileID: 0}
+  proxyTarget:
+    reference: {fileID: 0}
+    value: 
+  storage: {fileID: 0}
+  key:
+    reference: {fileID: 0}
+    value: 
+  autoSave: 1
+  updateFromStorage: 0
+  valueChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  horizontalAxis:
+    reference: {fileID: 0}
+    value: Horizontal
+  verticalAxis:
+    reference: {fileID: 0}
+    value: Vertical
+  valueType: 1
+  cameraName:
+    reference: {fileID: 2107053054}
+    value: Main Camera
+  objectName:
+    reference: {fileID: 1058662637}
+    value: 
+--- !u!4 &481258476
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481258474}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1058662634}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &727428092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 727428094}
+  - component: {fileID: 727428093}
+  m_Layer: 0
+  m_Name: Horizontal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &727428093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727428092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 911376511, guid: 676116aa50be73540912abfa9afc8136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variableName: 
+  value: 0
+  proxyContext: {fileID: 0}
+  proxyTarget:
+    reference: {fileID: 0}
+    value: 
+  storage: {fileID: 0}
+  key:
+    reference: {fileID: 0}
+    value: 
+  autoSave: 1
+  updateFromStorage: 0
+  valueChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  horizontalAxis:
+    reference: {fileID: 0}
+    value: Horizontal
+  verticalAxis:
+    reference: {fileID: 0}
+    value: Vertical
+  valueType: 0
+  cameraName:
+    reference: {fileID: 2107053054}
+    value: Main Camera
+  objectName:
+    reference: {fileID: 1058662637}
+    value: 
+--- !u!4 &727428094
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727428092}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1058662634}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1058662629
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,6 +372,7 @@ GameObject:
   - component: {fileID: 1058662631}
   - component: {fileID: 1058662630}
   - component: {fileID: 1058662635}
+  - component: {fileID: 1058662637}
   - component: {fileID: 1058662636}
   m_Layer: 0
   m_Name: Player
@@ -251,25 +394,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetName:
-    reference: {fileID: 1058662636}
+    reference: {fileID: 2107053054}
     value: 
   order: 0
   attachOnStart: 1
   detachOnDestroy: 1
-  axesMap:
+  axesValue:
     Horizontal:
-      reference: {fileID: 0}
-      value: Horizontal
+      reference: {fileID: 727428093}
+      value: 0
     Vertical:
-      reference: {fileID: 0}
-      value: Vertical
-  jumpButton:
+      reference: {fileID: 481258475}
+      value: 0
+    Jump:
+      reference: {fileID: 1058662636}
+      value: 0
+  useGravity:
     reference: {fileID: 0}
-    value: Jump
-  useGravity: 1
-  mass: 1
-  movingPower: 10
-  jumpPower: 10
+    value: 1
+  mass:
+    reference: {fileID: 0}
+    value: 1
+  movingPower:
+    reference: {fileID: 0}
+    value: 10
+  jumpPower:
+    reference: {fileID: 0}
+    value: 10
 --- !u!143 &1058662631
 CharacterController:
   m_ObjectHideFlags: 0
@@ -345,7 +496,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 727428094}
+  - {fileID: 481258476}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -362,7 +515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetName:
-    reference: {fileID: 1058662636}
+    reference: {fileID: 2107053054}
     value: 
   order: 0
   attachOnStart: 1
@@ -377,13 +530,56 @@ MonoBehaviour:
   m_GameObject: {fileID: 1058662629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1946625789, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
+  m_Script: {fileID: -887802777, guid: 676116aa50be73540912abfa9afc8136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: Main Camera
+  variableName: 
+  value: 0
+  proxyContext: {fileID: 0}
+  proxyTarget:
+    reference: {fileID: 0}
+    value: 
   storage: {fileID: 0}
-  key: 
+  key:
+    reference: {fileID: 0}
+    value: 
   autoSave: 1
+  updateFromStorage: 0
+  valueChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  buttonKey:
+    reference: {fileID: 0}
+    value: Jump
+  state: 1
+--- !u!114 &1058662637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058662629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1915233141, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variableName: 
+  value: 
+  proxyContext: {fileID: 0}
+  proxyTarget:
+    reference: {fileID: 0}
+    value: 
+  storage: {fileID: 0}
+  key:
+    reference: {fileID: 0}
+    value: 
+  autoSave: 1
+  updateFromStorage: 0
+  valueChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  target: {fileID: 0}
 --- !u!1 &1465183902
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +716,7 @@ GameObject:
   - component: {fileID: 2107053050}
   - component: {fileID: 2107053049}
   - component: {fileID: 2107053053}
+  - component: {fileID: 2107053054}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -536,7 +733,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2107053048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1068763056, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
+  m_Script: {fileID: 768310654, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attachments: []
@@ -614,7 +811,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 2107053048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 461593286, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
+  m_Script: {fileID: -1042663758, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attachments: []
+  updateType: 1
+--- !u!114 &2107053054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107053048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1915233141, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variableName: 
+  value: 
+  proxyContext: {fileID: 0}
+  proxyTarget:
+    reference: {fileID: 0}
+    value: 
+  storage: {fileID: 0}
+  key:
+    reference: {fileID: 0}
+    value: 
+  autoSave: 1
+  updateFromStorage: 0
+  valueChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  target: {fileID: 0}

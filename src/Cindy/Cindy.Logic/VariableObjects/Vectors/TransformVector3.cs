@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Cindy.Logic.VariableObjects.Vectors
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/Vectors/TransformVector3")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Vectors/TransformVector3 (Vector3)")]
     public class TransformVector3 : Vector3Object
     {
         public ReferenceTransfrom target;

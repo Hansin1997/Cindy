@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Cindy.Logic.VariableObjects.Vectors
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/Vectors/ProjectVector3")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Vectors/ProjectVector3 (Vector3)")]
     public class ProjectVector3 : Vector3Object
     {
         public ReferenceVector3 vector, normal;
