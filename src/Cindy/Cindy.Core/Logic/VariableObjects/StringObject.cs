@@ -1,5 +1,4 @@
 ﻿using Cindy.Logic.ReferenceValues;
-using Cindy.Storages;
 using Cindy.Strings;
 using System.Text;
 using UnityEngine;
@@ -24,6 +23,10 @@ namespace Cindy.Logic.VariableObjects
         protected StringBuilder stringBuilder;
         protected StringBuilder StringBuilder { get { return stringBuilder != null ? stringBuilder : (stringBuilder = new StringBuilder()); } }
 
+        protected override void Start()
+        {
+            base.Start();
+        }
         public override string GetValue()
         {
             StringBuilder.Clear();
@@ -71,6 +74,60 @@ namespace Cindy.Logic.VariableObjects
             else
                 value = target.name;
             return base.GetValue();
+        }
+    }
+
+    [AddComponentMenu("Cindy/Logic/VariableObject/IntToString")]
+    public class IntToString : StringObject
+    {
+        [Header("IntToString")]
+        public ReferenceInt target;
+
+        public override string GetValue()
+        {
+            value = target == null ? "" : target.Value.ToString();
+            return base.GetValue();
+        }
+
+        public override void SetValue(string value)
+        {
+
+        }
+    }
+
+    [AddComponentMenu("Cindy/Logic/VariableObject/FloatToString")]
+    public class FloatToString : StringObject
+    {
+        [Header("FloatToString")]
+        public ReferenceFloat target;
+
+        public override string GetValue()
+        {
+            value = target == null ? "" : target.Value.ToString();
+            return base.GetValue();
+        }
+
+        public override void SetValue(string value)
+        {
+
+        }
+    }
+
+    [AddComponentMenu("Cindy/Logic/VariableObject/DoubleToString")]
+    public class DoubleToString : StringObject
+    {
+        [Header("DoubleToString")]
+        public ReferenceDouble target;
+
+        public override string GetValue()
+        {
+            value = target == null ? "" : target.Value.ToString();
+            return base.GetValue();
+        }
+
+        public override void SetValue(string value)
+        {
+
         }
     }
 }

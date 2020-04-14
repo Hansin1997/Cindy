@@ -3,11 +3,10 @@
 namespace Cindy.Logic.VariableObjects
 {
     [AddComponentMenu("Cindy/Logic/VariableObject/CharacterController/CharacterControllerVelocity (Vector3)")]
-    public class CharacterControllerVelocity : FloatObject
+    public class CharacterControllerVelocity : Vector3Object
     {
         [Header("CharacterController")]
         public CharacterController characterController;
-        public Direction direction = Direction.Y;
 
         public enum Direction
         {
@@ -23,30 +22,21 @@ namespace Cindy.Logic.VariableObjects
             value = GetVelocityValue();
         }
 
-        protected virtual float GetVelocityValue()
+        protected virtual Vector3 GetVelocityValue()
         {
             if (characterController == null)
-                return 0;
-            switch(direction)
-            {
-                case Direction.X:
-                    return characterController.velocity.x;
-                case Direction.Y:
-                    return characterController.velocity.y;
-                case Direction.Z:
-                    return characterController.velocity.z;
-                default:
-                    return 0;
-            }
+                return Vector3.zero;
+            return characterController.velocity;
+
         }
 
-        public override float GetValue()
+        public override Vector3 GetValue()
         {
             value = GetVelocityValue();
             return base.GetValue();
         }
 
-        public override void SetValue(float value)
+        public override void SetValue(Vector3 value)
         {
 
         }

@@ -52,9 +52,14 @@ namespace Cindy.Logic.LogicNodes
             while (operation.progress < 0.9f)
             {
                 progress.Value = operation.progress;
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0);
             }
             operation.allowSceneActivation = true;
+            while (operation.progress < 1f)
+            {
+                progress.Value = operation.progress;
+                yield return new WaitForSeconds(0);
+            }
             progress.Value = 1;
             isLoading.Value = false;
         }

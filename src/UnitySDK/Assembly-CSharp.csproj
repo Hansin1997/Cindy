@@ -10,7 +10,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{C1B615ED-83BA-E9B3-B9E3-D8DB14417413}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -63,7 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Examples\Control\NavigationExample\NavigationActionDemo.cs" />
-    <None Include="Assets\Examples\UI\StringSource\XmlString.xml" />
+    <None Include="Assets\Examples\UI\StringSource\XmlString.xml">
+      <SubType>Designer</SubType>
+    </None>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Documents/GITHUB/Cindy/src/UnitySDK/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

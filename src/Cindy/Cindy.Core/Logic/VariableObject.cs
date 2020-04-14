@@ -148,6 +148,12 @@ namespace Cindy.Logic
             }
             return value;
         }
+
+        public virtual void RefreshValue()
+        {
+            value = GetValue();
+        }
+
         protected abstract T TransformFrom(string value);
 
         protected virtual object TramsfromTo(T value)

@@ -26,6 +26,7 @@ namespace Cindy.Logic.LogicNodes
                 currentTime.Value += Time.deltaTime;
                 if (currentTime.Value >= time.Value)
                 {
+                    currentTime.Value = time.Value;
                     base.Execute();
                     started = false;
                     if (loop.Value)

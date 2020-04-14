@@ -10,14 +10,16 @@ namespace Cindy.Logic
 
         public T Value { get { return GetValue(); } set { SetValue(value); } }
 
-        public T GetValue()
+        public virtual T GetValue()
         {
-            return reference != null && reference.Value != null ? reference.Value : value;
+            T V = reference != null && reference.Value != null ? reference.Value : value;
+            return V;
         }
 
-        public void SetValue(T value)
+        public virtual void SetValue(T value)
         {
-            if (reference != null) { 
+            if (reference != null)
+            {
                 reference.Value = value;
             }
             this.value = value;
