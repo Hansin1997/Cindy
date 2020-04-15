@@ -9,9 +9,64 @@ namespace Cindy.Logic.VariableObjects.Vectors
         public ReferenceTransfrom target;
         public TransfromType transfromType = TransfromType.Position;
 
+        protected void Apply(Vector3 value)
+        {
+            Transform t = target != null && target.Value != null ? target.Value : transform;
+            switch (transfromType)
+            {
+                case TransfromType.Position:
+                    t.position = value;
+                    break;
+                case TransfromType.Rotation:
+                    t.rotation = Quaternion.Euler(value);
+                    break;
+                case TransfromType.LocalScale:
+                    t.localScale = value;
+                    break;
+                case TransfromType.lossyScale:
+                    break;
+                case TransfromType.Forward:
+                    t.forward = value;
+                    break;
+                case TransfromType.Back:
+                    t.forward = -value;
+                    break;
+                case TransfromType.Left:
+                    t.right = -value;
+                    break;
+                case TransfromType.Right:
+                    t.right = value;
+                    break;
+                case TransfromType.Up:
+                    t.up = value;
+                    break;
+                case TransfromType.Bottom:
+                    t.up = -value;
+                    break;
+            }
+        }
+
         public override void SetValue(Vector3 value)
         {
+            Apply(value);
+            base.SetValue(value);
+        }
 
+        protected override void OnValueChanged(bool save = true, bool notify = true)
+        {
+            Apply(value);
+            base.OnValueChanged(save, notify);
+        }
+
+        protected override void OnValueLoad(Vector3 val)
+        {
+            Apply(value);
+            base.OnValueLoad(val);
+        }
+
+        protected override void OnValueLoadEmpty()
+        {
+            GetValue();
         }
 
         public override Vector3 GetValue()

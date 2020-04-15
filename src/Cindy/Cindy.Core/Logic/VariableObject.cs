@@ -53,6 +53,10 @@ namespace Cindy.Logic
                 else
                     OnValueLoadEmpty();
             }
+            else
+            {
+                OnValueLoadEmpty();
+            }
             if (IsValueChanged())
                 OnValueChanged(false);
         }
