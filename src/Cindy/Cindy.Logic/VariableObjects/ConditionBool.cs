@@ -2,7 +2,7 @@
 
 namespace Cindy.Logic.VariableObjects
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/Bool/ConditionBool")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Util/ConditionBool (Bool)")]
     public class ConditionBool : BoolObject
     {
         [Header("Condition")]

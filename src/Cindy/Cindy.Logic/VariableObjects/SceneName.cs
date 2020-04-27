@@ -2,7 +2,7 @@
 
 namespace Cindy.Logic.VariableObjects
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/Strings/SceneName")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Util/SceneName (String)")]
     public class SceneName : StringObject
     {
         [Header("Scene Name")]
