@@ -63,7 +63,7 @@ namespace Cindy.Logic
 
         protected virtual void OnValueLoad(T val)
         {
-            if (val != default)
+            if (val != null)
                 value = val;
         }
 
@@ -123,7 +123,7 @@ namespace Cindy.Logic
         {
             if (storage != null)
             {
-                storage.Put(key.Value, TramsfromTo(value));
+                storage.Put(key.Value, TransfromTo(value));
             }
         }
 
@@ -160,7 +160,7 @@ namespace Cindy.Logic
 
         protected abstract T TransformFrom(string value);
 
-        protected virtual object TramsfromTo(T value)
+        protected virtual object TransfromTo(T value)
         {
             return value;
         }

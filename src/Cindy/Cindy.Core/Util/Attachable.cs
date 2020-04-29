@@ -7,7 +7,7 @@ namespace Cindy.Util
     {
         [Header("Attachable")]
         [SerializeField]
-        public List<Attachment> attachments;
+        public IList<Attachment> attachments;
 
         public virtual bool Attach(Attachment attachment)
         {

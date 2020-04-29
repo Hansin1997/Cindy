@@ -10,7 +10,7 @@ namespace Cindy.Logic.VariableObjects
             return null;
         }
 
-        protected override object TramsfromTo(Transform value)
+        protected override object TransfromTo(Transform value)
         {
             return null;
         }

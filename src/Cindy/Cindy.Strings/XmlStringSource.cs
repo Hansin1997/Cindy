@@ -12,6 +12,8 @@ namespace Cindy.Strings
 
         public string keyVariable = "{key}";
 
+        public ValueType valueType = ValueType.InnerXml;
+
         protected XmlDocument document;
 
         protected XmlDocument Document
@@ -35,7 +37,25 @@ namespace Cindy.Strings
             XmlNode tmp = Document.SelectSingleNode(path);
             if (tmp == null)
                 return defaultValue;
-            return tmp.InnerXml;
+            switch (valueType)
+            {
+                case ValueType.InnerXml:
+                    return tmp.InnerXml;
+                case ValueType.InnerText:
+                    return tmp.InnerText;
+                case ValueType.OuterXml:
+                    return tmp.OuterXml;
+                default:
+                    return tmp.InnerXml;
+            }
+        }
+
+        public enum ValueType
+        {
+            InnerXml,
+            InnerText,
+            OuterXml,
+            OuterText
         }
     }
 }

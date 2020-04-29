@@ -27,15 +27,15 @@ namespace Cindy.Logic
             }
             try
             {
-
                 events.Invoke();
             }
             catch (Exception e)
             {
                 Debug.LogError(e);
             }
-            foreach (Switch nextNode in nextNodes)
+            foreach (Switch nextNode in nextNodes) // 遍历下一批逻辑节点
             {
+                // 当条件为空或者条件为真时执行该节点
                 if (nextNode.value != null && (nextNode.key == null || nextNode.key.Check()))
                     try
                     {

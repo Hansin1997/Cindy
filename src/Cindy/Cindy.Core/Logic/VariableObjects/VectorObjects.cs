@@ -21,7 +21,7 @@ namespace Cindy.Logic.VariableObjects
             }
         }
 
-        protected override object TramsfromTo(Vector3 value)
+        protected override object TransfromTo(Vector3 value)
         {
             return new SerializedVector3(value);
         }
@@ -168,7 +168,7 @@ namespace Cindy.Logic.VariableObjects
             }
         }
 
-        protected override object TramsfromTo(Vector2 value)
+        protected override object TransfromTo(Vector2 value)
         {
             return new SerializedVector2(value);
         }

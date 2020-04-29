@@ -1332,9 +1332,6 @@ GameObject:
   - component: {fileID: 1215061785}
   - component: {fileID: 1215061784}
   - component: {fileID: 1215061782}
-  - component: {fileID: 1215061783}
-  - component: {fileID: 1215061788}
-  - component: {fileID: 1215061790}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1389,26 +1386,6 @@ MonoBehaviour:
   valueChangedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1215061783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215061780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -682729365, guid: 676116aa50be73540912abfa9afc8136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  conditionName:
-    reference: {fileID: 0}
-    value: 
-  variable: {fileID: 1215061782}
-  operator: 3
-  target:
-    reference: {fileID: 0}
-    value: 5
 --- !u!114 &1215061784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1421,7 +1398,7 @@ MonoBehaviour:
   m_Script: {fileID: -1601520645, guid: 676116aa50be73540912abfa9afc8136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition: {fileID: 1215061783}
+  condition: {fileID: 0}
   invert: 0
   updateType: 2
   gameObjects:
@@ -1470,14 +1447,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1215061790}
-        m_MethodName: CallHandle
-        m_Mode: 1
+      - m_Target: {fileID: 1215061782}
+        m_MethodName: Add
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 1
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -1517,56 +1494,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215061780}
   m_CullTransparentMesh: 0
---- !u!114 &1215061788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215061780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -682729365, guid: 676116aa50be73540912abfa9afc8136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  conditionName:
-    reference: {fileID: 0}
-    value: 
-  variable: {fileID: 1215061782}
-  operator: 4
-  target:
-    reference: {fileID: 0}
-    value: 5
---- !u!114 &1215061790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215061780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1232351843, guid: 676116aa50be73540912abfa9afc8136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  condition: {fileID: 1215061788}
-  invert: 0
-  updateType: 0
-  startNode: {fileID: 0}
-  events:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1215061782}
-        m_MethodName: Add
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 1
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1256970902
 GameObject:
   m_ObjectHideFlags: 0

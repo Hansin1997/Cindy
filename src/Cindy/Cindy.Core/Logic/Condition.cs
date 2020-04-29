@@ -7,6 +7,10 @@ namespace Cindy.Logic
     {
         public ReferenceString conditionName;
 
+        /// <summary>
+        /// 检查条件是否成立
+        /// </summary>
+        /// <returns>条件是否成立</returns>
         public abstract bool Check();
 
     }
