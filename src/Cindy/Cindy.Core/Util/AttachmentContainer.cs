@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Cindy.Util
 {
-    public abstract class Attachable : MonoBehaviour
+    public abstract class AttachmentContainer : MonoBehaviour
     {
-        [Header("Attachable")]
+        [Header("Attachment Container")]
         [SerializeField]
-        public IList<Attachment> attachments;
+        public List<Attachment> attachments;
 
-        public virtual bool Attach(Attachment attachment)
+        public virtual bool Add(Attachment attachment)
         {
             if (attachments.Contains(attachment) || !CheckAttachment(attachment))
                 return false;
@@ -33,7 +33,7 @@ namespace Cindy.Util
             return true;
         }
 
-        public virtual bool Detach(Attachment attachment)
+        public virtual bool Remove(Attachment attachment)
         {
             if (!attachments.Contains(attachment))
                 return false;
@@ -45,7 +45,7 @@ namespace Cindy.Util
             for (int i = attachments.Count - 1; i >= 0; i--)
             {
                 Attachment attachment = attachments[i];
-                if (IsPeek(attachment))
+                if (IsAvailable(attachment))
                     return attachment;
             }
             return null;
@@ -60,6 +60,6 @@ namespace Cindy.Util
         }
 
         protected abstract bool CheckAttachment(Attachment attachment);
-        protected abstract bool IsPeek(Attachment attachment);
+        protected abstract bool IsAvailable(Attachment attachment);
     }
 }

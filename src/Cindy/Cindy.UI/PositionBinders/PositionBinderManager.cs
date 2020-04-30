@@ -8,7 +8,7 @@ namespace Cindy.UI.PositionBinders
 {
     [AddComponentMenu("Cindy/UI/PositionBinders/PositionBinderManager", 99)]
     [RequireComponent(typeof(RectTransform))]
-    public class PositionBinderManager : Attachable
+    public class PositionBinderManager : AttachmentContainer
     {
         public Camera targetCamera;
         protected RectTransform rectTransform;
@@ -21,9 +21,9 @@ namespace Cindy.UI.PositionBinders
 
         protected Camera Camera { get { return targetCamera == null ?  Camera.main : targetCamera; } } 
 
-        public override bool Attach(Attachment attachment)
+        public override bool Add(Attachment attachment)
         {
-            if (!base.Attach(attachment))
+            if (!base.Add(attachment))
                 return false;
             AbstractPositionBinder a = attachment as AbstractPositionBinder;
             if (a is BlockedPositionBinder)
@@ -42,9 +42,9 @@ namespace Cindy.UI.PositionBinders
             return true;
         }
 
-        public override bool Detach(Attachment attachment)
+        public override bool Remove(Attachment attachment)
         {
-            if (!base.Detach(attachment))
+            if (!base.Remove(attachment))
                 return false;
             if (attachment is BlockedPositionBinder)
                 block--;
@@ -101,7 +101,7 @@ namespace Cindy.UI.PositionBinders
             }
             foreach(Attachment attachment in nullSet)
             {
-                Detach(attachment);
+                Remove(attachment);
             }
         }
 
@@ -110,7 +110,7 @@ namespace Cindy.UI.PositionBinders
             return attachment is AbstractPositionBinder;
         }
 
-        protected override bool IsPeek(Attachment attachment)
+        protected override bool IsAvailable(Attachment attachment)
         {
             return attachment != null && attachment is AbstractPositionBinder positionBinder
                 && positionBinder.enabled;

@@ -9,9 +9,9 @@ namespace Cindy.Media.Audio
     {
         public Data data;
 
-        protected override Type GetAttachableType()
+        protected override Type GetTargetType()
         {
-            return typeof(Attachable);
+            return typeof(AttachmentContainer);
         }
 
         [Serializable]

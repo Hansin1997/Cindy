@@ -87,6 +87,7 @@ namespace Cindy.Control.Controllers
         public override void OnControllerUnselect()
         {
             selected = false;
+            direction.x = direction.z = 0;
         }
 
     }

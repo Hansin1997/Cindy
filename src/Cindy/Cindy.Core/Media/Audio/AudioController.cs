@@ -6,7 +6,7 @@ namespace Cindy.Media.Audio
 {
     [AddComponentMenu("Cindy/Media/Audio/AudioController")]
     [RequireComponent(typeof(AudioSource))]
-    public class AudioController : Attachable
+    public class AudioController : AttachmentContainer
     {
 
         public bool dontDestroyOnLoad;
@@ -24,12 +24,12 @@ namespace Cindy.Media.Audio
             return attachment is AudioAttachment;
         }
 
-        protected override bool IsPeek(Attachment attachment)
+        protected override bool IsAvailable(Attachment attachment)
         {
             return attachment is AudioAttachment audioAttachment && audioAttachment.enabled && audioAttachment.gameObject.activeSelf;
         }
 
-        public override bool Attach(Attachment attachment)
+        public override bool Add(Attachment attachment)
         {
             if (attachment is AudioAttachment audioAttachment)
             {
@@ -45,7 +45,7 @@ namespace Cindy.Media.Audio
                 return false;
         }
 
-        public override bool Detach(Attachment attachment)
+        public override bool Remove(Attachment attachment)
         {
             if (attachment is AudioAttachment audioAttachment)
             {

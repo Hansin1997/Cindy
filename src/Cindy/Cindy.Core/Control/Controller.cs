@@ -1,17 +1,10 @@
-﻿using Cindy.Util;
-using System;
+﻿using System;
 
 namespace Cindy.Control
 {
-    public abstract class Controller : Attachment
+    public abstract class Controller : AbstractController
     {
-        public abstract void OnControllerSelect();
-
-        public abstract void OnControllerUpdate(float deltaTime);
-
-        public abstract void OnControllerUnselect();
-
-        protected override Type GetAttachableType()
+        protected override Type GetTargetType()
         {
             return typeof(ControllerStack);
         }

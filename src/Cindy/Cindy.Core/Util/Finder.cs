@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Cindy.Util
 {
@@ -6,32 +9,54 @@ namespace Cindy.Util
     {
         public delegate bool Filter<T>(T target);
 
-        public static T Find<T>(string name = null,bool includingResources = true,Filter<T> filter = null) where T : Object
+        public static T Find<T>(string name = null,bool includingResources = true,Filter<T> filter = null,Type type = null) where T : Object
         {
             if (name == null)
-                return Object.FindObjectOfType<T>();
-            T[] objects = Object.FindObjectsOfType<T>();
-            foreach(T obj in objects)
+                return type == null ? Object.FindObjectOfType<T>() : Object.FindObjectOfType(type) as T;
+            if(type == null)
             {
-                if (obj.name.Equals(name) && (filter == null || filter(obj)))
-                    return obj;
+                T[] objects = Object.FindObjectsOfType<T>();
+                foreach (T obj in objects)
+                {
+                    if (obj.name.Equals(name) && (filter == null || filter(obj)))
+                        return obj;
+                }
             }
-            return includingResources ? FindResource(name, filter) : null;
+            else
+            {
+
+                Object[] objects = Object.FindObjectsOfType(type);
+                foreach (Object obj in objects)
+                {
+                    if (obj is T t && t.name.Equals(name) && (filter == null || filter(t)))
+                        return t;
+                }
+            }
+            return includingResources ? FindResource(name, filter, type) : null;
         }
 
-        public static T FindResource<T>(string name, Filter<T> filter = null) where T : Object
+        public static T FindResource<T>(string name, Filter<T> filter = null, Type type = null) where T : Object
         {
             if (name == null)
                 return null;
-            T result = Resources.Load<T>(name);
+            T result = type == null ? Resources.Load<T>(name) : Resources.Load(name, type) as T;
             if (filter == null || result == null)
                 return result;
             return filter(result) ? result : null;
         }
 
-        public static T[] LoadResourceAll<T>(string path) where T : Object
+        public static T[] LoadResourceAll<T>(string path, Type type = null) where T : Object
         {
-            return Resources.LoadAll<T>(path);
+            if(type == null)
+                return Resources.LoadAll<T>(path);
+            List<T> result = new List<T>();
+            Object[] objects = Resources.LoadAll(path, type);
+            foreach(Object obj in objects)
+            {
+                if (obj is T t)
+                    result.Add(t);
+            }
+            return result.ToArray();
         }
     }
 }

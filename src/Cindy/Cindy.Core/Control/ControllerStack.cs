@@ -4,32 +4,15 @@ using UnityEngine;
 namespace Cindy.Control
 {
     [AddComponentMenu("Cindy/Control/ControllerStack", 1)]
-    public class ControllerStack : Attachable
+    [DisallowMultipleComponent]
+    public class ControllerStack : AbstractControllerStack
     {
-        private Controller selectedAttachment;
-
         protected override bool CheckAttachment(Attachment attachment)
         {
             return attachment is Controller;
         }
 
-        protected virtual void FixedUpdate()
-        {
-            Controller top = Peek<Controller>();
-            if (top != null)
-            {
-                if (top != selectedAttachment)
-                {
-                    if (selectedAttachment != null)
-                        selectedAttachment.OnControllerUnselect();
-                    top.OnControllerSelect();
-                }
-                top.OnControllerUpdate(Time.fixedDeltaTime);
-            }
-            selectedAttachment = top;
-        }
-
-        protected override bool IsPeek(Attachment attachment)
+        protected override bool IsAvailable(Attachment attachment)
         {
             if (attachment != null && attachment.gameObject.activeSelf && attachment is Controller controllerBehaviour
                 && controllerBehaviour.enabled)

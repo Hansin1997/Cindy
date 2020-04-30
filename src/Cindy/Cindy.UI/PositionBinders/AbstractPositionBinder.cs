@@ -41,7 +41,7 @@ namespace Cindy.UI.PositionBinders
             }
         }
 
-        protected override Type GetAttachableType()
+        protected override Type GetTargetType()
         {
             return typeof(PositionBinderManager);
         }

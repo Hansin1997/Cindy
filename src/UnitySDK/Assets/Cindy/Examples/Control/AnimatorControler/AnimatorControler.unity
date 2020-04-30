@@ -1048,6 +1048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachments: []
+  updateType: 0
 --- !u!1 &907491328
 GameObject:
   m_ObjectHideFlags: 0

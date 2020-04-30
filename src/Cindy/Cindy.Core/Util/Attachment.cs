@@ -13,33 +13,25 @@ namespace Cindy.Util
         public bool attachOnStart = false;
         public bool detachOnDestroy = false;
 
-        protected abstract Type GetAttachableType();
+        protected abstract Type GetTargetType();
 
         public virtual void Attach()
         {
-            Attachable attachable = FindTarget();
+            AttachmentContainer attachable = FindTarget();
             if (attachable != null)
-                attachable.Attach(this);
+                attachable.Add(this);
         }
 
         public virtual void Detach()
         {
-            Attachable attachable = FindTarget();
+            AttachmentContainer attachable = FindTarget();
             if (attachable != null)
-                attachable.Detach(this);
+                attachable.Remove(this);
         }
 
-        protected Attachable FindTarget()
+        protected AttachmentContainer FindTarget()
         {
-            UnityEngine.Object[] objs = FindObjectsOfType(GetAttachableType());
-            foreach (UnityEngine.Object obj in objs)
-            {
-                if (obj is Attachable attachable && attachable.gameObject.name.Equals(targetName.Value))
-                {
-                    return attachable;
-                }
-            }
-            return null;
+            return Finder.Find<AttachmentContainer>(targetName.Value, false, null, GetTargetType());
         }
 
         protected virtual void Start()

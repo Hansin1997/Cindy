@@ -2,7 +2,6 @@
 
 namespace Cindy.Control
 {
-
     [AddComponentMenu("Cindy/Control/Controllers/BlockedController", 0)]
     public class BlockedController : Controller
     {
