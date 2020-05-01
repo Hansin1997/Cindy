@@ -31,11 +31,11 @@ namespace Cindy.Control.Controllers
         {
             foreach (NamedBool namedBool in boolParameters)
             {
-                animator.SetBool(namedBool.key, false);
+                animator.SetBool(namedBool.Key, false);
             }
             foreach (NamedFloat namedFloat in floatParameters)
             {
-                animator.SetFloat(namedFloat.key, 0);
+                animator.SetFloat(namedFloat.Key, 0);
             }
         }
 
@@ -43,16 +43,16 @@ namespace Cindy.Control.Controllers
         {
             foreach (NamedBool namedBool in boolParameters)
             {
-                animator.SetBool(namedBool.key, namedBool.value.Value);
+                animator.SetBool(namedBool.Key, namedBool.Value.Value);
             }
             foreach (NamedBool namedTrigger in triggerParameters)
             {
-                if (namedTrigger.value.Value)
-                    animator.SetTrigger(namedTrigger.key);
+                if (namedTrigger.Value.Value)
+                    animator.SetTrigger(namedTrigger.Key);
             }
             foreach (NamedFloat namedFloat in floatParameters)
             {
-                animator.SetFloat(namedFloat.key, namedFloat.value.Value);
+                animator.SetFloat(namedFloat.Key, namedFloat.Value.Value);
             }
         }
 

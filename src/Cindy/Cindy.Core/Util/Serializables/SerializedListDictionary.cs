@@ -9,6 +9,11 @@ namespace Cindy.Util.Serializables
         public string[] paramsKey;
         public SerializedList[] paramsVal;
 
+        public SerializedListDictionary()
+        {
+
+        }
+
         public SerializedListDictionary(Dictionary<string, List<string>> dictonary)
         {
             if (dictonary == null)

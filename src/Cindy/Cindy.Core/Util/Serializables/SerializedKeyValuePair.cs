@@ -8,20 +8,25 @@ namespace Cindy.Util.Serializables
     public class SerializedKeyValuePair<K,V>
     {
         [SerializeField]
-        public K key;
+        public K Key { get; set; }
 
         [SerializeField]
-        public V value;
+        public V Value { get; set; }
+
+        public SerializedKeyValuePair()
+        {
+
+        }
 
         public SerializedKeyValuePair(KeyValuePair<K,V> keyValuePair)
         {
-            key = keyValuePair.Key;
-            value = keyValuePair.Value;
+            Key = keyValuePair.Key;
+            Value = keyValuePair.Value;
         }
 
         public KeyValuePair<K,V> ToKeyValuePair()
         {
-            return new KeyValuePair<K, V>(key,value);
+            return new KeyValuePair<K, V>(Key,Value);
         }
 
         public static IDictionary<K,V> ToDictionary(SerializedKeyValuePair<K,V>[] serializedKeyValuePairs)
@@ -29,7 +34,7 @@ namespace Cindy.Util.Serializables
             IDictionary<K, V> result = new Dictionary<K, V>();
             if(serializedKeyValuePairs != null)
                 foreach(SerializedKeyValuePair<K,V> serializedKeyValuePair in serializedKeyValuePairs)
-                    result[serializedKeyValuePair.key] = serializedKeyValuePair.value;
+                    result[serializedKeyValuePair.Key] = serializedKeyValuePair.Value;
             return result;
         }
 

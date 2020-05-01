@@ -45,6 +45,8 @@ namespace Cindy.Storages
             {
                 PlayerPrefs.DeleteKey(prefix + key);
             }
+            keys.Clear();
+            SetKeys(keys);
             PlayerPrefs.Save();
         }
 

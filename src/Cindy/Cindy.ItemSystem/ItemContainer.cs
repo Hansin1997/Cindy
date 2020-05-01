@@ -218,6 +218,11 @@ namespace Cindy.ItemSystem
             public SceneItem[] abandoned;
             public SerializedListDictionary picked;
 
+            public ItemContainerPackage()
+            {
+
+            }
+
             public ItemContainerPackage(ItemContainer container)
             {
                 items = container.items.ToArray();

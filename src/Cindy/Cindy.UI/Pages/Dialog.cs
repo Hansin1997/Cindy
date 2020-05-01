@@ -95,9 +95,9 @@ namespace Cindy.UI.Pages
             }
             foreach (ButtonMap btnMap in data.buttonMap)
             {
-                Button btn = Instantiate<Button>(btnMap.key, ButtonGroup);
+                Button btn = Instantiate<Button>(btnMap.Key, ButtonGroup);
                 buttons.Add(btn);
-                btn.onClick.AddListener(() => { btnMap.value.Invoke(); });
+                btn.onClick.AddListener(() => { btnMap.Value.Invoke(); });
             }
         }
 
@@ -114,12 +114,12 @@ namespace Cindy.UI.Pages
             if (source != null)
             {
                 foreach (SerializedKeyValuePair<string, string> kv in data.stringMap)
-                    result[kv.key] = source.Get(kv.value, kv.value);
+                    result[kv.Key] = source.Get(kv.Value, kv.Value);
             }
             else
             {
                 foreach (SerializedKeyValuePair<string, string> kv in data.stringMap)
-                    result[kv.key] = kv.value;
+                    result[kv.Key] = kv.Value;
             }
             return result;
         }

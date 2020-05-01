@@ -12,6 +12,11 @@ namespace Cindy.Util.Serializables
         [Multiline]
         public string[] paramsVal;
 
+        public SerializedDictionary()
+        {
+
+        }
+
         public SerializedDictionary(Dictionary<string, string> dictonary)
         {
             if (dictonary == null)

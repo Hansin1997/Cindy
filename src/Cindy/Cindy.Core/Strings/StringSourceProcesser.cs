@@ -24,14 +24,14 @@ namespace Cindy.Strings
                     if(parameterSources != null)
                         foreach(KV kv in parameterSources)
                         {
-                            if(kv.key == null || kv.key.Length != 2)
+                            if(kv.Key == null || kv.Key.Length != 2)
                             {
                                 Debug.LogError("StringSourceProcesser Error: Parameter sources key must be two char.");
                                 continue;
                             }
-                            if (kv.value == null)
+                            if (kv.Value == null)
                                 continue;
-                            processer.AddHandler((stringKey) => kv.value.Get(stringKey), kv.key[0], kv.key[1]);
+                            processer.AddHandler((stringKey) => kv.Value.Get(stringKey), kv.Key[0], kv.Key[1]);
                         }
                 }
 

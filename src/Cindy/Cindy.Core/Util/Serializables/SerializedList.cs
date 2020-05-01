@@ -9,6 +9,12 @@ namespace Cindy.Util.Serializables
     {
         [Multiline]
         public string[] array;
+
+        public SerializedList()
+        {
+
+        }
+
         public SerializedList(IList<string> ts)
         {
             if (ts == null)

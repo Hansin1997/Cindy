@@ -6,17 +6,23 @@ namespace Cindy.Util.Serializables
     [Serializable]
     public class SerializedVector2
     {
-        public double x, y;
+        public double X { get; set; }
+        public double Y { get; set; }
+
+        public SerializedVector2()
+        {
+
+        }
 
         public SerializedVector2(Vector2 vector)
         {
-            x = vector.x;
-            y = vector.y;
+            X = vector.x;
+            Y = vector.y;
         }
 
         public Vector3 ToVector2()
         {
-            return new Vector2((float)x, (float)y);
+            return new Vector2((float)X, (float)Y);
         }
 
         public override string ToString()
@@ -24,6 +30,4 @@ namespace Cindy.Util.Serializables
             return ToVector2().ToString();
         }
     }
-
-
 }

@@ -62,7 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Cindy\Examples\UI\Form\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Cindy\Examples\Storage\StorableObject\TransfromStorableObject\PlayerPrefStorage\NewBehaviourScript.cs" />
     <None Include="Assets\Cindy\Examples\UI\Strings\StringSource\XmlString.xml" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Documents/GITHUB/Cindy/src/UnitySDK/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

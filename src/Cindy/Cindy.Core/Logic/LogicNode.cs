@@ -36,10 +36,10 @@ namespace Cindy.Logic
             foreach (Switch nextNode in nextNodes) // 遍历下一批逻辑节点
             {
                 // 当条件为空或者条件为真时执行该节点
-                if (nextNode.value != null && (nextNode.key == null || nextNode.key.Check()))
+                if (nextNode.Value != null && (nextNode.Key == null || nextNode.Key.Check()))
                     try
                     {
-                        nextNode.value.Execute();
+                        nextNode.Value.Execute();
                     }
                     catch (Exception e)
                     {
