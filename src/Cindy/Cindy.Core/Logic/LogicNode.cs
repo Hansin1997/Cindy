@@ -8,7 +8,7 @@ using UnityEngine.Events;
 namespace Cindy.Logic
 {
     [AddComponentMenu("Cindy/Logic/LogicNode")]
-    public class LogicNode : MonoBehaviour
+    public class LogicNode : NamedObject
     {
         [Header("LogicNode")]
         public ReferenceString nodeName;
@@ -46,6 +46,11 @@ namespace Cindy.Logic
                         Debug.LogError(e);
                     }
             }
+        }
+
+        protected override string GetName()
+        {
+            return nodeName.Value;
         }
 
         protected virtual void Run()

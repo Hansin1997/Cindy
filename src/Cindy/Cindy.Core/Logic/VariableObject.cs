@@ -1,11 +1,12 @@
 ﻿using Cindy.Logic.ReferenceValues;
 using Cindy.Storages;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Cindy.Logic
 {
-    public abstract class VariableObject<T> : MonoBehaviour
+    public abstract class VariableObject<T> : AbstractVariableObject
     {
         [Header("Variable")]
         public string variableName;
@@ -32,6 +33,38 @@ namespace Cindy.Logic
         protected virtual void Start()
         {
             LoadFromStorage();
+        }
+
+        protected override string GetName()
+        {
+            return variableName;
+        }
+
+        public override object GetVariableValue()
+        {
+            return value;
+        }
+
+        public override void SetVariableValue(object value)
+        {
+            if (value is T v)
+                this.value = v;
+            else if (value != null)
+            {
+                string json;
+                if (value is string s)
+                    json = s;
+                else
+                    json = JSON.ToJson(value);
+                this.value = JSON.FromJson<T>(json);
+            }
+            else
+                this.value = default;
+        }
+
+        public override Type GetValueType()
+        {
+            return typeof(T);
         }
 
         protected virtual void OnDestroy()

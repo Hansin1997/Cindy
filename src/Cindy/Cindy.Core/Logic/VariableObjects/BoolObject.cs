@@ -17,5 +17,10 @@ namespace Cindy.Logic.VariableObjects
         {
             value = !value;
         }
+
+        public override string ToString()
+        {
+            return value ? "true" : "false";
+        }
     }
 }

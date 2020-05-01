@@ -1,51 +1,63 @@
-﻿using Cindy.Logic.ReferenceValues;
+﻿using System;
 using UnityEngine;
 
 namespace Cindy.UI.Binder
 {
-    public abstract class AbstractBinder<S,T> : MonoBehaviour
+    public abstract class AbstractBinder : MonoBehaviour, IBinder
     {
-        [Header("Data Source")]
-        [SerializeField]
-        public S source;
+        public AbstractDataSource dataSource;
+        public Options options;
 
-        public ReferenceString key;
+        protected abstract void OnBind(AbstractDataSource dataSource);
+        protected abstract void OnApply(AbstractDataSource dataSource);
 
-        [Header("Option")]
-        public bool allowUpdate;
-        public bool keyAsDefaultValue = true;
+        protected virtual void Initialize() { }
 
-        [Header("Target")]
-        [Tooltip("Auto find target from component if not set")]
-        [SerializeField]
-        public T target;
-
-        protected abstract void OnBind(T target,string value);
-
-        protected abstract string GetValue(S source,string key, string defaultValue = default); 
-
-        private void Bind()
+        public void Bind()
         {
-            if (source != null && target != null)
+            if (dataSource != null)
             {
-                if (keyAsDefaultValue)
-                    OnBind(target, GetValue(source, key.Value, key.Value));
+                if (dataSource.IsReadable())
+                    OnBind(dataSource);
                 else
-                    OnBind(target, GetValue(source,key.Value));
+                    Debug.LogWarning("Data source not allow to read!", this);
             }
+            else
+                Debug.LogWarning("Data source is null!", this);
         }
 
-        protected virtual void Start()
+        public void Apply()
         {
-            if (target == null)
-                target = GetComponent<T>();
-            Bind();
+            if (dataSource != null)
+            {
+                if (dataSource.IsWriteable())
+                    OnApply(dataSource);
+                else
+                    Debug.LogWarning("Data source not allow to write!", this);
+            }
+            else
+                Debug.LogWarning("Data source is null!", this);
+        }
+
+        protected void Start()
+        {
+            Initialize();
+            if (options.bindOnStart)
+                Bind();
         }
 
         protected virtual void Update()
         {
-            if (allowUpdate)
+            if (options.bindOnUpdate)
                 Bind();
+        }
+
+        [Serializable]
+        public class Options
+        {
+            public bool bindOnStart = true;
+
+            public bool bindOnUpdate;
         }
     }
 }

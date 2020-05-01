@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cindy.UI.Form
 {
+    [Obsolete]
     public abstract class AbstractStorageFrom<S> : AbstractSourceForm
     {
         [Tooltip("Storage target to save form.")]

@@ -18,6 +18,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Newtonsoft.Json\Newtonsoft.Json.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="UnityEngine.AudioModule">
       <HintPath>..\libs\UnityEngine.AudioModule.dll</HintPath>
       <Private>false</Private>

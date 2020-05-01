@@ -1,10 +1,12 @@
 ﻿using Cindy.Logic.VariableObjects;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Cindy.UI.Components
 {
 
+    [Obsolete]
     [AddComponentMenu("Cindy/UI/Components/TextSetter")]
     public class TextSetter : MonoBehaviour
     {

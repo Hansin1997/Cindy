@@ -26,7 +26,7 @@ namespace Cindy.UI.Pages
             ContextProxy[] contextProxies = page.GetComponentsInChildren<ContextProxy>();
             foreach(ContextProxy contextProxy in contextProxies)
             {
-                contextProxy.realContext = context;
+                contextProxy.RealContext = context;
             }
             page.SetContainer(this);
             page.SetContext(context);

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Cindy.UI.Binder
 {
-
+    [Obsolete]
     [AddComponentMenu("Cindy/UI/Binder/SliderBinder", 1)]
     public class SliderBinder : StorageBinder<Slider>
     {

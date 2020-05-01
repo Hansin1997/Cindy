@@ -1,9 +1,8 @@
 ﻿using Cindy.Logic.ReferenceValues;
-using UnityEngine;
 
 namespace Cindy.Logic
 {
-    public abstract class Condition : MonoBehaviour
+    public abstract class Condition : NamedObject
     {
         public ReferenceString conditionName;
 
@@ -12,6 +11,11 @@ namespace Cindy.Logic
         /// </summary>
         /// <returns>条件是否成立</returns>
         public abstract bool Check();
+
+        protected override string GetName()
+        {
+            return conditionName.Value;
+        }
 
     }
 }

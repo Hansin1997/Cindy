@@ -18,7 +18,7 @@ namespace Cindy.Storages
             string json = PlayerPrefs.GetString(prefix + keysKey);
             if (json != null)
             {
-                SerializedList serializedList = JsonUtility.FromJson<SerializedList>(json);
+                SerializedList serializedList = JSON.FromJson<SerializedList>(json);
                 if (serializedList != null)
                     result = serializedList.ToList();
             }
@@ -33,7 +33,7 @@ namespace Cindy.Storages
                 PlayerPrefs.DeleteKey(prefix + keysKey);
             else
             {
-                PlayerPrefs.SetString(prefix + keysKey, JsonUtility.ToJson(new SerializedList(keys)));
+                PlayerPrefs.SetString(prefix + keysKey, JSON.ToJson(new SerializedList(keys)));
             }
                 
         }
@@ -68,7 +68,7 @@ namespace Cindy.Storages
                 string json = PlayerPrefs.GetString(prefix + storableObject.GetStorableKey());
                 if (json == null)
                     continue;
-                storableObject.OnPutStorableObject(JsonUtility.FromJson(json, storableObject.GetStorableObjectType()));
+                storableObject.OnPutStorableObject(JSON.FromJson(json, storableObject.GetStorableObjectType()));
             }
         }
 
@@ -138,7 +138,7 @@ namespace Cindy.Storages
             IList<string> keys = GetKeys();
             foreach (IStorableObject storableObject in storableObjects)
             {
-                string key = storableObject.GetStorableKey(), value = JsonUtility.ToJson(storableObject.GetStorableObject());
+                string key = storableObject.GetStorableKey(), value = JSON.ToJson(storableObject.GetStorableObject());
                 PlayerPrefs.SetString(prefix + key, value);
                
                 if (!keys.Contains(key))

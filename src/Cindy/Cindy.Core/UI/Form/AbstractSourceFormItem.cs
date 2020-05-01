@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Cindy.UI.Form
 {
+    [Obsolete]
     public abstract class AbstractSourceFormItem<T> : AbstractFormItem
     {
         [Tooltip("Item value source, it will find from component if not set.")]

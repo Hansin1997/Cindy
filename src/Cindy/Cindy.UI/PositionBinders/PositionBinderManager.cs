@@ -35,7 +35,7 @@ namespace Cindy.UI.PositionBinders
             {
                 ContextProxy[] contexts = rectTransform.GetComponentsInChildren<ContextProxy>();
                 foreach (ContextProxy context in contexts)
-                    context.realContext = a.context;
+                    context.RealContext = a.context;
             }
             transformGroups.Add(group);
             map[attachment] = group;

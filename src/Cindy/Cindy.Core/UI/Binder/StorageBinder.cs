@@ -1,8 +1,10 @@
 ﻿using Cindy.Storages;
+using System;
 
 namespace Cindy.UI.Binder
 {
-    public abstract class StorageBinder<T> : AbstractBinder<AbstractStorage, T>
+    [Obsolete]
+    public abstract class StorageBinder<T> : ObsoletedBinder<AbstractStorage, T>
     {
         protected override string GetValue(AbstractStorage source, string key, string defaultValue = null)
         {

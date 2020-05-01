@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Cindy.UI.Binder
 {
+    [Obsolete]
     [AddComponentMenu("Cindy/UI/Binder/TextBinder", 1)]
     public class TextBinder : StringSourceBinder<Text>
     {

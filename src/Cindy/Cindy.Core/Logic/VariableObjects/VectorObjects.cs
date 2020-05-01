@@ -12,7 +12,7 @@ namespace Cindy.Logic.VariableObjects
         {
             try
             {
-                return JsonUtility.FromJson<SerializedVector3>(value).ToVector3();
+                return JSON.FromJson<SerializedVector3>(value).ToVector3();
             }
             catch (Exception e)
             {
@@ -159,7 +159,7 @@ namespace Cindy.Logic.VariableObjects
         {
             try
             {
-                return JsonUtility.FromJson<SerializedVector2>(value).ToVector2();
+                return JSON.FromJson<SerializedVector2>(value).ToVector2();
             }
             catch (Exception e)
             {

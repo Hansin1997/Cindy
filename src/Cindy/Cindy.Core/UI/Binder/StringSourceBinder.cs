@@ -1,8 +1,10 @@
 ﻿using Cindy.Strings;
+using System;
 
 namespace Cindy.UI.Binder
 {
-    public abstract class StringSourceBinder<T> : AbstractBinder<StringSource,T>
+    [Obsolete]
+    public abstract class StringSourceBinder<T> : ObsoletedBinder<StringSource,T>
     {
         protected override string GetValue(StringSource source, string key, string defaultValue = null)
         {

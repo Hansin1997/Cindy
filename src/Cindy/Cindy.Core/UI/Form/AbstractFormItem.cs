@@ -1,9 +1,11 @@
 ﻿using Cindy.Logic.ReferenceValues;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cindy.UI.Form
 {
+    [Obsolete]
     public abstract class AbstractFormItem : MonoBehaviour
     {
         [Header("Form Item")]

@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Cindy.UI.Binder
 {
-
+    [Obsolete]
     [AddComponentMenu("Cindy/UI/Binder/InputFieldBinder", 1)]
     class InputFieldBinder : StringSourceBinder<InputField>
     {

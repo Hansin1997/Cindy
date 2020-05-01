@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 namespace Cindy.UI.Components
 {
+    [Obsolete]
     public abstract class SliderSetter<T,K,V> : MonoBehaviour where T : NumberObject<V> where K : ReferenceValue<V,T>
     {
         public Slider slider;
@@ -90,6 +91,7 @@ namespace Cindy.UI.Components
         }
     }
 
+    [Obsolete]
     [AddComponentMenu("Cindy/UI/Components/SliderSetter/SliderIntSetter")]
     public class SliderIntSetter : SliderSetter<IntObject, ReferenceInt, int>
     {
@@ -99,6 +101,7 @@ namespace Cindy.UI.Components
         }
     }
 
+    [Obsolete]
     [AddComponentMenu("Cindy/UI/Components/SliderSetter/SliderFloatSetter")]
     public class SliderFloatSetter : SliderSetter<FloatObject, ReferenceFloat, float>
     {
