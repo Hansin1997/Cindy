@@ -6,9 +6,9 @@ namespace Cindy.Util.Serializables
     [Serializable]
     public class SerializedVector3
     {
-        public double X { get; set; }
-        public double Y { get; set; }
-        public double Z { get; set; }
+        public double X;
+        public double Y;
+        public double Z;
 
         public SerializedVector3()
         {

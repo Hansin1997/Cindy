@@ -46,19 +46,19 @@ namespace Cindy.Logic.LogicNodes
         public virtual IEnumerator LoadScene()
         {
             isLoading.Value = true;
-            progress.Value = 0;
+            progress.Value = 0.1f;
             operation = SceneManager.LoadSceneAsync(sceneName.Value, new LoadSceneParameters(loadSceneMode, localPhysicsMode));
             operation.allowSceneActivation = false;
             while (operation.progress < 0.9f)
             {
                 progress.Value = operation.progress;
-                yield return new WaitForSeconds(0);
+                yield return null;
             }
             operation.allowSceneActivation = true;
             while (operation.progress < 1f)
             {
                 progress.Value = operation.progress;
-                yield return new WaitForSeconds(0);
+                yield return null;
             }
             progress.Value = 1;
             isLoading.Value = false;

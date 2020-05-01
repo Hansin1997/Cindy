@@ -6,9 +6,9 @@ namespace Cindy.Util.Serializables
     [Serializable]
     public class SerializedTransform
     {
-        public SerializedVector3 Position { get; set; }
-        public SerializedVector3 Rotation { get; set; }
-        public SerializedVector3 Scale { get; set; }
+        public SerializedVector3 Position;
+        public SerializedVector3 Rotation;
+        public SerializedVector3 Scale;
 
         public SerializedTransform()
         {

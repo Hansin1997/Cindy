@@ -8,10 +8,10 @@ namespace Cindy.Util.Serializables
     public class SerializedKeyValuePair<K,V>
     {
         [SerializeField]
-        public K Key { get; set; }
+        public K Key;
 
         [SerializeField]
-        public V Value { get; set; }
+        public V Value;
 
         public SerializedKeyValuePair()
         {

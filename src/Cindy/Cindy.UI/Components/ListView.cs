@@ -1,14 +1,14 @@
-﻿using Cindy.UI.Structs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Cindy.UI.Components
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(ScrollRect))]
-    public abstract class ListView<T, S> : MonoBehaviour where T : Component where S : Component
+    public abstract class ListView<T, S> : UIBehaviour where T : Component where S : Component
     {
         [Serializable]
         public enum ListType
@@ -21,7 +21,7 @@ namespace Cindy.UI.Components
 
         [Header("Style")]
         public ListType type;
-        public LRTB padding;
+        public RectOffset padding;
         public float space;
 
         [Header("Option")]

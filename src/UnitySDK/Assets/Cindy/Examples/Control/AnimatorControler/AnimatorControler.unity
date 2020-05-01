@@ -2100,18 +2100,18 @@ MonoBehaviour:
   detachOnDestroy: 1
   animator: {fileID: 1680697733}
   boolParameters:
-  - key: Grounded
-    value: {fileID: 1680697742}
+  - Key: Grounded
+    Value: {fileID: 1680697742}
   floatParameters:
-  - key: Forward
-    value: {fileID: 1680697736}
-  - key: Right
-    value: {fileID: 1680697737}
-  - key: Vertical
-    value: {fileID: 1680697740}
+  - Key: Forward
+    Value: {fileID: 1680697736}
+  - Key: Right
+    Value: {fileID: 1680697737}
+  - Key: Vertical
+    Value: {fileID: 1680697740}
   triggerParameters:
-  - key: Jump
-    value: {fileID: 1680697735}
+  - Key: Jump
+    Value: {fileID: 1680697735}
 --- !u!114 &1680697735
 MonoBehaviour:
   m_ObjectHideFlags: 0

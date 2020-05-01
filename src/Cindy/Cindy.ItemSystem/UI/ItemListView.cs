@@ -39,10 +39,11 @@ namespace Cindy.ItemSystem.UI
             }
         }
 
-        protected void OnDestroy()
+        protected override void OnDestroy()
         {
             if (source != null)
                 source.dataChangeListener.RemoveListener(RefreshOnDataChange);
+            base.OnDestroy();
         }
     }
 }
