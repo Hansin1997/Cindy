@@ -11,6 +11,7 @@ namespace Cindy.Logic
         public string variableName;
         [SerializeField]
         protected T value;
+        protected object _value;
 
         [Header("Proxy")]
         public Context proxyContext;
@@ -25,8 +26,6 @@ namespace Cindy.Logic
 
         [Header("Events")]
         public UnityEvent valueChangedEvent;
-
-        protected object _value;
 
         public T Value { get { return GetValue(); }  set { SetValue(value); } }
 
@@ -163,6 +162,13 @@ namespace Cindy.Logic
         protected virtual object TransfromTo(T value)
         {
             return value;
+        }
+
+        public override string ToString()
+        {
+            if (value == null)
+                return "NULL";
+            return value.ToString();
         }
     }
 }

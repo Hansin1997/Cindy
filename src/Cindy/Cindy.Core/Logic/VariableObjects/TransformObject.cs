@@ -2,7 +2,7 @@
 
 namespace Cindy.Logic.VariableObjects
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/TransformObject")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/TransformObject (Transform)")]
     public class TransformObject : VariableObject<Transform>
     {
         protected override Transform TransformFrom(string value)

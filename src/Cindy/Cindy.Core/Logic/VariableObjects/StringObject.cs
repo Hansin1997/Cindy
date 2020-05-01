@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Cindy.Logic.VariableObjects
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/StringObject")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/StringObject (String)")]
     public class StringObject : VariableObject<string>
     {
         protected override string TransformFrom(string value)
@@ -14,19 +14,15 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/CombinedStringObject")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/CombinedStringObject (String)")]
     public class CombinedStringObject : StringObject
     {
-        public ReferenceString[] before,after;
+        public ReferenceString[] before, after;
         public ReferenceString split;
 
         protected StringBuilder stringBuilder;
         protected StringBuilder StringBuilder { get { return stringBuilder != null ? stringBuilder : (stringBuilder = new StringBuilder()); } }
 
-        protected override void Start()
-        {
-            base.Start();
-        }
         public override string GetValue()
         {
             StringBuilder.Clear();
@@ -35,19 +31,7 @@ namespace Cindy.Logic.VariableObjects
             StringBuilder.Append(value + split.Value);
             foreach (ReferenceString referenceString in after)
                 StringBuilder.Append(referenceString.Value + split.Value);
-            return StringBuilder.ToString();
-        }
-    }
-
-    [AddComponentMenu("Cindy/Logic/VariableObject/StringObjectFromStringSource")]
-    public class StringObjectFromStringSource : StringObject
-    {
-        public ReferenceString stringKey;
-        public StringSource stringSource;
-
-        public override string GetValue()
-        {
-            value = stringSource != null ? stringSource.GetString(stringKey.Value, stringKey.Value) : stringKey.Value;
+            value = StringBuilder.ToString();
             return base.GetValue();
         }
 
@@ -57,7 +41,44 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/Strings/Name")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/StringFormat (String)")]
+    public class StringFormat : StringObject
+    {
+        public ReferenceString format;
+
+        public Behaviour[] objects;
+
+        public override string GetValue()
+        {
+            value = string.Format(format.Value, objects);
+            return base.GetValue();
+        }
+
+        public override void SetValue(string value)
+        {
+
+        }
+    }
+
+    [AddComponentMenu("Cindy/Logic/VariableObject/StringFromStringSource (String)")]
+    public class StringObjectFromStringSource : StringObject
+    {
+        public ReferenceString stringKey;
+        public StringSource stringSource;
+
+        public override string GetValue()
+        {
+            value = stringSource != null ? stringSource.Get(stringKey.Value, stringKey.Value) : stringKey.Value;
+            return base.GetValue();
+        }
+
+        public override void SetValue(string value)
+        {
+
+        }
+    }
+
+    [AddComponentMenu("Cindy/Logic/VariableObject/Name (String)")]
     public class Name : StringObject
     {
         public GameObject target;
@@ -77,7 +98,7 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/IntToString")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/IntToString (String)")]
     public class IntToString : StringObject
     {
         [Header("IntToString")]
@@ -95,7 +116,7 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/FloatToString")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/FloatToString (String)")]
     public class FloatToString : StringObject
     {
         [Header("FloatToString")]
@@ -113,7 +134,7 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/DoubleToString")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/DoubleToString (String)")]
     public class DoubleToString : StringObject
     {
         [Header("DoubleToString")]

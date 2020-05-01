@@ -29,7 +29,7 @@ namespace Cindy.Strings
             }
         }
 
-        public override string GetString(string key, string defaultValue = null)
+        public override string Get(string key, string defaultValue = null)
         {
             if (asset == null)
                 return defaultValue;

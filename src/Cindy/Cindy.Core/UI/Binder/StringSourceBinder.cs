@@ -6,7 +6,7 @@ namespace Cindy.UI.Binder
     {
         protected override string GetValue(StringSource source, string key, string defaultValue = null)
         {
-            return source.GetString(key, defaultValue);
+            return source.Get(key, defaultValue);
         }
 
     }

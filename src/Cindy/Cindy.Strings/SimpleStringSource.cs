@@ -13,7 +13,7 @@ namespace Cindy.Strings
 
         protected IDictionary<string,string> stringMap;
 
-        public override string GetString(string key, string defaultValue = null)
+        public override string Get(string key, string defaultValue = null)
         {
             if (stringMap == null)
                 stringMap = KV.ToDictionary(strings);

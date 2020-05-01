@@ -17,14 +17,14 @@ namespace Cindy.Strings
         public KV[] sourcesMap;
         protected IDictionary<string, StringSource> sources;
 
-        public override string GetString(string key, string defaultValue = null)
+        public override string Get(string key, string defaultValue = null)
         {
             if (sources == null)
                 sources = KV.ToDictionary(sourcesMap);
             string result;
-            if (sources.ContainsKey(currentKey) && (result = sources[currentKey].GetString(key, null)) != null)
+            if (sources.ContainsKey(currentKey) && (result = sources[currentKey].Get(key, null)) != null)
                 return result;
-            if(sources.ContainsKey(defaultKey) && (result = sources[defaultKey].GetString(key, null)) != null)
+            if(sources.ContainsKey(defaultKey) && (result = sources[defaultKey].Get(key, null)) != null)
                 return result;
             return defaultValue;
         }

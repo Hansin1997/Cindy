@@ -8,7 +8,7 @@ namespace Cindy.Strings
     public class StorageStringSource : StringSource
     {
         public AbstractStorage storage;
-        public override string GetString(string key, string defaultValue = null)
+        public override string Get(string key, string defaultValue = null)
         {
             if (storage == null)
                 return defaultValue;

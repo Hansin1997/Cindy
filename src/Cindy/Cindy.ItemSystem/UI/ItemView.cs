@@ -40,7 +40,7 @@ namespace Cindy.ItemSystem.UI
                 if (stringSource == null)
                     target.text = str;
                 else
-                    target.text = stringSource.GetString(str, str);
+                    target.text = stringSource.Get(str, str);
             }
         }
 

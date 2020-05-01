@@ -2,7 +2,7 @@
 
 namespace Cindy.Logic.VariableObjects
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/BoolObject")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/BoolObject (Bool)")]
     public class BoolObject : VariableObject<bool>
     {
         protected override bool TransformFrom(string value)

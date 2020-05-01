@@ -31,7 +31,7 @@ namespace Cindy.Strings
                             }
                             if (kv.value == null)
                                 continue;
-                            processer.AddHandler((stringKey) => kv.value.GetString(stringKey), kv.key[0], kv.key[1]);
+                            processer.AddHandler((stringKey) => kv.value.Get(stringKey), kv.key[0], kv.key[1]);
                         }
                 }
 
@@ -39,11 +39,11 @@ namespace Cindy.Strings
             }
         }
 
-        public override string GetString(string key, string defaultValue = default)
+        public override string Get(string key, string defaultValue = default)
         {
             if (originStringSource == null)
                 return defaultValue;
-            string result = originStringSource.GetString(key, defaultValue);
+            string result = originStringSource.Get(key, defaultValue);
             if (result != null)
                 return Processer.GetString(result);
             return defaultValue;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Cindy.Logic.VariableObjects
 {
-    [AddComponentMenu("Cindy/Logic/VariableObject/Vector3Object")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Vector3Object (Vector3)")]
     public class Vector3Object : VariableObject<Vector3>
     {
         protected override Vector3 TransformFrom(string value)
@@ -45,7 +45,7 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/Vector3Value")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Vector3Value (Float)")]
     public class Vector3Value : FloatObject
     {
         [Header("Vector3Value")]
@@ -116,7 +116,7 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/Vector3Magnitude")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Vector3Magnitude (Float)")]
     public class Vector3Magnitude : FloatObject
     {
         [Header("Vector3Magnitude")]
@@ -134,7 +134,7 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/RelativedVector3")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/RelativedVector3 (Vector3)")]
     public class RelativedVector3 : Vector3Object
     {
         [Header("RelativedVector3")]
@@ -152,7 +152,7 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/Vector2Object")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Vector2Object (Vector2)")]
     public class Vector2Object : VariableObject<Vector2>
     {
         protected override Vector2 TransformFrom(string value)
@@ -174,7 +174,7 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/Vectors/Vector2Value")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Vectors/Vector2Value (Vector2)")]
     public class Vector2Value : FloatObject
     {
         [Header("Vector2Value")]
@@ -239,7 +239,7 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/RelativedVector2")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/RelativedVector2 (Vector2)")]
     public class RelativedVector2 : Vector2Object
     {
         [Header("RelativedVector2")]
@@ -257,7 +257,7 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/Vector2Magnitude")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/Vector2Magnitude (Float)")]
     public class Vector2Magnitude : FloatObject
     {
         [Header("Vector2Magnitude")]

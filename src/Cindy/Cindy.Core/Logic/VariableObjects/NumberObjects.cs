@@ -9,7 +9,7 @@ namespace Cindy.Logic.VariableObjects
         public abstract void Sub(T number);
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/IntObject")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/IntObject (Int)")]
     public class IntObject : NumberObject<int>
     {
         public override void Add(int number)
@@ -31,7 +31,7 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/FloatObject")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/FloatObject (Float)")]
     public class FloatObject : NumberObject<float>
     {
         public override void Add(float number)
@@ -52,7 +52,7 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/DoubleObject")]
+    [AddComponentMenu("Cindy/Logic/VariableObject/DoubleObject (Double)")]
     public class DoubleObject : NumberObject<double>
     {
         public override void Add(double number)

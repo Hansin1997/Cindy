@@ -114,7 +114,7 @@ namespace Cindy.UI.Pages
             if (source != null)
             {
                 foreach (SerializedKeyValuePair<string, string> kv in data.stringMap)
-                    result[kv.key] = source.GetString(kv.value, kv.value);
+                    result[kv.key] = source.Get(kv.value, kv.value);
             }
             else
             {

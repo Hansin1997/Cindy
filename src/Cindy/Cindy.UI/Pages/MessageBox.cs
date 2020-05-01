@@ -44,8 +44,8 @@ namespace Cindy.UI.Pages
             string title = null, content = null;
             if(stringSource != null)
             {
-                title = stringSource.GetString(titleKey.Value,titleKey.Value);
-                content = stringSource.GetString(contentKey.Value, contentKey.Value);
+                title = stringSource.Get(titleKey.Value,titleKey.Value);
+                content = stringSource.Get(contentKey.Value, contentKey.Value);
             }
             else
             {
