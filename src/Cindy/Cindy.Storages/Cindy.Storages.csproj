@@ -4,6 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Cindy.Storages</RootNamespace>
     <AssemblyName>Cindy.Storages</AssemblyName>
+    <Authors>Hansin1997 &lt;845612500@qq.com&gt;</Authors>
+    <Description>Storage Module</Description>
+    <Product>Cindy</Product>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
