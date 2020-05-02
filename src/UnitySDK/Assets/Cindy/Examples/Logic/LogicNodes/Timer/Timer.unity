@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 52259747}
   - component: {fileID: 52259748}
+  - component: {fileID: 52259749}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -206,6 +207,27 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &52259749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52259746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -279073169, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataSource: {fileID: 509535991}
+  options:
+    bindOnStart: 1
+    bindOnUpdate: 1
+  dataKey:
+    reference: {fileID: 0}
+    value: loop
+  target: {fileID: 0}
+  applyToDataSource: 1
 --- !u!1 &201967533
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +305,7 @@ GameObject:
   - component: {fileID: 322968039}
   - component: {fileID: 322968041}
   - component: {fileID: 322968040}
+  - component: {fileID: 322968042}
   m_Layer: 5
   m_Name: Label (2)
   m_TagString: Untagged
@@ -322,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -349,6 +372,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322968038}
   m_CullTransparentMesh: 0
+--- !u!114 &322968042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322968038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &387798813
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +550,7 @@ GameObject:
   - component: {fileID: 456492661}
   - component: {fileID: 456492663}
   - component: {fileID: 456492662}
+  - component: {fileID: 456492664}
   m_Layer: 5
   m_Name: Label (1)
   m_TagString: Untagged
@@ -551,7 +590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -578,6 +617,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456492660}
   m_CullTransparentMesh: 0
+--- !u!114 &456492664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456492660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &509535988
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,6 +642,8 @@ GameObject:
   m_Component:
   - component: {fileID: 509535990}
   - component: {fileID: 509535989}
+  - component: {fileID: 509535992}
+  - component: {fileID: 509535991}
   m_Layer: 0
   m_Name: Timer
   m_TagString: Untagged
@@ -640,6 +696,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &509535991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509535988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 993915844, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  context: {fileID: 509535992}
+--- !u!114 &509535992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509535988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -747883731, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scanScope: 2
 --- !u!1 &612175891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,7 +1107,7 @@ MonoBehaviour:
   m_Script: {fileID: 2134968528, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  variableName: 
+  variableName: current
   value: 0
   proxyContext: {fileID: 0}
   proxyTarget:
@@ -1039,18 +1121,7 @@ MonoBehaviour:
   updateFromStorage: 0
   valueChangedEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1529008007}
-        m_MethodName: RefreshValue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!4 &988374571
 Transform:
   m_ObjectHideFlags: 0
@@ -1226,6 +1297,7 @@ GameObject:
   - component: {fileID: 1284970323}
   - component: {fileID: 1284970325}
   - component: {fileID: 1284970324}
+  - component: {fileID: 1284970326}
   m_Layer: 5
   m_Name: Label
   m_TagString: Untagged
@@ -1265,7 +1337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1292,6 +1364,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284970322}
   m_CullTransparentMesh: 0
+--- !u!114 &1284970326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284970322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1379304631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,11 +1463,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1430476648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 189739747, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
+  m_Script: {fileID: 1810823962, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1430476652}
-  stringObject: {fileID: 1430476651}
+  dataSource: {fileID: 509535991}
+  options:
+    bindOnStart: 1
+    bindOnUpdate: 1
+  dataKey:
+    reference: {fileID: 0}
+    value: max
+  target: {fileID: 0}
+  defaultValue: 1
 --- !u!114 &1430476651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1539,11 +1633,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1529008002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 189739747, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
+  m_Script: {fileID: 1810823962, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1529008004}
-  stringObject: {fileID: 1529008007}
+  dataSource: {fileID: 509535991}
+  options:
+    bindOnStart: 1
+    bindOnUpdate: 1
+  dataKey:
+    reference: {fileID: 0}
+    value: current
+  target: {fileID: 0}
+  defaultValue: 1
 --- !u!114 &1529008007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1729,11 +1830,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1927779064}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 903113875, guid: 676116aa50be73540912abfa9afc8136, type: 3}
+  m_Script: {fileID: -2019879265, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  variableName: 
-  value: 1
+  variableName: loop
+  value: 0
   proxyContext: {fileID: 0}
   proxyTarget:
     reference: {fileID: 0}
@@ -1747,7 +1848,6 @@ MonoBehaviour:
   valueChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  toggle: {fileID: 52259748}
 --- !u!4 &1927779066
 Transform:
   m_ObjectHideFlags: 0
@@ -1984,7 +2084,7 @@ MonoBehaviour:
   m_Script: {fileID: 2134968528, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  variableName: 
+  variableName: max
   value: 10
   proxyContext: {fileID: 0}
   proxyTarget:

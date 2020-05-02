@@ -12,6 +12,12 @@ namespace Cindy.UI.Binder
 
         protected Dictionary<string, AbstractVariableObject> cache;
 
+        protected virtual void Start()
+        {
+            if (context == null)
+                context = GetComponent<Context>();
+        }
+
         public override T GetData<T>(string key, T defaultValue = default)
         {
             AbstractVariableObject temp = FindTarget(key);

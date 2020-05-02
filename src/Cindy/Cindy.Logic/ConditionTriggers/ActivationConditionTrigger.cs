@@ -2,14 +2,16 @@
 
 namespace Cindy.Logic.ConditionTriggers
 {
-    [AddComponentMenu("Cindy/Logic/ConditionTriggers/ActivationConditionTrigger")]
+    [AddComponentMenu("Cindy/Logic/Triggers/ActivationConditionTrigger")]
     public class ActivationConditionTrigger : ConditionTrigger
     {
         [Header("Targets")]
         public GameObject[] gameObjects;
         public Behaviour[] behaviours;
 
-        protected override void Handle(bool val)
+
+
+        protected override void OnConditionValueChanged(bool val)
         {
             foreach (GameObject gameObject in gameObjects)
                 gameObject.SetActive(val);

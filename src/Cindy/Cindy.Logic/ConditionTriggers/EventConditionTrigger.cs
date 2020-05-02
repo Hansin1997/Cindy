@@ -1,16 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Cindy.Logic.ConditionTriggers
 {
-
-    [AddComponentMenu("Cindy/Logic/ConditionTriggers/EventConditionTrigger")]
+    [Obsolete]
+    [AddComponentMenu("Cindy/Logic/Triggers/EventConditionTrigger")]
     public class EventConditionTrigger : ConditionTrigger
     {
         public LogicNode startNode;
         public UnityEvent events;
 
-        protected override void Handle(bool val)
+        protected override void OnConditionValueChanged(bool val)
         {
             if (val)
             {
