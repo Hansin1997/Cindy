@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: name
   m_EditorClassIdentifier: 
   strings:
-  - key: c
-    value: Cindy
-  - key: p
-    value: Player
+  - Key: c
+    Value: Cindy
+  - Key: p
+    Value: Player

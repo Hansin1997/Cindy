@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: zh
   m_EditorClassIdentifier: 
   strings:
-  - key: title
-    value: "\u4F60\u597D \u4E16\u754C"
-  - key: content
-    value: "\u8FD9\u662F\u4E2D\u6587\u6587\u672C\uFF01\u54C8\u54C8\u54C8\u54C8\u54C8"
-  - key: tips
-    value: "\u52FE\u9009 'TextBinder.allowUpdate' \u624D\u80FD\u5373\u65F6\u751F\u6548"
+  - Key: title
+    Value: "\u8BED\u8A00\u5207\u6362"
+  - Key: content
+    Value: "\u8FD9\u662F\u4E2D\u6587\u6587\u672C\u3002"
+  - Key: tips
+    Value: "\u5982\u679C\u60F3\u8981\u5C06\u8BED\u8A00\u5207\u6362\u5B9E\u65F6\u663E\u793A\uFF0C\u8BF7\u8BB2UtextBinder\u7684bindOnUpdate\u52FE\u9009\u3002"

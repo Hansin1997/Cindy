@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: en
   m_EditorClassIdentifier: 
   strings:
-  - key: title
-    value: Hello World
-  - key: content
-    value: This is English stirng! Hahaaa
-  - key: tips
-    value: Check 'TextBinder.allowUpdate' for immediate effect
+  - Key: title
+    Value: Language Switch
+  - Key: content
+    Value: This is a english text.
+  - Key: tips
+    Value: If you want to switch the language to real-time display, please check
+      the 'BindOnUpdate' of UTextBinder.

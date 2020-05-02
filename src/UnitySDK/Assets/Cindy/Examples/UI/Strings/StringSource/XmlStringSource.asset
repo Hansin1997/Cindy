@@ -15,3 +15,4 @@ MonoBehaviour:
   asset: {fileID: 4900000, guid: 907ed8c96bf76194eb1d70dc142205b9, type: 3}
   xpath: /strings/string[@key='{key}']
   keyVariable: '{key}'
+  valueType: 0

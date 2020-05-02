@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SimpleStringSource
   m_EditorClassIdentifier: 
   strings:
-  - key: title
-    value: TITLE(From Simple String Source)
-  - key: content
-    value: This is a content.And this content from simple string source!
+  - Key: title
+    Value: SimpleStringSource
+  - Key: content
+    Value: This content from SimpleStringSource

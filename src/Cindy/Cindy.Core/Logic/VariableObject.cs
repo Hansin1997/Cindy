@@ -42,7 +42,7 @@ namespace Cindy.Logic
 
         public override object GetVariableValue()
         {
-            return value;
+            return GetValue();
         }
 
         public override void SetVariableValue(object value)

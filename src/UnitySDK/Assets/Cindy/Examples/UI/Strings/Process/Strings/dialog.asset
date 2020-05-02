@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: dialog
   m_EditorClassIdentifier: 
   strings:
-  - key: text
-    value: Hello {p}, I'm {c}.
+  - Key: content
+    Value: Hello {p}, I'm {c}.

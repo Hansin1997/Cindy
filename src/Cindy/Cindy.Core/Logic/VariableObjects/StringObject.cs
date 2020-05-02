@@ -1,5 +1,6 @@
 ﻿using Cindy.Logic.ReferenceValues;
 using Cindy.Strings;
+using System;
 using System.Text;
 using UnityEngine;
 
@@ -48,15 +49,50 @@ namespace Cindy.Logic.VariableObjects
 
         public Behaviour[] objects;
 
+        public OnException onException = OnException.LogWarning;
+
         public override string GetValue()
         {
-            value = string.Format(format.Value, objects);
+            try
+            {
+                value = string.Format(format.Value, objects);
+            }catch(Exception e)
+            {
+                switch (onException)
+                {
+                    case OnException.LogError:
+                        Debug.LogError(e, this);
+                        break;
+                    case OnException.LogWarning:
+                        Debug.LogWarning(e, this);
+                        break;
+                    case OnException.Log:
+                        Debug.Log(e, this);
+                        break;
+                    case OnException.SetExceptionStringToValue:
+                        value = e.Message;
+                        break;
+                    default:
+                    case OnException.None:
+                        break;
+
+                }
+            }
             return base.GetValue();
         }
 
         public override void SetValue(string value)
         {
 
+        }
+
+        public enum OnException
+        {
+            Log,
+            LogWarning,
+            LogError,
+            SetExceptionStringToValue,
+            None
         }
     }
 

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originStringSource: {fileID: 11400000, guid: 1195141f21e072c488c8789b9ae945bc, type: 2}
   parameterSources:
-  - key: '{}'
-    value: {fileID: 11400000, guid: 1c83a29f08169d54a9e2cb1d08ae97ef, type: 2}
+  - Key: '{}'
+    Value: {fileID: 11400000, guid: 1c83a29f08169d54a9e2cb1d08ae97ef, type: 2}

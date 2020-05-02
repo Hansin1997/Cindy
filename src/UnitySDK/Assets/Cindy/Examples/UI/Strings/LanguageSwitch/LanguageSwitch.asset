@@ -15,7 +15,7 @@ MonoBehaviour:
   defaultKey: en
   currentKey: en
   sourcesMap:
-  - key: en
-    value: {fileID: 11400000, guid: 5e62ec6fa820d5844baaff5142afbe28, type: 2}
-  - key: zh
-    value: {fileID: 11400000, guid: 8446be15c20ef724395fea6538dd364d, type: 2}
+  - Key: en
+    Value: {fileID: 11400000, guid: 5e62ec6fa820d5844baaff5142afbe28, type: 2}
+  - Key: zh
+    Value: {fileID: 11400000, guid: 8446be15c20ef724395fea6538dd364d, type: 2}
