@@ -1217,6 +1217,7 @@ GameObject:
   - component: {fileID: 1121786139}
   - component: {fileID: 1121786138}
   - component: {fileID: 1121786137}
+  - component: {fileID: 1121786140}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1287,30 +1288,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1103303348}
-        m_MethodName: SetTitle
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Message
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1103303348}
-        m_MethodName: SetContent
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: This is a MessageBox with blocked behaviours.
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1103303348}
-        m_MethodName: Show
+      - m_Target: {fileID: 1121786140}
+        m_MethodName: Execute
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1356,6 +1335,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121786135}
   m_CullTransparentMesh: 0
+--- !u!114 &1121786140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121786135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1484528558, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeName:
+    reference: {fileID: 0}
+    value: 
+  events:
+    m_PersistentCalls:
+      m_Calls: []
+  nextNodes: []
+  messageBox: {fileID: 1103303348}
+  titleKey:
+    reference: {fileID: 0}
+    value: Message
+  contentKey:
+    reference: {fileID: 0}
+    value: This is a MessageBox with blocked behaviours.
+  stringSource: {fileID: 0}
 --- !u!1 &1475224341
 GameObject:
   m_ObjectHideFlags: 0
