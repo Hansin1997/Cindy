@@ -40,8 +40,9 @@ namespace Cindy.UI.Components
         public RectTransform Content { get { return ScrollRect == null ? null : ScrollRect.content; } }
         public RectTransform Viewport { get { return Content == null || Content.parent == null ? null : Content.parent.GetComponent<RectTransform>(); } }
 
-        protected virtual void Start()
+        protected override void Start()
         {
+            base.Start();
             if(template != null)
                 template.gameObject.SetActive(templateActived);
             if (refreshOnStart)

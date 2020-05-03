@@ -49,11 +49,29 @@ namespace Cindy.UI.Binder.Binders
                 return;
             }
             if (minValue.bind)
-                slider.minValue = dataSource.GetData(minValue.key.Value, slider.minValue);
+                dataSource.GetData<float>(minValue.key.Value, this, (val, e, s) =>
+                  {
+                      if (s)
+                          slider.minValue = val;
+                      else
+                          Debug.LogWarning(e);
+                  });
             if (maxValue.bind)
-                slider.maxValue = dataSource.GetData(maxValue.key.Value, slider.maxValue);
+                dataSource.GetData<float>(maxValue.key.Value, this, (val, e, s) =>
+                 {
+                     if (s)
+                         slider.maxValue = val;
+                     else
+                         Debug.LogWarning(e);
+                 });
             if (value.bind)
-                slider.value = dataSource.GetData(value.key.Value, slider.value);
+                dataSource.GetData<float>(value.key.Value, this, (val, e, s) =>
+                 {
+                     if (s)
+                         slider.value = val;
+                     else
+                         Debug.LogWarning(e);
+                 });
         }
 
         protected override void OnApply(AbstractDataSource dataSource)
@@ -64,11 +82,11 @@ namespace Cindy.UI.Binder.Binders
                 return;
             }
             if (minValue.bind)
-                dataSource.SetData(minValue.key.Value, slider.minValue);
+                dataSource.SetData(minValue.key.Value, slider.minValue, this, (s,e)=> { if (!s) Debug.LogWarning(e); });
             if (maxValue.bind)
-                dataSource.SetData(maxValue.key.Value, slider.maxValue);
+                dataSource.SetData(maxValue.key.Value, slider.maxValue, this, (s, e) => { if (!s) Debug.LogWarning(e); });
             if (value.bind)
-                dataSource.SetData(value.key.Value, slider.value);
+                dataSource.SetData(value.key.Value, slider.value, this, (s, e) => { if (!s) Debug.LogWarning(e); });
         }
 
         [Serializable]

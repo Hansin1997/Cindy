@@ -1,4 +1,6 @@
 ﻿using Cindy.Strings;
+using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Cindy.UI.Binder
@@ -8,21 +10,6 @@ namespace Cindy.UI.Binder
     {
         public StringSource stringSource;
 
-        public override T GetData<T>(string key, T defaultValue = default)
-        {
-            string temp = stringSource.Get(key);
-            if (temp == null)
-                return defaultValue;
-            if (temp is T r)
-                return r;
-            return JSON.FromJson<T>(temp);
-        }
-
-        public override void SetData(string key, object value)
-        {
-            Debug.LogWarning("StringDataSource is readonly", this);
-        }
-
         public override bool IsReadable()
         {
             return true;
@@ -31,6 +18,41 @@ namespace Cindy.UI.Binder
         public override bool IsWriteable()
         {
             return false;
+        }
+
+        protected override IEnumerator DoGetData<T>(string key, ResultAction<T, Exception> resultAction)
+        {
+            yield return StartCoroutine(stringSource.DoGet(key, this, (temp, e, isSuccess) =>
+            {
+                if (isSuccess)
+                {
+                    try
+                    {
+                        if(temp is T r)
+                        {
+                            resultAction(r, e, true);
+                        }
+                        else
+                        {
+                            resultAction?.Invoke(JSON.FromJson<T>(temp), null, true);
+                        }
+                    }catch(Exception e1)
+                    {
+                        resultAction?.Invoke(default, e1, false);
+                    }
+                }
+                else
+                {
+                    resultAction?.Invoke(default, e, false);
+                }
+            }));
+        }
+
+        protected override IEnumerator DoSetData(string key, object value, BoolAction<Exception> action)
+        {
+            Debug.LogWarning("StringDataSource is readonly", this);
+            action?.Invoke(false, null);
+            yield return null;
         }
     }
 }

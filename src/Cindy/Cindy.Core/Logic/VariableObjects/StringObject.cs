@@ -96,24 +96,6 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/StringFromStringSource (String)")]
-    public class StringObjectFromStringSource : StringObject
-    {
-        public ReferenceString stringKey;
-        public StringSource stringSource;
-
-        public override string GetValue()
-        {
-            value = stringSource != null ? stringSource.Get(stringKey.Value, stringKey.Value) : stringKey.Value;
-            return base.GetValue();
-        }
-
-        public override void SetValue(string value)
-        {
-
-        }
-    }
-
     [AddComponentMenu("Cindy/Logic/VariableObject/Name (String)")]
     public class Name : StringObject
     {

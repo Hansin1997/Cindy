@@ -8,10 +8,7 @@ namespace Cindy.UI.Binder
     {
         protected override string GetValue(AbstractStorage source, string key, string defaultValue = null)
         {
-            string result;
-            if ((result = source.Get(key)) != null)
-                return result;
-            return defaultValue;
+            throw new NotImplementedException();
         }
 
     }

@@ -8,7 +8,7 @@ namespace Cindy.UI.Binder
     {
         protected override string GetValue(StringSource source, string key, string defaultValue = null)
         {
-            return source.Get(key, defaultValue);
+            throw new NotImplementedException();
         }
 
     }

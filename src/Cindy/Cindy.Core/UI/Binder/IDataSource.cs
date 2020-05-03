@@ -1,10 +1,13 @@
-﻿namespace Cindy.UI.Binder
+﻿using System;
+using UnityEngine;
+
+namespace Cindy.UI.Binder
 {
     public interface IDataSource
     {
-        T GetData<T>(string key, T defaultValue = default);
+        void GetData<T>(string key, MonoBehaviour context, ResultAction<T, Exception> resultAction);
 
-        void SetData(string key, object value);
+        void SetData(string key, object value, MonoBehaviour context, BoolAction<Exception> action);
 
         bool IsReadable();
 

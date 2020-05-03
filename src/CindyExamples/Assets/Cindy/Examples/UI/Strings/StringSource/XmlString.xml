@@ -1,6 +1,6 @@
 <strings>
   <string key="title">XmlStringSource</string>
   <string key="content">
-    This <b>content</b> from <i>XML</i>!
+    This <b>xml</b> content from <i>Xml Asset</i>!
   </string>
 </strings>

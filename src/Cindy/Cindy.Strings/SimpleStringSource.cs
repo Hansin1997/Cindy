@@ -1,5 +1,6 @@
 ﻿using Cindy.Util.Serializables;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,16 +12,23 @@ namespace Cindy.Strings
         [SerializeField]
         public KV[] strings;
 
-        protected IDictionary<string,string> stringMap;
+        protected IDictionary<string, string> stringMap;
 
-        public override string Get(string key, string defaultValue = null)
+        public override IEnumerator DoGet(string key, MonoBehaviour context, ResultAction<string, Exception> resultAction)
         {
-            if (stringMap == null)
-                stringMap = KV.ToDictionary(strings);
-            string result;
-            if (stringMap.TryGetValue(key, out result))
-                return result;
-            return defaultValue;
+            try
+            {
+                if (stringMap == null)
+                    stringMap = KV.ToDictionary(strings);
+                if (stringMap.TryGetValue(key, out string result))
+                    resultAction(result, null, true);
+                else
+                    resultAction(null, null, false);
+            }catch(Exception e)
+            {
+                resultAction(null, e, false);
+            }
+            yield return null;
         }
 
         [Serializable]

@@ -1,4 +1,5 @@
 ﻿using Cindy.Storages;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +11,7 @@ namespace Cindy.UI.Form
     {
         protected override bool OnSubmit(AbstractStorage storage, IDictionary<string, object> form)
         {
-            storage.PutMultiple(form);
-            return true;
+            throw new NotImplementedException();
         }
     }
 }

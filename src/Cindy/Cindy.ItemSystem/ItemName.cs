@@ -13,7 +13,15 @@ namespace Cindy.ItemSystem
 
         public override string GetValue()
         {
-            value = stringSource != null ? stringSource.Get(itemKey.Value, itemKey.Value) : itemKey.Value;
+            value = itemKey.Value;
+            if (stringSource != null)
+                stringSource.Get(itemKey.Value, this, (v, e, s) =>
+                 {
+                     if (s)
+                         value = v;
+                     else
+                         Debug.LogWarning(e);
+                 });
             return base.GetValue();
         }
 

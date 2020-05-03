@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,60 +11,119 @@ namespace Cindy.Storages
         protected Dictionary<string, object> map;
         protected Dictionary<string, object> Map { get { return map ?? (map = new Dictionary<string, object>()); } }
 
-        public override void Clear()
+        public override IEnumerator DoClear(BoolAction<Exception> action)
         {
-            Map.Clear();
-        }
-
-        public override string Get(string key)
-        {
-            if (Map.ContainsKey(key) && Map[key] != null)
-                return Map[key].ToString();
-            return null;
-        }
-
-        public override string[] GetMultiple(params string[] keys)
-        {
-            if (keys == null || keys.Length == 0)
-                return new string[0];
-            string[] result = new string[keys.Length];
-            for (int i = 0; i < keys.Length; i++)
-                if (map.ContainsKey(keys[i]) && map[keys[i]] != null)
-                    result[i] = map[keys[i]].ToString();
-            return result;
-        }
-
-        public override void LoadObjects(params IStorableObject[] storableObjects)
-        {
-            foreach (IStorableObject storableObject in storableObjects)
+            try
             {
-                if (Map.ContainsKey(storableObject.GetStorableKey()))
-                    storableObject.OnPutStorableObject(Map[storableObject.GetStorableKey()]);
+                Map.Clear();
+                action?.Invoke(true, null);
             }
+            catch (Exception e)
+            {
+                action?.Invoke(false, e);
+            }
+            yield return null;
         }
 
-        public override void Put(string key, object value)
+        public override IEnumerator DoGet(string key, ResultAction<string, Exception> resultAction)
         {
-            Map[key] = value;
+            try
+            {
+                if (Map.ContainsKey(key) && Map[key] != null)
+                    resultAction(Map[key].ToString(), null, true);
+                else
+                    resultAction?.Invoke(null, null, false);
+            }
+            catch (Exception e)
+            {
+                resultAction?.Invoke(null, e, false);
+            }
+            yield return null;
         }
 
-        public override void PutMultiple(string[] keys, object[] values)
+        public override IEnumerator DoGetMultiple(ResultAction<string[], Exception> resultAction, Action<float> progess, string[] keys)
         {
-            int len = Math.Min(keys.Length, values.Length);
-            for (int i = 0; i < len; i++)
-                Map[keys[i]] = values[i];
+            try
+            {
+                progess(0);
+                string[] result = new string[keys.Length];
+                for (int i = 0; i < keys.Length; i++)
+                    if (map.ContainsKey(keys[i]) && map[keys[i]] != null)
+                        result[i] = map[keys[i]].ToString();
+                progess(1);
+                resultAction?.Invoke(result, null, true);
+            }
+            catch (Exception e)
+            {
+                resultAction?.Invoke(null, e,false);
+            }
+            yield return null;
         }
 
-        public override void PutMultiple(IDictionary<string, object> keyValuePairs)
+        public override IEnumerator DoLoadObjects(BoolAction<Exception> action, Action<float> progess, IStorableObject[] storableObjects)
         {
-            foreach (KeyValuePair<string, object> kv in keyValuePairs)
-                Map[kv.Key] = kv.Value;
+            try
+            {
+                progess(0);
+                foreach (IStorableObject storableObject in storableObjects)
+                {
+                    if (Map.ContainsKey(storableObject.GetStorableKey()))
+                        storableObject.OnPutStorableObject(Map[storableObject.GetStorableKey()]);
+                }
+                progess(1);
+                action?.Invoke(true, null);
+            }
+            catch (Exception e)
+            {
+                action?.Invoke(false, e);
+            }
+            yield return null;
         }
 
-        public override void PutObjects(params IStorableObject[] storableObjects)
+        public override IEnumerator DoPut(string key, object value, BoolAction<Exception> action)
         {
-            foreach (IStorableObject storableObject in storableObjects)
-                Map[storableObject.GetStorableKey()] = storableObject.GetStorableObject();
+            try
+            {
+                Map[key] = value;
+                action?.Invoke(true, null);
+            }
+            catch (Exception e)
+            {
+                action?.Invoke(false, e);
+            }
+            yield return null;
+        }
+
+        public override IEnumerator DoPutMultiple(IDictionary<string, object> keyValuePairs, BoolAction<Exception> action, Action<float> progess)
+        {
+            try
+            {
+                progess(0);
+                foreach (KeyValuePair<string, object> kv in keyValuePairs)
+                    Map[kv.Key] = kv.Value;
+                progess(1);
+                action?.Invoke(true, null);
+            }catch(Exception e)
+            {
+                action?.Invoke(false, e);
+            }
+            yield return null;
+        }
+
+        public override IEnumerator DoPutObjects(BoolAction<Exception> action, Action<float> progress, IStorableObject[] storableObjects)
+        {
+            try
+            {
+                progress(0);
+                foreach (IStorableObject storableObject in storableObjects)
+                    Map[storableObject.GetStorableKey()] = storableObject.GetStorableObject();
+                progress(1);
+                action?.Invoke(true, null);
+            }catch(Exception e)
+            {
+                action?.Invoke(false, e);
+            }
+            yield return null;
         }
     }
 }

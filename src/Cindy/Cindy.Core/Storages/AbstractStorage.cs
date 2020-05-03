@@ -1,123 +1,131 @@
-﻿using Cindy.Logic.ReferenceValues;
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace Cindy.Storages
 {
     public abstract class AbstractStorage : ScriptableObject, IStorage, IObjectStorage
     {
-        public abstract string Get(string key);
-        public abstract void Put(string key, object value);
-        public abstract string[] GetMultiple(params string[] keys);
-        public abstract void PutMultiple(string[] keys, object[] values);
-        public abstract void PutMultiple(IDictionary<string, object> keyValuePairs);
-
-        public abstract void PutObjects(params IStorableObject[] storableObjects);
-        public abstract void LoadObjects(params IStorableObject[] storableObjects);
-
-        public abstract void Clear();
-
-        protected virtual void OnException(Exception e)
-        {
-            Debug.LogError("[AbstracStorage Exception]: " + e);
-        }
-
-        public bool TryGetValue(string key,out string value)
+        public abstract IEnumerator DoClear(BoolAction<Exception> action);
+        public abstract IEnumerator DoGet(string key, ResultAction<string, Exception> resultAction);
+        public abstract IEnumerator DoPut(string key, object value, BoolAction<Exception> action);
+        public abstract IEnumerator DoGetMultiple(ResultAction<string[], Exception> resultAction, Action<float> progess, string[] keys);
+        public abstract IEnumerator DoPutMultiple(IDictionary<string, object> keyValuePairs, BoolAction<Exception> action, Action<float> progess);
+        public abstract IEnumerator DoLoadObjects(BoolAction<Exception> action, Action<float> progess, IStorableObject[] storableObjects);
+        public abstract IEnumerator DoPutObjects(BoolAction<Exception> action, Action<float> progress, IStorableObject[] storableObjects);
+       
+        public void Clear(MonoBehaviour context, BoolAction<Exception> action)
         {
             try
             {
-                value = Get(key);
-                return true;
+                context.StartCoroutine(DoClear(action));
             }catch(Exception e)
             {
-                value = default;
-                OnException(e);
-                return false;
+                action?.Invoke(false, e);
             }
         }
 
-        public bool TryGetInt(string key, out int value)
+        public void Get(string key, MonoBehaviour context, ResultAction<string, Exception> resultAction)
+        {
+            if (resultAction == null)
+            {
+                Debug.Log("Action is null!");
+                return;
+            }
+            try
+            {
+                context.StartCoroutine(DoGet(key, resultAction));
+            }catch(Exception e)
+            {
+                resultAction?.Invoke(null, e, false);
+            }
+        }
+
+        public void Put(string key, MonoBehaviour context, object value, BoolAction<Exception> action)
         {
             try
             {
-                value = int.Parse(Get(key));
-                return true;
+                context.StartCoroutine(DoPut(key, value, action));
             }
             catch (Exception e)
             {
-                value = default;
-                OnException(e);
-                return false;
+                action?.Invoke(false, e);
             }
         }
 
-        public bool TryGetFloat(string key, out float value)
+        public void GetMultiple(MonoBehaviour context, ResultAction<string[], Exception> resultAction, Action<float> progess, params string[] keys)
+        {
+            if (resultAction == null)
+            {
+                Debug.Log("Action is null!");
+                return;
+            }
+            try
+            {
+                context.StartCoroutine(DoGetMultiple(resultAction, progess, keys));
+            }
+            catch (Exception e)
+            {
+                resultAction?.Invoke(null, e, false);
+            }
+        }
+
+        public void PutMultiple(string[] keys, object[] values, MonoBehaviour context, BoolAction<Exception> action, Action<float> progess)
         {
             try
             {
-                value = float.Parse(Get(key));
-                return true;
+                int len = Math.Min(keys.Length, values.Length);
+                Dictionary<string, object> map = new Dictionary<string, object>();
+                for (int i = 0; i < len; i++)
+                    map[keys[i]] = values[i];
+                PutMultiple(map, context, action, progess);
             }
             catch (Exception e)
             {
-                value = default;
-                OnException(e);
-                return false;
+                action?.Invoke(false, e);
             }
         }
 
-        public bool TryGetBool(string key, out bool value)
+        public void PutMultiple(IDictionary<string, object> keyValuePairs, MonoBehaviour context, BoolAction<Exception> action, Action<float> progess)
         {
             try
             {
-                value = bool.Parse(Get(key));
-                return true;
+                context.StartCoroutine(DoPutMultiple(keyValuePairs, action, progess));
             }
             catch (Exception e)
             {
-                value = default;
-                OnException(e);
-                return false;
+                action?.Invoke(false, e);
             }
         }
 
-    }
-
-    public abstract class AbstractStorableObject : MonoBehaviour, IStorableObject
-    {
-        [SerializeField]
-        public StorableObjectOption StorableOptions;
-
-        protected StringBuilder stringBuilder;
-
-        public string GetStorableKey()
+        public void LoadObjects(MonoBehaviour context, BoolAction<Exception> action, Action<float> progess, params IStorableObject[] storableObjects)
         {
-            if (stringBuilder == null)
-                stringBuilder = new StringBuilder();
-            else
-                stringBuilder.Clear();
-            stringBuilder.Append(GetType().FullName)
-                .Append("_")
-                .Append(name);
-            if(!StorableOptions.globalUniqueness)
+            if(action == null)
             {
-                stringBuilder.Append("_").Append(gameObject.scene.name);
+                Debug.Log("Action is null!");
+                return;
             }
-            return stringBuilder.ToString();
-
+            try
+            {
+                context.StartCoroutine(DoLoadObjects(action, progess, storableObjects));
+            }
+            catch (Exception e)
+            {
+                action?.Invoke(false, e);
+            }
 
         }
-        public abstract object GetStorableObject();
-        public abstract Type GetStorableObjectType();
-        public abstract void OnPutStorableObject(object obj);
-    }
-
-    [Serializable]
-    public class StorableObjectOption
-    {
-        public ReferenceString label = new ReferenceString() { value = "default" };
-        public bool globalUniqueness = false;
+        
+        public void PutObjects(MonoBehaviour context, BoolAction<Exception> action, Action<float> progess, params IStorableObject[] storableObjects)
+        {
+            try
+            {
+                context.StartCoroutine(DoPutObjects(action, progess, storableObjects));
+            }catch(Exception e)
+            {
+                action?.Invoke(false, e);
+            }
+        }
     }
 }

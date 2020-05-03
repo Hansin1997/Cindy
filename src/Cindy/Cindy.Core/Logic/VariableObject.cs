@@ -24,9 +24,16 @@ namespace Cindy.Logic
         public ReferenceString key;
         public bool autoSave = true;
         public bool updateFromStorage = false;
+        public ExceptionEvent exceptionEvent;
 
         [Header("Events")]
         public UnityEvent valueChangedEvent;
+
+        public struct ExceptionEvent
+        {
+            public UnityEvent<Exception> onLoadException;
+            public UnityEvent<Exception> onSaveException;
+        }
 
         public T Value { get { return GetValue(); }  set { SetValue(value); } }
 
@@ -79,18 +86,30 @@ namespace Cindy.Logic
         {
             if (storage != null)
             {
-                string val = storage.Get(key.Value);
-                if (val != null && val.Length > 0)
-                    OnValueLoad(TransformFrom(val));
-                else
-                    OnValueLoadEmpty();
+                storage.Get(key.Value, this, (val, e, isSuccess) =>
+                  {
+                      if (isSuccess)
+                      {
+                          if(val != null && val.Length > 0)
+                              OnValueLoad(TransformFrom(val));
+                          else
+                              OnValueLoadEmpty();
+                      }
+                      else
+                      {
+                          OnValueLoadException(e);
+                      }
+                      if (IsValueChanged())
+                          OnValueChanged(false);
+                  });
+                    
             }
             else
             {
                 OnValueLoadEmpty();
+                if (IsValueChanged())
+                    OnValueChanged(false);
             }
-            if (IsValueChanged())
-                OnValueChanged(false);
         }
 
         protected virtual void OnValueLoad(T val)
@@ -102,6 +121,18 @@ namespace Cindy.Logic
         protected virtual void OnValueLoadEmpty()
         {
 
+        }
+
+        protected virtual void OnValueLoadException(Exception e)
+        {
+            Debug.LogWarning(e, this);
+            exceptionEvent.onLoadException.Invoke(e);
+        }
+
+        protected virtual void OnValueSaveException(Exception e)
+        {
+            Debug.LogWarning(e, this);
+            exceptionEvent.onSaveException.Invoke(e);
         }
 
         protected bool IsValueChanged()
@@ -155,7 +186,11 @@ namespace Cindy.Logic
         {
             if (storage != null)
             {
-                storage.Put(key.Value, TransfromTo(value));
+                storage.Put(key.Value,this, TransfromTo(value),(isSuccess,exception)=>
+                {
+                    if (!isSuccess)
+                        OnValueSaveException(exception);
+                });
             }
         }
 

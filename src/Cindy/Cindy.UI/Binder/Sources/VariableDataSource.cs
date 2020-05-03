@@ -1,5 +1,7 @@
 ﻿using Cindy.Logic;
 using Newtonsoft.Json;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,27 +18,6 @@ namespace Cindy.UI.Binder
         {
             if (context == null)
                 context = GetComponent<Context>();
-        }
-
-        public override T GetData<T>(string key, T defaultValue = default)
-        {
-            AbstractVariableObject temp = FindTarget(key);
-            if (temp == null)
-                return defaultValue;
-            object value = temp.GetVariableValue();
-            if (value == null)
-                return defaultValue;
-            if (value is T r)
-                return r;
-            return JsonConvert.DeserializeObject<T>(value.ToString());
-        }
-
-        public override void SetData(string key, object value)
-        {
-            AbstractVariableObject temp = FindTarget(key);
-            if (temp == null)
-                return;
-            temp.SetVariableValue(value);
         }
 
         protected AbstractVariableObject FindTarget(string name)
@@ -62,6 +43,54 @@ namespace Cindy.UI.Binder
         public override bool IsWriteable()
         {
             return true;
+        }
+
+        protected override IEnumerator DoGetData<T>(string key, ResultAction<T, Exception> resultAction)
+        {
+            AbstractVariableObject temp = FindTarget(key);
+            if (temp == null)
+            {
+                resultAction?.Invoke(default, null, false);
+                yield break;
+            }
+
+            object value = temp.GetVariableValue();
+            if (value == null)
+            {
+                resultAction?.Invoke(default, null, false);
+                yield break;
+            }
+
+            if (value is T r)
+            {
+                resultAction?.Invoke(r, null, true);
+                yield break;
+            }
+            try
+            {
+                resultAction?.Invoke(JsonConvert.DeserializeObject<T>(value.ToString()), null, true);
+            }catch(Exception e)
+            {
+                resultAction?.Invoke(default, e, false);
+            }
+        }
+
+        protected override IEnumerator DoSetData(string key, object value, BoolAction<Exception> action)
+        {
+            AbstractVariableObject temp = FindTarget(key);
+            if (temp == null)
+            {
+                action?.Invoke(false, null);
+                yield break;
+            }
+            try
+            {
+                temp.SetVariableValue(value);
+                action?.Invoke(true, null);
+            }catch(Exception e)
+            {
+                action?.Invoke(false, e);
+            }
         }
     }
 }

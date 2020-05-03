@@ -4,11 +4,11 @@ namespace Cindy.Storages
 {
     public interface IObjectStorage
     {
-        void PutObjects(params IStorableObject[] storableObjects);
+        void PutObjects(UnityEngine.MonoBehaviour context, BoolAction<Exception> action, Action<float> progess, params IStorableObject[] storableObjects);
 
-        void LoadObjects(params IStorableObject[] storableObjects);
+        void LoadObjects(UnityEngine.MonoBehaviour context, BoolAction<Exception> action, Action<float> progess, params IStorableObject[] storableObjects);
 
-        void Clear();
+        void Clear(UnityEngine.MonoBehaviour context, BoolAction<Exception> action);
     }
 
     public interface IStorableObject

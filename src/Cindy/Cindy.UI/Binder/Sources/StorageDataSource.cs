@@ -1,5 +1,6 @@
 ﻿using Cindy.Storages;
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Cindy.UI.Binder.Sources
@@ -9,29 +10,6 @@ namespace Cindy.UI.Binder.Sources
     {
         public AbstractStorage storage;
 
-        public override T GetData<T>(string key, T defaultValue = default)
-        {
-            string temp = storage.Get(key);
-            if (temp == null)
-                return defaultValue;
-            if (temp is T r)
-                return r;
-            try
-            {
-                return JSON.FromJson<T>(temp);
-            }catch(Exception e)
-            {
-                Debug.LogWarning(e, this);
-                return default;
-            }
-            
-        }
-
-        public override void SetData(string key, object value)
-        {
-            storage.Put(key, JSON.ToJson(value));
-        }
-
         public override bool IsReadable()
         {
             return true;
@@ -40,6 +18,49 @@ namespace Cindy.UI.Binder.Sources
         public override bool IsWriteable()
         {
             return true;
+        }
+
+        protected override IEnumerator DoGetData<T>(string key, ResultAction<T, Exception> resultAction)
+        {
+            yield return StartCoroutine(storage.DoGet(key, (temp, e, isSuccess) =>
+            {
+                if (isSuccess)
+                {
+                    try
+                    {
+                        if (temp is T r)
+                        {
+                            resultAction(r, e, true);
+                        }
+                        else
+                        {
+                            resultAction?.Invoke(JSON.FromJson<T>(temp), null, true);
+                        }
+                    }
+                    catch (Exception e1)
+                    {
+                        resultAction?.Invoke(default, e1, false);
+                    }
+                }
+                else
+                {
+                    resultAction?.Invoke(default, e, false);
+                }
+            }));
+        }
+
+        protected override IEnumerator DoSetData(string key, object value, BoolAction<Exception> action)
+        {
+            string json;
+            try
+            {
+                json = JSON.ToJson(value);
+            }catch(Exception e)
+            {
+                action?.Invoke(false, e);
+                yield break;
+            }
+            yield return StartCoroutine(storage.DoPut(key, json, action));
         }
     }
 }

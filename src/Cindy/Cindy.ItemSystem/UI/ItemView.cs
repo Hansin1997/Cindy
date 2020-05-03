@@ -37,10 +37,18 @@ namespace Cindy.ItemSystem.UI
         {
             if (target != null)
             {
-                if (stringSource == null)
-                    target.text = str;
-                else
-                    target.text = stringSource.Get(str, str);
+                target.text = str;
+                if (stringSource != null)
+                    stringSource.Get(str, this, (v, e, s) =>
+                     {
+                         if (s)
+                         {
+                             if (target != null)
+                                 target.text = v;
+                         }
+                         else
+                             Debug.LogWarning(e);
+                     });
             }
         }
 

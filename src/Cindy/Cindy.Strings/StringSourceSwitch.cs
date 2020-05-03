@@ -1,5 +1,6 @@
 ﻿using Cindy.Util.Serializables;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,16 +18,42 @@ namespace Cindy.Strings
         public KV[] sourcesMap;
         protected IDictionary<string, StringSource> sources;
 
-        public override string Get(string key, string defaultValue = null)
+        public override IEnumerator DoGet(string key, MonoBehaviour context, ResultAction<string, Exception> resultAction)
         {
-            if (sources == null)
-                sources = KV.ToDictionary(sourcesMap);
-            string result;
-            if (sources.ContainsKey(currentKey) && (result = sources[currentKey].Get(key, null)) != null)
-                return result;
-            if(sources.ContainsKey(defaultKey) && (result = sources[defaultKey].Get(key, null)) != null)
-                return result;
-            return defaultValue;
+            try
+            {
+                if (sources == null)
+                    sources = KV.ToDictionary(sourcesMap);
+                if (sources.ContainsKey(currentKey))
+                {
+                    sources[currentKey].Get(key, context, (result, excetion, isSuccess) =>
+                    {
+                        if (isSuccess)
+                        {
+                            resultAction(result, excetion, true);
+                        }
+                        else
+                        {
+                            if (sources[defaultKey] != null)
+                                sources[defaultKey].Get(key, context, resultAction);
+                            else
+                                resultAction(null, null, false);
+                        }
+                    });
+                }
+                else
+                {
+                    if (sources[defaultKey] != null)
+                        sources[defaultKey].Get(key, context, resultAction);
+                    else
+                        resultAction(null, null, false);
+                }
+            }
+            catch (Exception e)
+            {
+                resultAction(null, e, false);
+            }
+            yield return null;
         }
 
         [Serializable]

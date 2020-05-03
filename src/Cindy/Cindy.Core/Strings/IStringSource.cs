@@ -1,7 +1,9 @@
-﻿namespace Cindy.Strings
+﻿using System;
+
+namespace Cindy.Strings
 {
     interface IStringSource
     {
-        string Get(string key, string defaultValue = default);
+        void Get(string key, UnityEngine.MonoBehaviour context, ResultAction<string, Exception> resultAction);
     }
 }

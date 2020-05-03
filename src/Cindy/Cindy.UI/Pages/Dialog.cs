@@ -5,6 +5,7 @@ using Cindy.Strings;
 using Cindy.Util;
 using Cindy.Util.Serializables;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,6 +26,7 @@ namespace Cindy.UI.Pages
 
         protected DialogStruct last;
         protected List<Button> buttons;
+        private bool done = true;
 
         public virtual Dictionary<string,Text> Texts
         {
@@ -67,10 +69,13 @@ namespace Cindy.UI.Pages
 
         public virtual void Dispose()
         {
-            DoDispose();
+            if (!done)
+                return;
+            done = false;
+            StartCoroutine(DoDispose());
         }
 
-        protected virtual void DoDispose()
+        protected IEnumerator DoDispose()
         {
             if (buttons == null)
                 buttons = new List<Button>();
@@ -82,12 +87,16 @@ namespace Cindy.UI.Pages
             if (last != null)
                 last.events.Invoke();
             if (!HasMore())
-                return;
+            {
+                done = true;
+                yield break;
+            }
             DialogStruct data = queue[0];
             last = data;
             queue.RemoveAt(0);
             Dictionary<string, Text> map = Texts;
-            Dictionary<string, string> sm = ComputedData(data);
+            Dictionary<string, string> sm = new Dictionary<string, string>();
+            yield return StartCoroutine(ComputedData(data, sm));
             foreach (KeyValuePair<string, string> kv in sm)
             {
                 if (map.ContainsKey(kv.Key))
@@ -107,21 +116,28 @@ namespace Cindy.UI.Pages
                 last.events.Invoke();
         }
 
-        public virtual Dictionary<string, string> ComputedData(DialogStruct data)
+        public virtual IEnumerator ComputedData(DialogStruct data,Dictionary<string, string> result)
         {
-
-            Dictionary<string, string> result = new Dictionary<string, string>();
             if (source != null)
             {
                 foreach (SerializedKeyValuePair<string, string> kv in data.stringMap)
-                    result[kv.Key] = source.Get(kv.Value, kv.Value);
+                {
+                    string V = kv.Value;
+                    yield return StartCoroutine(source.DoGet(kv.Value, this, (v, e, s) =>
+                    {
+                        if (s)
+                            V = v;
+                        else
+                            Debug.LogWarning(e);
+                    }));
+                    result[kv.Key] = V;
+                }
             }
             else
             {
                 foreach (SerializedKeyValuePair<string, string> kv in data.stringMap)
                     result[kv.Key] = kv.Value;
             }
-            return result;
         }
 
         public virtual bool HasMore()

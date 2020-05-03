@@ -38,28 +38,40 @@ namespace Cindy.UI.Pages
         public ReferenceString titleKey;
         public ReferenceString contentKey;
         public StringSource stringSource;
+        public Context context;
 
         protected override void Run()
         {
-            string title = null, content = null;
-            if(stringSource != null)
+            if (messageBox == null)
+                return;
+            string title, content;
+
+            title = titleKey.Value;
+            content = contentKey.Value;
+            messageBox.SetText(title, content);
+            MessageBox instance = messageBox.ShowAndReturn<MessageBox>(context);
+            if (stringSource != null)
             {
-                title = stringSource.Get(titleKey.Value,titleKey.Value);
-                content = stringSource.Get(contentKey.Value, contentKey.Value);
-            }
-            else
-            {
-                title = titleKey.Value;
-                content = contentKey.Value;
-            }
-            if(messageBox != null)
-            {
-                messageBox.SetText(title, content);
-                messageBox.Show();
-            }
-            else
-            {
-                Debug.LogError("MessageBox is null!\n" + title + "\n" + content);
+                stringSource.Get(titleKey.Value,this,(v,e,s)=>
+                {
+                    if (s)
+                    {
+                        if (instance != null)
+                            instance.SetTitle(v);
+                    }    
+                    else
+                        Debug.Log(e);
+                });
+                stringSource.Get(contentKey.Value, this, (v, e, s) =>
+                {
+                    if (s)
+                    {
+                        if (instance != null)
+                            instance.SetContent(v);
+                    }
+                    else
+                        Debug.Log(e);
+                });
             }
         }
     }
