@@ -8,22 +8,28 @@ namespace Cindy.Logic.VariableObjects
     [AddComponentMenu("Cindy/Logic/VariableObject/Vector3Object (Vector3)")]
     public class Vector3Object : VariableObject<Vector3>
     {
-        protected override Vector3 TransformFrom(string value)
+        public override Type GetStorableObjectType()
         {
-            try
-            {
-                return JSON.FromJson<SerializedVector3>(value).ToVector3();
-            }
-            catch (Exception e)
-            {
-                Debug.LogWarning(e);
-                return Vector3.zero;
-            }
+            return typeof(SerializedVector3);
         }
 
-        protected override object TransfromTo(Vector3 value)
+        public override object GetStorableObject()
         {
             return new SerializedVector3(value);
+        }
+
+        protected override bool TramsformValue(object obj, out Vector3 output)
+        {
+            if(obj is SerializedVector3 s)
+            {
+                output = s.ToVector3();
+                return true;
+            }
+            else
+            {
+                output = default;
+                return false;
+            }
         }
 
         public void SetPosition(Transform transform)
@@ -155,22 +161,28 @@ namespace Cindy.Logic.VariableObjects
     [AddComponentMenu("Cindy/Logic/VariableObject/Vector2Object (Vector2)")]
     public class Vector2Object : VariableObject<Vector2>
     {
-        protected override Vector2 TransformFrom(string value)
+        public override Type GetStorableObjectType()
         {
-            try
-            {
-                return JSON.FromJson<SerializedVector2>(value).ToVector2();
-            }
-            catch (Exception e)
-            {
-                Debug.LogWarning(e);
-                return Vector3.zero;
-            }
+            return typeof(SerializedVector2);
         }
 
-        protected override object TransfromTo(Vector2 value)
+        public override object GetStorableObject()
         {
             return new SerializedVector2(value);
+        }
+
+        protected override bool TramsformValue(object obj, out Vector2 output)
+        {
+            if(obj is SerializedVector2 v)
+            {
+                output = v.ToVector2();
+                return true;
+            }
+            else
+            {
+                output = default;
+                return false;
+            }
         }
     }
 

@@ -1,5 +1,4 @@
 ﻿using Cindy.Logic.ReferenceValues;
-using Cindy.Strings;
 using System;
 using System.Text;
 using UnityEngine;
@@ -9,10 +8,7 @@ namespace Cindy.Logic.VariableObjects
     [AddComponentMenu("Cindy/Logic/VariableObject/StringObject (String)")]
     public class StringObject : VariableObject<string>
     {
-        protected override string TransformFrom(string value)
-        {
-            return value;
-        }
+
     }
 
     [AddComponentMenu("Cindy/Logic/VariableObject/CombinedStringObject (String)")]

@@ -54,11 +54,15 @@ namespace Cindy
     {
         public override object FromJson(string json, Type type)
         {
+            if (type.Equals(typeof(bool)))
+                json = json.ToLower(); // 解决bool值首字母大写异常
             return JsonConvert.DeserializeObject(json, type);
         }
 
         public override T FromJson<T>(string json)
         {
+            if (typeof(T).Equals(typeof(bool)))
+                json = json.ToLower(); // 解决bool值首字母大写异常
             return JsonConvert.DeserializeObject<T>(json);
         }
 

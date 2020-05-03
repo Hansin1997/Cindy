@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace Cindy.Logic
 {
-    public abstract class VariableObject<T> : AbstractVariableObject
+    public abstract class VariableObject<T> : AbstractVariableObject,IStorableObject
     {
         [Header("Variable")]
         public string variableName;
@@ -86,23 +86,11 @@ namespace Cindy.Logic
         {
             if (storage != null)
             {
-                storage.Get(key.Value, this, (val, e, isSuccess) =>
-                  {
-                      if (isSuccess)
-                      {
-                          if(val != null && val.Length > 0)
-                              OnValueLoad(TransformFrom(val));
-                          else
-                              OnValueLoadEmpty();
-                      }
-                      else
-                      {
-                          OnValueLoadException(e);
-                      }
-                      if (IsValueChanged())
-                          OnValueChanged(false);
-                  });
-                    
+                storage.LoadObjects(this,(s,e)=>
+                {
+                    if (!s && e != null)
+                        OnValueLoadException(e);
+                }, (p) => { }, this);                    
             }
             else
             {
@@ -186,11 +174,11 @@ namespace Cindy.Logic
         {
             if (storage != null)
             {
-                storage.Put(key.Value,this, TransfromTo(value),(isSuccess,exception)=>
+                storage.PutObjects(this, (isSuccess, exception) =>
                 {
                     if (!isSuccess)
                         OnValueSaveException(exception);
-                });
+                }, (p) => { }, this);
             }
         }
 
@@ -225,18 +213,56 @@ namespace Cindy.Logic
             value = GetValue();
         }
 
-        protected abstract T TransformFrom(string value);
-
-        protected virtual object TransfromTo(T value)
-        {
-            return value;
-        }
-
         public override string ToString()
         {
             if (value == null)
                 return "NULL";
             return value.ToString();
+        }
+
+        public virtual string GetStorableKey()
+        {
+            return key.Value;
+        }
+
+        public virtual object GetStorableObject()
+        {
+            return value;
+        }
+
+        public virtual Type GetStorableObjectType()
+        {
+            return typeof(T);
+        }
+
+        public virtual void OnPutStorableObject(object obj)
+        {
+            if (obj == null)
+                OnValueLoadEmpty();
+            else
+            {
+                if (TramsformValue(obj,out T v))
+                {
+                    OnValueLoad(v);
+                }
+                else
+                {
+                    Debug.LogWarning(string.Format("obj({0}) can not tramsfrom to {1}", obj.GetType().Name, typeof(T).Name));
+                }
+            }
+            if (IsValueChanged())
+                OnValueChanged(false);
+        }
+
+        protected virtual bool TramsformValue(object obj,out T output)
+        {
+            if (obj is T v)
+            {
+                output = v;
+                return true;
+            }
+            output = default;
+            return false;
         }
     }
 }

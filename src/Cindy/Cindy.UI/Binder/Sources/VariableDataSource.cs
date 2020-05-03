@@ -45,7 +45,7 @@ namespace Cindy.UI.Binder
             return true;
         }
 
-        protected override IEnumerator DoGetData<T>(string key, ResultAction<T, Exception> resultAction)
+        protected override IEnumerator DoGetData<T>(string key, MonoBehaviour context, ResultAction<T, Exception> resultAction)
         {
             AbstractVariableObject temp = FindTarget(key);
             if (temp == null)
@@ -69,13 +69,14 @@ namespace Cindy.UI.Binder
             try
             {
                 resultAction?.Invoke(JsonConvert.DeserializeObject<T>(value.ToString()), null, true);
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 resultAction?.Invoke(default, e, false);
             }
         }
 
-        protected override IEnumerator DoSetData(string key, object value, BoolAction<Exception> action)
+        protected override IEnumerator DoSetData(string key, object value, MonoBehaviour context, BoolAction<Exception> action)
         {
             AbstractVariableObject temp = FindTarget(key);
             if (temp == null)
@@ -87,7 +88,8 @@ namespace Cindy.UI.Binder
             {
                 temp.SetVariableValue(value);
                 action?.Invoke(true, null);
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 action?.Invoke(false, e);
             }

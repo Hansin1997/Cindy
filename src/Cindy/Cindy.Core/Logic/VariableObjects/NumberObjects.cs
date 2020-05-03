@@ -21,14 +21,6 @@ namespace Cindy.Logic.VariableObjects
         {
             value -= number;
         }
-
-        protected override int TransformFrom(string value)
-        {
-            int result;
-            if (int.TryParse(value, out result))
-                return result;
-            return 0;
-        }
     }
 
     [AddComponentMenu("Cindy/Logic/VariableObject/FloatObject (Float)")]
@@ -43,13 +35,6 @@ namespace Cindy.Logic.VariableObjects
         {
             value -= number;
         }
-        protected override float TransformFrom(string value)
-        {
-            float result;
-            if (float.TryParse(value, out result))
-                return result;
-            return 0;
-        }
     }
 
     [AddComponentMenu("Cindy/Logic/VariableObject/DoubleObject (Double)")]
@@ -63,14 +48,6 @@ namespace Cindy.Logic.VariableObjects
         public override void Sub(double number)
         {
             value -= number;
-        }
-
-        protected override double TransformFrom(string value)
-        {
-            double result;
-            if (double.TryParse(value, out result))
-                return result;
-            return 0;
         }
     }
 }
