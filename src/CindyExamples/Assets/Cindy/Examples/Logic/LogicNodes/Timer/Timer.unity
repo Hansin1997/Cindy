@@ -1426,7 +1426,6 @@ GameObject:
   - component: {fileID: 1430476649}
   - component: {fileID: 1430476653}
   - component: {fileID: 1430476652}
-  - component: {fileID: 1430476651}
   - component: {fileID: 1430476650}
   m_Layer: 5
   m_Name: MaxTime
@@ -1475,36 +1474,6 @@ MonoBehaviour:
     value: max
   target: {fileID: 0}
   defaultValue: 1
---- !u!114 &1430476651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1430476648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -885218772, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  variableName: 
-  value: 
-  proxyContext: {fileID: 0}
-  proxyTarget:
-    reference: {fileID: 0}
-    value: 
-  storage: {fileID: 0}
-  key:
-    reference: {fileID: 0}
-    value: 
-  autoSave: 1
-  updateFromStorage: 0
-  valueChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  target:
-    reference: {fileID: 2112751760}
-    value: 0
 --- !u!114 &1430476652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1556,7 +1525,6 @@ GameObject:
   - component: {fileID: 1529008003}
   - component: {fileID: 1529008005}
   - component: {fileID: 1529008004}
-  - component: {fileID: 1529008007}
   - component: {fileID: 1529008006}
   m_Layer: 5
   m_Name: CurrentTime
@@ -1645,36 +1613,6 @@ MonoBehaviour:
     value: current
   target: {fileID: 0}
   defaultValue: 1
---- !u!114 &1529008007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1529008002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -885218772, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  variableName: 
-  value: 
-  proxyContext: {fileID: 0}
-  proxyTarget:
-    reference: {fileID: 0}
-    value: 
-  storage: {fileID: 0}
-  key:
-    reference: {fileID: 0}
-    value: 
-  autoSave: 1
-  updateFromStorage: 0
-  valueChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  target:
-    reference: {fileID: 988374570}
-    value: 0
 --- !u!1 &1813135694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,17 +1849,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 2103742276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1992418722, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
+  m_Script: {fileID: 1053318878, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataSource: {fileID: 509535991}
+  options:
+    bindOnStart: 1
+    bindOnUpdate: 1
   slider: {fileID: 0}
-  valueVariable: {fileID: 988374570}
   minValue:
-    reference: {fileID: 0}
-    value: 0
+    key:
+      reference: {fileID: 0}
+      value: 
+    bind: 0
   maxValue:
-    reference: {fileID: 2112751760}
-    value: 0
+    key:
+      reference: {fileID: 0}
+      value: max
+    bind: 1
+  value:
+    key:
+      reference: {fileID: 0}
+      value: current
+    bind: 1
+  applyValueToDataSource: 0
 --- !u!114 &2103742279
 MonoBehaviour:
   m_ObjectHideFlags: 0

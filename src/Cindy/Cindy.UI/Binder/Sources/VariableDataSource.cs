@@ -14,7 +14,7 @@ namespace Cindy.UI.Binder
 
         protected Dictionary<string, AbstractVariableObject> cache;
 
-        protected virtual void Start()
+        protected virtual void Awake()
         {
             if (context == null)
                 context = GetComponent<Context>();

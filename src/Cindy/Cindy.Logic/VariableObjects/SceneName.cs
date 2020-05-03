@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Cindy.Logic.VariableObjects
 {
@@ -6,7 +7,7 @@ namespace Cindy.Logic.VariableObjects
     public class SceneName : StringObject
     {
         [Header("Scene Name")]
-        public bool loadFromStorage = false;
+        public SceneType sceneType = SceneType.ActiveScene;
 
         protected override void Start()
         {
@@ -20,8 +21,23 @@ namespace Cindy.Logic.VariableObjects
 
         public override string GetValue()
         {
-            value = loadFromStorage ? value : gameObject.scene.name;
+            switch (sceneType)
+            {
+                default:
+                case SceneType.ActiveScene:
+                    value = SceneManager.GetActiveScene().name;
+                    break;
+                case SceneType.ObjectScene:
+                    value = gameObject.scene.name;
+                    break;
+            }
             return value;
+        }
+
+        public enum SceneType
+        {
+            ActiveScene,
+            ObjectScene
         }
     }
 }

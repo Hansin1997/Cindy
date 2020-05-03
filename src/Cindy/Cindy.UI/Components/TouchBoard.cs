@@ -13,24 +13,52 @@ namespace Cindy.UI.Components
         public string verticalAxisName = "Vertical";
         public string buttonKey = "";
 
-        public bool horizontal = true, vertical = true, button = true;
+        public bool horizontal = true, vertical = true, button = false;
+
+        public InputType inputType = InputType.Delta;
 
         private PointerEventData ed;
         private VirtualAxis horizontalAxis, verticalAxis;
         private VirtualButton _btn;
         private int state;
+        private RectTransform rectTransform;
 
         protected override void Start()
         {
             base.Start();
+            rectTransform = GetComponent<RectTransform>();
             if (horizontal)
             {
-                horizontalAxis = () => ed == null ? 0 : ed.delta.x / Screen.width * 100;
+                horizontalAxis = () =>
+                {
+                    if (ed == null || rectTransform == null)
+                        return 0;
+                    switch (inputType)
+                    {
+                        default:
+                        case InputType.Delta:
+                            return ed.delta.x / Screen.width * 100;
+                        case InputType.Position:
+                            return (ed.position.x - rectTransform.anchoredPosition.x - rectTransform.rect.width / 2) * 2 / rectTransform.rect.width;
+                    }
+                };
                 VirtualInput.Register(horizontalAxisName, horizontalAxis);
             }
             if (vertical)
             {
-                verticalAxis = () => ed == null ? 0 : ed.delta.y / Screen.height * 100;
+                verticalAxis = () =>
+                {
+                    if (ed == null || rectTransform == null)
+                        return 0;
+                    switch (inputType)
+                    {
+                        default:
+                        case InputType.Delta:
+                            return ed.delta.y / Screen.height * 100;
+                        case InputType.Position:
+                            return (ed.position.y - rectTransform.anchoredPosition.y - rectTransform.rect.height / 2) * 2 / rectTransform.rect.height;
+                    }
+                };
                 VirtualInput.Register(verticalAxisName, verticalAxis);
             }
             if (button && buttonKey != null && buttonKey.Length > 0)
@@ -83,6 +111,12 @@ namespace Cindy.UI.Components
             result.value = state > 0;
             result.up = (state == -2);
             return result;
+        }
+
+        public enum InputType
+        {
+            Delta,
+            Position
         }
     }
 }

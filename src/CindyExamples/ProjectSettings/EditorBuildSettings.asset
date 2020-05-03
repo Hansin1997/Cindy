@@ -6,12 +6,72 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Cindy/Guide.unity
+    guid: c1c71e3c0701df14b876893a18ca4ec2
+  - enabled: 1
+    path: Assets/Cindy/Examples/Control/BaseExample/SimpleController.unity
+    guid: 2f69ad33b490ab24cb5fb30edb019576
+  - enabled: 1
+    path: Assets/Cindy/Examples/Control/BaseExample/PointLook.unity
+    guid: fabc1dac8ee692d488605eb1bd2ec68a
+  - enabled: 1
     path: Assets/Cindy/Examples/Control/BaseExample/FreeLook.unity
     guid: 5f15fb09f60d60a4f9f79fba7130a3d5
+  - enabled: 1
+    path: Assets/Cindy/Examples/Control/AnimatorControler/AnimatorControler.unity
+    guid: ff93be7747edb484aa497042686aa17e
+  - enabled: 1
+    path: Assets/Cindy/Examples/Control/Blocked/BlockedDemo.unity
+    guid: 43ca72d73d0a84b4a89af0d050d80f19
+  - enabled: 1
+    path: Assets/Cindy/Examples/Logic/VariableObject/VariableDemo.unity
+    guid: 7ddf75808826f214b9ca76cd97da9d21
+  - enabled: 1
+    path: Assets/Cindy/Examples/Logic/LogicNodes/Logger/Logger.unity
+    guid: 6e1e00e78af508e4f87a1a819fabcdc2
+  - enabled: 1
+    path: Assets/Cindy/Examples/Logic/LogicNodes/Timer/Timer.unity
+    guid: f75d2ca98e5f825409e570db928126c2
   - enabled: 1
     path: Assets/Cindy/Examples/Logic/LogicNodes/SceneLoader/SceneLoader_1.unity
     guid: 3cfb753af3e12e845b65478d39e31abd
   - enabled: 1
     path: Assets/Cindy/Examples/Logic/LogicNodes/SceneLoader/SceneLoader_2.unity
     guid: ab6ddda1dce4fb54fb2dcb45c9d83847
+  - enabled: 1
+    path: Assets/Cindy/Examples/Logic/HP Demo/HP Demo.unity
+    guid: f346abc80d8cc9642ba1693c96440152
+  - enabled: 1
+    path: Assets/Cindy/Examples/Storage/StorableObject/TransfromStorableObject/PlayerPrefStorage/PlayerPrefStorageDemo.unity
+    guid: 39007dcdc8a4ec14d81fea0f4a93664d
+  - enabled: 1
+    path: Assets/Cindy/Examples/Storage/StorableObject/TransfromStorableObject/TemporaryStroage/TemporaryStroageDemo.unity
+    guid: 8c8060454db772e4785f238a1fd27b97
+  - enabled: 1
+    path: Assets/Cindy/Examples/UI/Strings/StringSource/StringSource.unity
+    guid: ff0fc2eb62b70f944ad837b12d8ae60c
+  - enabled: 1
+    path: Assets/Cindy/Examples/UI/Strings/StringFormat/StringFormat.unity
+    guid: 16a5afb898978ce49980a4a9b9c81395
+  - enabled: 1
+    path: Assets/Cindy/Examples/UI/Strings/Process/StringProcess.unity
+    guid: 9f7cb020e86d39b4db9836a0cab283cb
+  - enabled: 1
+    path: Assets/Cindy/Examples/UI/Strings/LanguageSwitch/LanguageSwitch.unity
+    guid: dfa79530c7d4c384db8574e8d4254909
+  - enabled: 1
+    path: Assets/Cindy/Examples/UI/Form/Form.unity
+    guid: 0f26422fa21d1894682c0e7cc5a3ab17
+  - enabled: 1
+    path: Assets/Cindy/Examples/UI/Page/PageDemo.unity
+    guid: 49c64344757a5534b9ae739fa793ea74
+  - enabled: 1
+    path: Assets/Cindy/Examples/UI/Dialog/DialogDemo.unity
+    guid: 8ca4aeb4add42904d9bfe50f9f674c31
+  - enabled: 1
+    path: Assets/Cindy/Examples/UI/PositionBinderManager/PositionBinderManager.unity
+    guid: 44eef91ba70061d4b92573ddfe104a54
+  - enabled: 1
+    path: Assets/Cindy/Examples/Item/ItemDemo.unity
+    guid: 01bb7ac6799a23d48bf64dde2d86a8c0
   m_configObjects: {}

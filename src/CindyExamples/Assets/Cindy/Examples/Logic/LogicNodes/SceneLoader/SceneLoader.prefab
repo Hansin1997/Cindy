@@ -187,7 +187,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 7824289768341411444}
   m_FillRect: {fileID: 7824289768341411445}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
@@ -207,17 +207,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 7824289767008198300}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1992418722, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
+  m_Script: {fileID: 1053318878, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataSource: {fileID: 3804717317384455015}
+  options:
+    bindOnStart: 1
+    bindOnUpdate: 1
   slider: {fileID: 0}
-  valueVariable: {fileID: 7824289767298002026}
   minValue:
-    reference: {fileID: 0}
-    value: 0
+    key:
+      reference: {fileID: 0}
+      value: 
+    bind: 0
   maxValue:
-    reference: {fileID: 0}
-    value: 1
+    key:
+      reference: {fileID: 0}
+      value: 
+    bind: 0
+  value:
+    key:
+      reference: {fileID: 0}
+      value: progress
+    bind: 1
+  applyValueToDataSource: 0
 --- !u!1 &7824289767298002029
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,6 +246,8 @@ GameObject:
   - component: {fileID: 7824289767298002039}
   - component: {fileID: 7824289767298002024}
   - component: {fileID: 6356106651947509767}
+  - component: {fileID: 773490217340190006}
+  - component: {fileID: 3804717317384455015}
   m_Layer: 0
   m_Name: SceneLoader
   m_TagString: Untagged
@@ -287,7 +302,7 @@ MonoBehaviour:
   onLoadCompleted:
     waitForSecond:
       reference: {fileID: 0}
-      value: 1
+      value: 0
     waitUntil: {fileID: 6356106651947509767}
     events:
       m_PersistentCalls:
@@ -300,7 +315,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Press 'Enter' to continue.
+            m_StringArgument: Press 'Enter' or click to continue.
             m_BoolArgument: 0
           m_CallState: 2
   progress:
@@ -321,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 2134968528, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  variableName: 
+  variableName: progress
   value: 0
   proxyContext: {fileID: 0}
   proxyTarget:
@@ -424,6 +439,32 @@ MonoBehaviour:
     reference: {fileID: 0}
     value: Submit
   state: 1
+--- !u!114 &773490217340190006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7824289767298002029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -747883731, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scanScope: 2
+--- !u!114 &3804717317384455015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7824289767298002029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 993915844, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  context: {fileID: 773490217340190006}
 --- !u!1 &7824289767911497457
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +476,7 @@ GameObject:
   - component: {fileID: 7824289767911497456}
   - component: {fileID: 7824289767911497470}
   - component: {fileID: 7824289767911497471}
+  - component: {fileID: 4587985593155089874}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
@@ -499,6 +541,53 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4587985593155089874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7824289767911497457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1485151743, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 7824289767911497471}
+  horizontalAxisName: Horizontal
+  verticalAxisName: Vertical
+  buttonKey: Submit
+  horizontal: 0
+  vertical: 0
+  button: 1
+  inputType: 0
 --- !u!1 &7824289768341411446
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 
 namespace Cindy.Logic.LogicNodes
 {
-    [DisallowMultipleComponent]
     [AddComponentMenu("Cindy/Logic/LogicNodes/SceneLoader")]
     public class SceneLoader : CoroutineLogicNode
     {
@@ -51,13 +50,13 @@ namespace Cindy.Logic.LogicNodes
                     return true;
                 });
 
+                progress.Value = 1;
+                isLoading.Value = false;
                 operation.allowSceneActivation = true;
                 while (operation.progress < 1f)
                 {
                     yield return null;
                 }
-                progress.Value = 1;
-                isLoading.Value = false;
             }
         }
 
