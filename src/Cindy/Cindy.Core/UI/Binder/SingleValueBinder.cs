@@ -63,7 +63,15 @@ namespace Cindy.UI.Binder
                     {
                         try
                         {
-                            BindData(target, val);
+                            if(val == null)
+                            {
+                                BindData(target, GetDefaultValue());
+                            }
+                            else
+                            {
+                                BindData(target, val);
+                            }
+                            
                         }
                         catch (Exception e1)
                         {

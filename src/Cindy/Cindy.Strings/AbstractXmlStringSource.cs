@@ -67,22 +67,29 @@ namespace Cindy.Strings
             try
             {
                 string path = xpath.Replace(keyVariable, key);
-                XmlNode tmp = document.SelectSingleNode(path);
-                string result = null;
-                switch (valueType)
+                try
                 {
-                    default:
-                    case NodeValueType.InnerXml:
-                        result = tmp.InnerXml;
-                        break;
-                    case NodeValueType.InnerText:
-                        result = tmp.InnerText;
-                        break;
-                    case NodeValueType.OuterXml:
-                        result = tmp.OuterXml;
-                        break;
+                    XmlNode tmp = document.SelectSingleNode(path);
+                    string result = null;
+                    switch (valueType)
+                    {
+                        default:
+                        case NodeValueType.InnerXml:
+                            result = tmp.InnerXml;
+                            break;
+                        case NodeValueType.InnerText:
+                            result = tmp.InnerText;
+                            break;
+                        case NodeValueType.OuterXml:
+                            result = tmp.OuterXml;
+                            break;
+                    }
+                    resultAction?.Invoke(result, null, true);
+                }catch(Exception e)
+                {
+                    Debug.LogWarning(e);
+                    resultAction?.Invoke(null, null, true);
                 }
-                resultAction?.Invoke(result, null, true);
             }
             catch(Exception e)
             {

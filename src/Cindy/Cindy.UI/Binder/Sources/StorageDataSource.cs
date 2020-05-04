@@ -39,9 +39,13 @@ namespace Cindy.UI.Binder.Sources
                             {
                                 resultAction(r, e, true);
                             }
-                            else
+                            else if (temp != null)
                             {
                                 resultAction?.Invoke(JSON.FromJson<T>(temp), null, true);
+                            }
+                            else
+                            {
+                                resultAction?.Invoke(default, null, true);
                             }
                         }
                         catch (Exception e1)
@@ -81,9 +85,13 @@ namespace Cindy.UI.Binder.Sources
                                 {
                                     results.Add(r);
                                 }
-                                else
+                                else if (temp != null)
                                 {
                                     results.Add(JSON.FromJson<T>(temp));
+                                }
+                                else
+                                {
+                                    results.Add(default);
                                 }
                             }
                             resultAction?.Invoke(results.ToArray(), null, true);

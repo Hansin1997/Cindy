@@ -21,7 +21,7 @@ namespace Cindy.Logic
         /// <summary>
         /// 执行触发事件
         /// </summary>
-        protected virtual void Execute()
+        public virtual void Execute()
         {
             if (!Handle())
                 return;

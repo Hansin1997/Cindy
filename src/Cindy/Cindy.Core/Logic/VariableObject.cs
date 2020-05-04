@@ -96,18 +96,13 @@ namespace Cindy.Logic
         public override void SetVariableValue(object value)
         {
             if (value is T v)
-                this.value = v;
+                SetValue(v);
             else if (value != null)
             {
-                string json;
-                if (value is string s)
-                    json = s;
-                else
-                    json = JSON.ToJson(value);
-                this.value = JSON.FromJson<T>(json);
+                SetValue(JSON.FromJson<T>(value.ToString()));
             }
             else
-                this.value = default;
+                SetValue(default);
         }
 
         public override Type GetValueType()

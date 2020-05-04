@@ -60,7 +60,7 @@ namespace Cindy.UI.Binder
             object value = temp.GetVariableValue();
             if (value == null)
             {
-                resultAction?.Invoke(default, null, false);
+                resultAction?.Invoke(default, null, true);
                 yield break;
             }
 
