@@ -2,6 +2,9 @@
 
 namespace Cindy.Control.Cameras
 {
+    /// <summary>
+    /// 摄像机阻塞控制器（空控制器）
+    /// </summary>
     [AddComponentMenu("Cindy/Control/Camera/BlockedCamera", 0)]
     public class BlockedCamera : CameraController
     {

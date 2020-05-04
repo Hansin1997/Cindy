@@ -3,11 +3,23 @@ using UnityEngine;
 
 namespace Cindy.Logic
 {
+    /// <summary>
+    /// 组合条件
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/CombinedCondition")]
     public class CombinedCondition : Condition
     {
+        /// <summary>
+        /// 操作符
+        /// </summary>
         public Operate operate;
+        /// <summary>
+        /// 条件数组
+        /// </summary>
         public Condition[] conditions;
+        /// <summary>
+        /// 当条件数组为空时，此条件的默认值。
+        /// </summary>
         [Tooltip("Value when conditions is empty.")]
         public bool emptyValue = true;
 
@@ -32,10 +44,19 @@ namespace Cindy.Logic
             }
         }
 
+        /// <summary>
+        /// 操作符
+        /// </summary>
         [Serializable]
         public enum Operate
         {
+            /// <summary>
+            /// 且
+            /// </summary>
             AND,
+            /// <summary>
+            /// 或者
+            /// </summary>
             OR
         }
     }

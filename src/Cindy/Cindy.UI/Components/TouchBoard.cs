@@ -5,18 +5,30 @@ using UnityEngine.UI;
 
 namespace Cindy.UI.Components
 {
+    /// <summary>
+    /// 触摸板
+    /// </summary>
     [DisallowMultipleComponent]
     [AddComponentMenu("Cindy/UI/Components/TouchBoard")]
     public class TouchBoard : Selectable
     {
+        /// <summary>
+        /// 虚拟横轴
+        /// </summary>
         [Header("Virtual Axis")]
         public string horizontalAxisName = "Horizontal";
+        /// <summary>
+        /// 虚拟纵轴
+        /// </summary>
         public string verticalAxisName = "Vertical";
+        /// <summary>
+        /// 虚拟按钮
+        /// </summary>
         public string buttonKey = "";
 
-        public bool horizontal = true, vertical = true, button = false;
+        public bool horizontal = true, vertical = true, button = false; // 是否启用
 
-        public InputType inputType = InputType.Delta;
+        public InputType inputType = InputType.Delta; // 触摸板输入类型
 
         public ReferenceFloat horizontalSensitivity = new ReferenceFloat() { value = 100 } , verticalSensitivity = new ReferenceFloat() { value = 100 };
 

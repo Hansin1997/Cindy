@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Cindy.UI.PositionBinders
 {
+    /// <summary>
+    /// 位置绑定管理器
+    /// </summary>
     [AddComponentMenu("Cindy/UI/PositionBinders/PositionBinderManager", 99)]
     [RequireComponent(typeof(RectTransform))]
     public class PositionBinderManager : AttachmentContainer

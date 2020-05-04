@@ -6,35 +6,76 @@ using UnityEngine.Events;
 
 namespace Cindy.Logic
 {
+    /// <summary>
+    /// 变量对象类，包装数据类型成MonoBehaviour。
+    /// </summary>
+    /// <typeparam name="T">数据类型</typeparam>
     public abstract class VariableObject<T> : AbstractVariableObject,IStorableObject
     {
+        /// <summary>
+        /// 变量名
+        /// </summary>
         [Header("Variable")]
         public string variableName;
+        /// <summary>
+        /// 变量值
+        /// </summary>
         [SerializeField]
         protected T value;
-        protected object _value;
 
+        /// <summary>
+        /// 代理上下文，当字段不为空时此对象为变量代理。
+        /// </summary>
         [Header("Proxy")]
         public Context proxyContext;
+        /// <summary>
+        /// 被代理的变量名。
+        /// </summary>
         public ReferenceString proxyTarget;
-        protected VariableObject<T> _proxyTarget, _proxyTargetOld;
 
+        /// <summary>
+        /// 存储器，当字段不为空时将从存储器获取初始值
+        /// </summary>
         [Header("Storage")]
         public AbstractStorage storage;
+        /// <summary>
+        /// 存储器键名
+        /// </summary>
         public ReferenceString key;
+        /// <summary>
+        /// 是否在数据更改时存储
+        /// </summary>
         public bool autoSave = true;
+        /// <summary>
+        /// 是否在每一帧从存储库获取最新值
+        /// </summary>
         public bool updateFromStorage = false;
+        /// <summary>
+        /// 存储异常处理出口
+        /// </summary>
         public ExceptionEvent exceptionEvent;
 
+        /// <summary>
+        /// 值更改事件
+        /// </summary>
         [Header("Events")]
         public UnityEvent valueChangedEvent;
 
+        protected object _value; // 旧变量值
+        protected VariableObject<T> _proxyTarget, _proxyTargetOld; // 当前代理对象和旧的代理对象
+
+        /// <summary>
+        /// 存储异常出口
+        /// </summary>
         public struct ExceptionEvent
         {
             public UnityEvent<Exception> onLoadException;
             public UnityEvent<Exception> onSaveException;
         }
 
+        /// <summary>
+        /// 变量值
+        /// </summary>
         public T Value { get { return GetValue(); }  set { SetValue(value); } }
 
         protected virtual void Start()
@@ -82,11 +123,14 @@ namespace Cindy.Logic
                 _proxyTargetOld.valueChangedEvent.RemoveListener(OnProxyValueChanged);
         }
 
+        /// <summary>
+        /// 从存储器加载数据
+        /// </summary>
         protected virtual void LoadFromStorage()
         {
             if (storage != null)
             {
-                storage.LoadObjects(this,(s,e)=>
+                storage.RestoreObjects(this,(s,e)=>
                 {
                     if (!s && e != null)
                         OnValueLoadException(e);
@@ -100,29 +144,48 @@ namespace Cindy.Logic
             }
         }
 
+        /// <summary>
+        /// 当从存储器加载值完毕后
+        /// </summary>
+        /// <param name="val">加载的数据值</param>
         protected virtual void OnValueLoad(T val)
         {
             if (val != null)
                 value = val;
         }
 
+        /// <summary>
+        /// 当从存储器加载到空值
+        /// </summary>
         protected virtual void OnValueLoadEmpty()
         {
 
         }
 
+        /// <summary>
+        /// 当从存储器加载时发生异常
+        /// </summary>
+        /// <param name="e">异常对象</param>
         protected virtual void OnValueLoadException(Exception e)
         {
             Debug.LogWarning(e, this);
             exceptionEvent.onLoadException.Invoke(e);
         }
 
+        /// <summary>
+        /// 当存储器存储值时发生异常
+        /// </summary>
+        /// <param name="e">异常对象</param>
         protected virtual void OnValueSaveException(Exception e)
         {
             Debug.LogWarning(e, this);
             exceptionEvent.onSaveException.Invoke(e);
         }
 
+        /// <summary>
+        /// 判断变量值是否更改
+        /// </summary>
+        /// <returns>变量值是否更改</returns>
         protected bool IsValueChanged()
         {
             if (value == null || _value == null)
@@ -153,6 +216,9 @@ namespace Cindy.Logic
                 LoadFromStorage();
         }
 
+        /// <summary>
+        /// 当被代理变量值发生更改时
+        /// </summary>
         protected virtual void OnProxyValueChanged()
         {
             if(_proxyTarget != null)
@@ -161,6 +227,11 @@ namespace Cindy.Logic
             }
         }
 
+        /// <summary>
+        /// 当变量值发生更改时
+        /// </summary>
+        /// <param name="save">是否保存</param>
+        /// <param name="notify">是否触发事件</param>
         protected virtual void OnValueChanged(bool save = true,bool notify = true)
         {
             if (autoSave && save)
@@ -170,6 +241,9 @@ namespace Cindy.Logic
             _value = value;
         }
 
+        /// <summary>
+        /// 存储变量
+        /// </summary>
         public virtual void Save()
         {
             if (storage != null)
@@ -182,6 +256,10 @@ namespace Cindy.Logic
             }
         }
 
+        /// <summary>
+        /// 设置变量值
+        /// </summary>
+        /// <param name="value"></param>
         public virtual void SetValue(T value)
         {
             if (proxyContext != null)
@@ -195,6 +273,10 @@ namespace Cindy.Logic
             this.value = value;
         }
 
+        /// <summary>
+        /// 获取变量值
+        /// </summary>
+        /// <returns></returns>
         public virtual T GetValue()
         {
             if(proxyContext != null)
@@ -208,6 +290,9 @@ namespace Cindy.Logic
             return value;
         }
 
+        /// <summary>
+        /// 刷新变量值
+        /// </summary>
         public virtual void RefreshValue()
         {
             value = GetValue();
@@ -216,7 +301,7 @@ namespace Cindy.Logic
         public override string ToString()
         {
             if (value == null)
-                return "NULL";
+                return "null";
             return value.ToString();
         }
 
@@ -235,7 +320,7 @@ namespace Cindy.Logic
             return typeof(T);
         }
 
-        public virtual void OnPutStorableObject(object obj)
+        public virtual void OnStorableObjectRestore(object obj)
         {
             if (obj == null)
                 OnValueLoadEmpty();
@@ -254,6 +339,12 @@ namespace Cindy.Logic
                 OnValueChanged(false);
         }
 
+        /// <summary>
+        /// 转换加载对象
+        /// </summary>
+        /// <param name="obj">从存储器加载的对象</param>
+        /// <param name="output">转换后的对象</param>
+        /// <returns>是否转换成功</returns>
         protected virtual bool TramsformValue(object obj,out T output)
         {
             if (obj is T v)

@@ -2,6 +2,9 @@
 
 namespace Cindy.Logic.VariableObjects
 {
+    /// <summary>
+    /// 角色控制器速度
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/CharacterController/CharacterControllerVelocity (Vector3)")]
     public class CharacterControllerVelocity : Vector3Object
     {

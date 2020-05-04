@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Cindy.Util.Serializables
 {
+    /// <summary>
+    /// 序列化列表字典
+    /// </summary>
     [Serializable]
     public class SerializedListDictionary
     {

@@ -7,12 +7,20 @@ using UnityEngine;
 
 namespace Cindy.Strings
 {
+    /// <summary>
+    /// 字符串处理器，通过指定的起始终止符找到对应的文本源进行文本替换。
+    /// </summary>
     [CreateAssetMenu(fileName = "StringSourceProcesser", menuName = "Cindy/StringSources/StringSourceProcesser", order = 99)]
     public class StringSourceProcesser : StringSource
     {
-
+        /// <summary>
+        /// 源文本源
+        /// </summary>
         public StringSource originStringSource;
 
+        /// <summary>
+        /// 替换参数
+        /// </summary>
         public KV[] parameterSources;
 
         private Dictionary<string, StringSource> map;

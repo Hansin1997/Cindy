@@ -2,8 +2,14 @@
 
 namespace Cindy.Logic
 {
-    public abstract class Condition : NamedObject
+    /// <summary>
+    /// 抽象条件类
+    /// </summary>
+    public abstract class Condition : NamedBehaviour
     {
+        /// <summary>
+        /// 条件名称
+        /// </summary>
         public ReferenceString conditionName;
 
         /// <summary>

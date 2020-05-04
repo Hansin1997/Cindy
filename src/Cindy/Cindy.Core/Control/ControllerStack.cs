@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Cindy.Control
 {
+    /// <summary>
+    /// 通用控制器栈
+    /// </summary>
     [AddComponentMenu("Cindy/Control/ControllerStack", 1)]
     [DisallowMultipleComponent]
     public class ControllerStack : AbstractControllerStack

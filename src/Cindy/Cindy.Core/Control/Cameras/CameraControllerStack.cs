@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Cindy.Control.Cameras
 {
+    /// <summary>
+    /// 摄像机控制栈
+    /// </summary>
     [AddComponentMenu("Cindy/Control/CameraControllerStack", 1)]
     [RequireComponent(typeof(Camera))]
     [DisallowMultipleComponent]

@@ -4,7 +4,9 @@ using UnityEngine;
 
 namespace Cindy.Logic.VariableObjects
 {
-
+    /// <summary>
+    /// 按钮值
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Input/ButtonValue (Bool)")]
     public class ButtonValue : BoolObject
     {

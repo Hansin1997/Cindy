@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 namespace Cindy.Logic.VariableObjects
 {
+    /// <summary>
+    /// 场景名
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Util/SceneName (String)")]
     public class SceneName : StringObject
     {

@@ -6,6 +6,10 @@ using UnityEngine;
 
 namespace Cindy.Storages
 {
+    /// <summary>
+    /// 储存触发器
+    /// </summary>
+    [Obsolete]
     [AddComponentMenu("Cindy/Storage/StorageTrigger", 10)]
     public class StorageTrigger : MonoBehaviour
     {
@@ -56,7 +60,7 @@ namespace Cindy.Storages
         public virtual void LoadObjects()
         {
             if (storage != null)
-                storage.LoadObjects(this, (s, e) =>
+                storage.RestoreObjects(this, (s, e) =>
                 {
                     
                     if (!s)

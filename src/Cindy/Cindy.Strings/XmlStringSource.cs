@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Cindy.Strings
 {
+    /// <summary>
+    /// 静态Xml文本源
+    /// </summary>
     [CreateAssetMenu(fileName = "XmlStringSource", menuName = "Cindy/StringSources/XmlStringSource", order = 1)]
     public class XmlStringSource : AbstractXmlStringSource
     {

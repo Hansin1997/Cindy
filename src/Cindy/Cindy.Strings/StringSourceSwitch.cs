@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Cindy.Strings
 {
+    /// <summary>
+    /// 文本源切换器
+    /// </summary>
     [CreateAssetMenu(fileName = "StringSourcesSwitch", menuName = "Cindy/StringSources/StringSourcesSwitch", order = 99)]
     public class StringSourceSwitch : StringSource
     {

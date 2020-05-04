@@ -4,9 +4,15 @@ using UnityEngine;
 
 namespace Cindy.Media.Audio
 {
+    /// <summary>
+    /// 音频附件，提交音频到音频栈
+    /// </summary>
     [AddComponentMenu("Cindy/Media/Audio/AudioAttachment")]
     public class AudioAttachment : Attachment
     {
+        /// <summary>
+        /// 附件数据
+        /// </summary>
         public Data data;
 
         protected override Type GetTargetType()
@@ -14,10 +20,19 @@ namespace Cindy.Media.Audio
             return typeof(AttachmentContainer);
         }
 
+        /// <summary>
+        /// 附件数据
+        /// </summary>
         [Serializable]
         public struct Data
         {
+            /// <summary>
+            /// 音频
+            /// </summary>
             public AudioClip clip;
+            /// <summary>
+            /// 是否循环
+            /// </summary>
             public bool loop;
 
             public override bool Equals(object obj)

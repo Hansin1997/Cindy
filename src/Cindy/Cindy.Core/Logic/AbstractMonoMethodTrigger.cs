@@ -1,7 +1,13 @@
 ﻿namespace Cindy.Logic
 {
+    /// <summary>
+    /// 抽象MonoBehaviour方法触发器，指定一个MonoBehaviour方法，在其被调用时触发事件。
+    /// </summary>
     public abstract class AbstractMonoMethodTrigger : LogicTrigger
     {
+        /// <summary>
+        /// MonoBehaviour方法
+        /// </summary>
         public MonoMethods monoMethod = MonoMethods.Update;
 
         protected virtual void Awake()

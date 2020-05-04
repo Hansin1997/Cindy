@@ -12,6 +12,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="VariableObjects\ConditionBool.cs~RF16b60ac6.TMP" />
+    <None Remove="VariableObjects\Input\RelativedAxisValue.cs~RF16b7718a.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Cindy.Core\Cindy.Core.csproj" />
   </ItemGroup>
 

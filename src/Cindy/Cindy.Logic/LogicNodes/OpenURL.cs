@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Cindy.Logic.LogicNodes
 {
+    /// <summary>
+    /// 打开网页
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/LogicNodes/OpenURL")]
     public class OpenURL : LogicNode
     {

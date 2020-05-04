@@ -3,17 +3,29 @@ using UnityEngine;
 
 namespace Cindy.Control.Controllers
 {
+    /// <summary>
+    /// 导航控制器
+    /// </summary>
     [AddComponentMenu("Cindy/Control/Controllers/NavigationController")]
     public class NavigationController : Controller
     {
+        /// <summary>
+        /// 扫描距离
+        /// </summary>
         [Header("Parameters")]
         public float scanRadius = 10;
-        public NavigationControllerAction[] actions;
-
+        /// <summary>
+        /// 行为数组
+        /// </summary>
+        public NavigationControllerBehaviour[] behaviours;
+        
+        /// <summary>
+        /// 新位置输出
+        /// </summary>
         [Header("Output")]
         public ReferenceVector3 targetPosition;
 
-        protected NavigationControllerAction a;
+        protected NavigationControllerBehaviour a;
         protected GameObject t;
 
         public override void OnControllerSelect()
@@ -28,12 +40,11 @@ namespace Cindy.Control.Controllers
 
         public override void OnControllerUpdate(float deltaTime)
         {
-
             if (a != null)
             {
                 if (t == null)
                     a = null;
-                else if (!a.IsActived(t))
+                else if (!a.IsMatch(t))
                 {
                     a = null;
                     t = null;
@@ -46,9 +57,9 @@ namespace Cindy.Control.Controllers
                 Collider[] colliders = Physics.OverlapSphere(transform.position, scanRadius);
                 foreach (Collider collider in colliders)
                 {
-                    foreach (NavigationControllerAction action in actions)
+                    foreach (NavigationControllerBehaviour action in behaviours)
                     {
-                        if (action.IsActived(collider.gameObject))
+                        if (action.IsMatch(collider.gameObject))
                         {
                             a = action;
                             t = collider.gameObject;
@@ -77,12 +88,27 @@ namespace Cindy.Control.Controllers
             }
         }
 
-        public abstract class NavigationControllerAction : ScriptableObject
+        /// <summary>
+        /// 导航控制器行为
+        /// </summary>
+        public abstract class NavigationControllerBehaviour : ScriptableObject
         {
+            /// <summary>
+            /// 执行距离
+            /// </summary>
             public float actionRadius = 1;
+            
+            /// <summary>
+            /// 判断对象是否匹配
+            /// </summary>
+            /// <param name="gameObject">对象</param>
+            /// <returns>是否匹配</returns>
+            public abstract bool IsMatch(GameObject gameObject);
 
-            public abstract bool IsActived(GameObject gameObject);
-
+            /// <summary>
+            /// 执行行为
+            /// </summary>
+            /// <param name="gameObject">对象</param>
             public abstract void DoAction(GameObject gameObject);
         }
     }

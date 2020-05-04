@@ -5,12 +5,18 @@ using UnityEngine;
 
 namespace Cindy.Logic.VariableObjects
 {
+    /// <summary>
+    /// 字符串变量
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/StringObject (String)")]
     public class StringObject : VariableObject<string>
     {
 
     }
 
+    /// <summary>
+    /// 组合字符串
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/CombinedStringObject (String)")]
     public class CombinedStringObject : StringObject
     {
@@ -38,11 +44,19 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
+    /// <summary>
+    /// 格式化字符串
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/StringFormat (String)")]
     public class StringFormat : StringObject
     {
+        /// <summary>
+        /// 格式
+        /// </summary>
         public ReferenceString format;
-
+        /// <summary>
+        /// 参数
+        /// </summary>
         public Behaviour[] objects;
 
         public OnException onException = OnException.LogWarning;
@@ -92,6 +106,9 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
+    /// <summary>
+    /// 物体名称字符串
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Name (String)")]
     public class Name : StringObject
     {
@@ -112,6 +129,9 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
+    /// <summary>
+    /// 整型转字符串
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/IntToString (String)")]
     public class IntToString : StringObject
     {
@@ -130,6 +150,9 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
+    /// <summary>
+    /// 浮点型转字符串
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/FloatToString (String)")]
     public class FloatToString : StringObject
     {
@@ -148,6 +171,9 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
+    /// <summary>
+    /// 双精度浮点型转字符串
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/DoubleToString (String)")]
     public class DoubleToString : StringObject
     {

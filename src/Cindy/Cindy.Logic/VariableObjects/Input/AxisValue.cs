@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Cindy.Logic.VariableObjects
 {
+    /// <summary>
+    /// 轴输入
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Input/AxisValue (Float)")]
     public class AxisValue : FloatObject
     {

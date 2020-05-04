@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace Cindy.Util.Serializables
 {
+    /// <summary>
+    /// 序列化键值对
+    /// </summary>
+    /// <typeparam name="K">Key</typeparam>
+    /// <typeparam name="V">Value</typeparam>
     [Serializable]
     public class SerializedKeyValuePair<K,V>
     {

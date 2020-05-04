@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Cindy.Storages
 {
+    /// <summary>
+    /// 临时储存器，数据将直接存储在字典变量中，不进行持久化存储。
+    /// </summary>
     [CreateAssetMenu(fileName = "TemporaryStroage", menuName = "Cindy/Storage/TemporaryStroage", order = 1)]
     public class TemporaryStroage : AbstractStorage
     {
@@ -60,7 +63,7 @@ namespace Cindy.Storages
             yield return null;
         }
 
-        public override IEnumerator DoLoadObjects(BoolAction<Exception> action, Action<float> progess, IStorableObject[] storableObjects)
+        public override IEnumerator DoRestoreObjects(BoolAction<Exception> action, Action<float> progess, IStorableObject[] storableObjects)
         {
             try
             {
@@ -68,7 +71,7 @@ namespace Cindy.Storages
                 foreach (IStorableObject storableObject in storableObjects)
                 {
                     if (Map.ContainsKey(storableObject.GetStorableKey()))
-                        storableObject.OnPutStorableObject(Map[storableObject.GetStorableKey()]);
+                        storableObject.OnStorableObjectRestore(Map[storableObject.GetStorableKey()]);
                 }
                 progess(1);
                 action?.Invoke(true, null);

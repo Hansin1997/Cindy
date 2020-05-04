@@ -3,10 +3,20 @@ using UnityEngine;
 
 namespace Cindy.Logic.VariableObjects.Vectors
 {
+    /// <summary>
+    /// Vector3投影
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Vectors/ProjectVector3 (Vector3)")]
     public class ProjectVector3 : Vector3Object
     {
-        public ReferenceVector3 vector, normal;
+        /// <summary>
+        /// 向量
+        /// </summary>
+        public ReferenceVector3 vector;
+        /// <summary>
+        /// 法线
+        /// </summary>
+        public ReferenceVector3 normal;
 
         public override void SetValue(Vector3 value)
         {

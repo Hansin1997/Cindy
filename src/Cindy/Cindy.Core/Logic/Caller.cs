@@ -2,6 +2,9 @@
 
 namespace Cindy.Logic
 {
+    /// <summary>
+    /// 通用触发器
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/Triggers/Caller")]
     public class Caller : AbstractMonoMethodTrigger
     {

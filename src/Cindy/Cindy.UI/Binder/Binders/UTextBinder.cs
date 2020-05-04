@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace Cindy.UI.Binder.Binders
 {
+    /// <summary>
+    /// Text数据绑定器
+    /// </summary>
     [AddComponentMenu("Cindy/UI/Binder/Binders/UTextBinder")]
     public class UTextBinder : SingleValueBinder<string, Text>
     {

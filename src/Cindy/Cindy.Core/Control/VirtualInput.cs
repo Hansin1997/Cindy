@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Cindy
 {
+    /// <summary>
+    /// 虚拟输入，用于替代Unity的Input。允许添加虚拟按钮和虚拟轴。
+    /// </summary>
     public static class VirtualInput
     {
         private static readonly Dictionary<string, ISet<VirtualAxis>> virtualAxes = new Dictionary<string, ISet<VirtualAxis>>();

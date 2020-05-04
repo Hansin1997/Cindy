@@ -171,7 +171,7 @@ namespace Cindy.ItemSystem
             return typeof(ItemContainerPackage);
         }
 
-        public override void OnPutStorableObject(object obj)
+        public override void OnStorableObjectRestore(object obj)
         {
             if (obj is ItemContainerPackage p) { 
                 p.Resume(this);

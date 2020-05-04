@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace Cindy.Logic.VariableObjects
 {
+    /// <summary>
+    /// Toggle值
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/UI/ToggleValue (Bool)")]
     public class ToggleValue : BoolObject
     {

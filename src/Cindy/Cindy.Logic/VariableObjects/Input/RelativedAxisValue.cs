@@ -4,6 +4,9 @@ using static UnityEngine.RectTransform;
 
 namespace Cindy.Logic.VariableObjects
 {
+    /// <summary>
+    /// 相对轴输入
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Input/RelativedAxis (Float)")]
     public class RelativedAxis : FloatObject
     {

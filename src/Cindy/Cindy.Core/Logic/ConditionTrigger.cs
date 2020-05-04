@@ -2,11 +2,20 @@
 
 namespace Cindy.Logic
 {
+    /// <summary>
+    /// 条件触发器
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/Triggers/ConditionTrigger")]
     public class ConditionTrigger : AbstractMonoMethodTrigger
     {
+        /// <summary>
+        /// 触发条件
+        /// </summary>
         [Header("Condition Trigger")]
         public Condition condition;
+        /// <summary>
+        /// 是否取反
+        /// </summary>
         public bool invert;
 
         private bool lastValue, firstTime = true;

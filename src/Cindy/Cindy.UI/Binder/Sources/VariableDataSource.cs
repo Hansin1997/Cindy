@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace Cindy.UI.Binder
 {
+    /// <summary>
+    /// 变量数据源
+    /// </summary>
     [AddComponentMenu("Cindy/UI/Binder/DataSources/VariableDataSource")]
     public class VariableDataSource : AbstractDataSource
     {

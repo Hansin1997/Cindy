@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Cindy.Logic.LogicNodes.Physics
 {
+    /// <summary>
+    /// 单个射线碰撞检测
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/LogicNodes/Physics/SingleRaycast")]
     public class SingleRaycast : AbstractRaycast
     {

@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Cindy.Util.Serializables
 {
+    /// <summary>
+    /// 序列化Transform
+    /// </summary>
     [Serializable]
     public class SerializedTransform
     {

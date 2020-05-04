@@ -3,12 +3,20 @@ using UnityEngine;
 
 namespace Cindy.Logic.VariableObjects
 {
-    [AddComponentMenu("Cindy/Media/Audio/AudioVolumeSetter")]
-    public class AudioVolumeSetter : FloatObject
+    /// <summary>
+    /// 用于控制AudioSource音量的浮点变量对象。
+    /// </summary>
+    [AddComponentMenu("Cindy/Media/Audio/AudioVolumeSetter (Float)")]
+    public class AudioSourceVolume : FloatObject
     {
+        /// <summary>
+        /// AudioSource数组
+        /// </summary>
         [Header("AudioVolume")]
         public List<AudioSource> audioSources;
-        public bool asScale;
+        /// <summary>
+        /// 扫描指定物体管理其中的AudioSource
+        /// </summary>
         public Target target = Target.SlefAndChildren;
 
         protected override void Start()

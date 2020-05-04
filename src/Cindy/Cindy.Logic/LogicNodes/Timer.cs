@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Cindy.Logic.LogicNodes
 {
+    /// <summary>
+    /// 计时器
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/LogicNodes/Timer")]
     public class Timer : LogicNode
     {

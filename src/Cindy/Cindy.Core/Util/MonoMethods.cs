@@ -1,5 +1,8 @@
 ﻿namespace Cindy
 {
+    /// <summary>
+    /// MonoBehaviour的相关方法
+    /// </summary>
     public enum MonoMethods
     {
         Awake,

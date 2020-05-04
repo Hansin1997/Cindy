@@ -4,9 +4,12 @@ using UnityEngine;
 
 namespace Cindy.Media.Audio
 {
-    [AddComponentMenu("Cindy/Media/Audio/AudioController")]
+    /// <summary>
+    /// 音频栈，控制AudioSource。
+    /// </summary>
+    [AddComponentMenu("Cindy/Media/Audio/AudioStack")]
     [RequireComponent(typeof(AudioSource))]
-    public class AudioController : AttachmentContainer
+    public class AudioStack : AttachmentContainer
     {
 
         public bool dontDestroyOnLoad;
@@ -73,8 +76,8 @@ namespace Cindy.Media.Audio
 
         protected virtual void Start()
         {
-            AudioController[] controllers = FindObjectsOfType<AudioController>();
-            foreach(AudioController controller in controllers)
+            AudioStack[] controllers = FindObjectsOfType<AudioStack>();
+            foreach(AudioStack controller in controllers)
             {
                 if (controller != this)
                     Destroy(gameObject);

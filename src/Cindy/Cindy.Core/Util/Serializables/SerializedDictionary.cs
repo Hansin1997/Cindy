@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Cindy.Util.Serializables
 {
+    /// <summary>
+    /// 序列化字典
+    /// </summary>
     [Serializable]
     public class SerializedDictionary
     {

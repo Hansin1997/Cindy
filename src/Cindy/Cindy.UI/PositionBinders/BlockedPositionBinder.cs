@@ -2,6 +2,9 @@
 
 namespace Cindy.UI.PositionBinders
 {
+    /// <summary>
+    /// 位置绑定屏蔽
+    /// </summary>
     [AddComponentMenu("Cindy/UI/PositionBinders/BlockedPositionBinder")]
     public class BlockedPositionBinder : AbstractPositionBinder
     {

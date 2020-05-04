@@ -3,10 +3,19 @@ using UnityEngine;
 
 namespace Cindy.Logic
 {
+    /// <summary>
+    /// 条件代理
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/ConditionProxy")]
     public class ConditionProxy : Condition
     {
+        /// <summary>
+        /// 上下文
+        /// </summary>
         public Context context;
+        /// <summary>
+        /// 被代理条件的名称
+        /// </summary>
         public ReferenceString targetName;
 
         protected Condition _target;

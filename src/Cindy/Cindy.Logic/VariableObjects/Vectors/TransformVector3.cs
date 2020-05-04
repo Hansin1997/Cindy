@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Cindy.Logic.VariableObjects.Vectors
 {
+    /// <summary>
+    /// Transform各种向量: 位置、旋转、缩放
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Vectors/TransformVector3 (Vector3)")]
     public class TransformVector3 : Vector3Object
     {

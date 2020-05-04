@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Cindy.Control.Cameras
 {
+    /// <summary>
+    /// 抽象摄像机控制器
+    /// </summary>
     public abstract class CameraController : AbstractController
     {
         private Dictionary<string, object> temp;

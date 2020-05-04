@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Cindy.Strings
 {
+    /// <summary>
+    /// 简单文本源，直接将数据存在ScriptableObject。
+    /// </summary>
     [CreateAssetMenu(fileName = "SimpleStringSource", menuName = "Cindy/StringSources/SimpleStringSource", order = 1)]
     public class SimpleStringSource : StringSource
     {

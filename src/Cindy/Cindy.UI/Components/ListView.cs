@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 namespace Cindy.UI.Components
 {
+    /// <summary>
+    /// 抽象列表
+    /// </summary>
+    /// <typeparam name="T">目标</typeparam>
+    /// <typeparam name="S">数据源</typeparam>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(ScrollRect))]
     public abstract class ListView<T, S> : UIBehaviour where T : Component where S : Component

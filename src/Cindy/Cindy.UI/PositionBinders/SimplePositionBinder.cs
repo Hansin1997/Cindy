@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Cindy.UI.PositionBinders
 {
+    /// <summary>
+    /// 简单位置绑定器
+    /// </summary>
     [AddComponentMenu("Cindy/UI/PositionBinders/SimplePositionBinder")]
     public class SimplePositionBinder : AbstractPositionBinder
     {

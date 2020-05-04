@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Cindy.Util.Serializables
 {
+    /// <summary>
+    /// 序列化列表
+    /// </summary>
     [Serializable]
     public class SerializedList
     {

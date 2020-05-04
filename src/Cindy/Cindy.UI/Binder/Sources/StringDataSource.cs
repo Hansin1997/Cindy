@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Cindy.UI.Binder
 {
+    /// <summary>
+    /// 文本数据源
+    /// </summary>
     [AddComponentMenu("Cindy/UI/Binder/DataSources/StringDataSource")]
     public class StringDataSource : AbstractDataSource
     {

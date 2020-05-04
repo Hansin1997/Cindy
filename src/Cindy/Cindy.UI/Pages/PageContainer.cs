@@ -4,22 +4,16 @@ using UnityEngine;
 
 namespace Cindy.UI.Pages
 {
-    public class PageContainer : MonoBehaviour
+    /// <summary>
+    /// 页面容器
+    /// </summary>
+    [AddComponentMenu("Cindy/UI/Page/PageContainer")]
+    public class PageContainer : MonoBehaviour , IPageContainer<Page>
     {
         public List<Page> pages;
         protected Page currentPage;
-        public static int Count
-        {
-            get
-            {
-                PageContainer pc = FindObjectOfType<PageContainer>();
-                if (pc == null)
-                    return -1;
-                return pc.pages.Count;
-            }
-        }
 
-        protected virtual void Push(Page page,Context context = null)
+        public virtual void Push(Page page,Context context = null)
         {
             if (!pages.Contains(page))
                 pages.Add(page);
@@ -33,7 +27,7 @@ namespace Cindy.UI.Pages
             page.OnPageStart();
         }
 
-        protected virtual Page Pop()
+        public virtual Page Pop()
         {
             if (pages.Count == 0)
                 return null;

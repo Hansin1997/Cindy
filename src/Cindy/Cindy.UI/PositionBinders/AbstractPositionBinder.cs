@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Cindy.UI.PositionBinders
 {
+    /// <summary>
+    /// 抽象位置绑定器
+    /// </summary>
     public abstract class AbstractPositionBinder : Attachment
     {
         [Header("PositionBinder")]

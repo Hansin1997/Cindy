@@ -3,12 +3,17 @@ using UnityEngine;
 
 namespace Cindy.Util
 {
+    /// <summary>
+    /// 绑定DontDestroyOnLoad的物体将移至'DontDestroyOnLoad'场景，在场景切换时不销毁。
+    /// </summary>
     [DisallowMultipleComponent]
     [AddComponentMenu("Cindy/Util/DontDestroyOnLoad")]
-    public class DontDestroyOnLoad : NamedObject
+    public class DontDestroyOnLoad : NamedBehaviour
     {
-        public ReferenceString id;
-        public ReferenceBool destroySelfIfIdExist = new ReferenceBool() { value = true };
+        [Tooltip("ID of this component.")]
+        public ReferenceString id; // 此对象的Id
+        [Tooltip("Whether to destroy the ID when it exists in the scene.")]
+        public ReferenceBool destroySelfIfIdExist = new ReferenceBool() { value = true }; // 是否当id在场景中存在时销毁自身。
 
         protected virtual void Awake()
         {

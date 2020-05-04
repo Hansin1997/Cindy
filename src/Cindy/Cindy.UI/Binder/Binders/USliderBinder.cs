@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace Cindy.UI.Binder.Binders
 {
+    /// <summary>
+    /// Slider数据绑定器
+    /// </summary>
     [AddComponentMenu("Cindy/UI/Binder/Binders/USliderBinder")]
     public class USliderBinder : AbstractBinder
     {

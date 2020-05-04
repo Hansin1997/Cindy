@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace Cindy.UI.Binder.Binders
 {
+    /// <summary>
+    /// InputField数据绑定器
+    /// </summary>
     [AddComponentMenu("Cindy/UI/Binder/Binders/UInputFieldBinder")]
     public class UInputFieldBinder : SingleValueBinder<string, InputField>
     {

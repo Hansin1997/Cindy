@@ -5,12 +5,24 @@ using UnityEngine;
 
 namespace Cindy.Strings
 {
+    /// <summary>
+    /// 抽象Xml文本源
+    /// </summary>
     public abstract class AbstractXmlStringSource : StringSource
     {
+        /// <summary>
+        /// 节点搜索的xpath
+        /// </summary>
         public string xpath = "/strings/string[@key='{key}']";
 
+        /// <summary>
+        /// xpath中key的占位符
+        /// </summary>
         public string keyVariable = "{key}";
 
+        /// <summary>
+        /// 节点值类型
+        /// </summary>
         public NodeValueType valueType = NodeValueType.InnerXml;
 
         private XmlDocument document;

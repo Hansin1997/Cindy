@@ -2,6 +2,9 @@
 
 namespace Cindy.Logic.VariableObjects.Vectors
 {
+    /// <summary>
+    /// 鼠标位置
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Vectors/MouseVector (Vector2)")]
     public class MouseVector : Vector2Object
     {

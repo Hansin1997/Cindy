@@ -4,12 +4,24 @@ using UnityEngine.Events;
 
 namespace Cindy.Logic
 {
+    /// <summary>
+    /// 逻辑触发器，用于触发事件。
+    /// </summary>
     public abstract class LogicTrigger : MonoBehaviour
     {
+        /// <summary>
+        /// 事件逻辑节点
+        /// </summary>
         public LogicNode[] targetNodes;
+        /// <summary>
+        /// UnityEvent
+        /// </summary>
         public UnityEvent events;
 
-        protected void Execute()
+        /// <summary>
+        /// 执行触发事件
+        /// </summary>
+        protected virtual void Execute()
         {
             if (!Handle())
                 return;
@@ -29,6 +41,10 @@ namespace Cindy.Logic
             events.Invoke();
         }
 
+        /// <summary>
+        /// 触发事件前的检查
+        /// </summary>
+        /// <returns>是否执行触发事件</returns>
         protected abstract bool Handle();
     }
 }

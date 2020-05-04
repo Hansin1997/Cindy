@@ -6,8 +6,11 @@ using UnityEngine.UI;
 
 namespace Cindy.UI.Pages
 {
+    /// <summary>
+    /// 消息框
+    /// </summary>
     [DisallowMultipleComponent]
-    [AddComponentMenu("Cindy/UI/Page/MessageBox")]
+    [AddComponentMenu("Cindy/UI/Page/MessageBox/MessageBox (Page)")]
     public class MessageBox : Page
     {
         public Text title, content;
@@ -31,7 +34,7 @@ namespace Cindy.UI.Pages
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/Methods/MessageShower")]
+    [AddComponentMenu("Cindy/UI/Page/MessageBox/MessageShower (LogicNode)")]
     public class MessageShower : LogicNode
     {
         public MessageBox messageBox;

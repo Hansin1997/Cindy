@@ -3,12 +3,24 @@ using UnityEngine;
 
 namespace Cindy.Control.Cameras
 {
+    /// <summary>
+    /// 第三人称自由视角摄像机行为
+    /// </summary>
     [CreateAssetMenu(fileName = "FreeLookCamera", menuName = "Cindy/Control/Camera/FreeLook", order = 1)]
     public class FreeLookCamera : BaseCameraBehaviour
     {
+        /// <summary>
+        /// 输入轴配置
+        /// </summary>
         [Header("Free Look")]
         public AxesConfig axesConfig;
+        /// <summary>
+        /// 距离目标的距离
+        /// </summary>
         public float distance = 5f;
+        /// <summary>
+        /// 上下角度限制
+        /// </summary>
         [Range(0, 90)]
         public float verticalAngleLimit = 80;
 

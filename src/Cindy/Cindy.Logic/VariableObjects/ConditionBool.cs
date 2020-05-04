@@ -2,6 +2,9 @@
 
 namespace Cindy.Logic.VariableObjects
 {
+    /// <summary>
+    /// 条件转布尔型变量
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Util/ConditionBool (Bool)")]
     public class ConditionBool : BoolObject
     {

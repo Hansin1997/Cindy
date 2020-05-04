@@ -4,10 +4,16 @@ using UnityEngine;
 
 namespace Cindy.Control.Controllers
 {
+    /// <summary>
+    /// 简单角色控制器
+    /// </summary>
     [RequireComponent(typeof(CharacterController))]
     [AddComponentMenu("Cindy/Control/Controllers/SimpleController", 1)]
     public class SimpleController : Controller
     {
+        /// <summary>
+        /// 轴输入类型
+        /// </summary>
         [Serializable]
         public class AxisValue
         {
@@ -16,6 +22,9 @@ namespace Cindy.Control.Controllers
             public ReferenceBool Jump;
         }
 
+        /// <summary>
+        /// 变量输入
+        /// </summary>
         [Header("Simple Controller")]
         public AxisValue axesValue;
 

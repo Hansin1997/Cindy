@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace Cindy.UI.Binder.Binders
 {
+    /// <summary>
+    /// Toogle数据绑定器
+    /// </summary>
     [AddComponentMenu("Cindy/UI/Binder/Binders/UToggleBinder")]
     public class UToggleBinder : SingleValueBinder<bool, Toggle>
     {

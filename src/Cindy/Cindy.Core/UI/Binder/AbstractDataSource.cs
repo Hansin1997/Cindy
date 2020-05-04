@@ -5,13 +5,15 @@ using UnityEngine;
 
 namespace Cindy.UI.Binder
 {
+    /// <summary>
+    /// 抽象数据源
+    /// </summary>
     public abstract class AbstractDataSource : MonoBehaviour, IDataSource
     {
         public abstract bool IsReadable();
         public abstract bool IsWriteable();
         protected abstract IEnumerator DoGetData<T>(string key, MonoBehaviour context, ResultAction<T, Exception> resultAction);
         protected abstract IEnumerator DoSetData(string key, object value, MonoBehaviour context, BoolAction<Exception> action);
-
         protected virtual IEnumerator DoGetDataMultiple<T>(string[] keys, MonoBehaviour context, ResultAction<T[], Exception> resultAction)
         {
             List<T> result = new List<T>();
@@ -86,6 +88,7 @@ namespace Cindy.UI.Binder
                 resultAction?.Invoke(default, e, false);
             }
         }
+
         public void SetData(string key, object value, MonoBehaviour context, BoolAction<Exception> action)
         {
             try

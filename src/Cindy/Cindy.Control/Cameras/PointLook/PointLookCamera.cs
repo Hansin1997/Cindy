@@ -2,6 +2,9 @@
 
 namespace Cindy.Control.Cameras.PointLook
 {
+    /// <summary>
+    /// 第三人称固定点摄像机行为
+    /// </summary>
     [CreateAssetMenu(fileName = "PointLookCamera", menuName = "Cindy/Control/Camera/PointLook", order = 1)]
     public class PointLookCamera : BaseCameraBehaviour
     {

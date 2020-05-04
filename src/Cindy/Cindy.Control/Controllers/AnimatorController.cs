@@ -6,14 +6,29 @@ using UnityEngine;
 
 namespace Cindy.Control.Controllers
 {
+    /// <summary>
+    /// 动画机控制器
+    /// </summary>
     [AddComponentMenu("Cindy/Control/Controllers/AnimatorController", 1)]
     public class AnimatorController : Controller
     {
-
+        /// <summary>
+        /// 动画机
+        /// </summary>
         public Animator animator;
+
+        /// <summary>
+        /// 布尔型参数表
+        /// </summary>
         [Header("Animator Parameters")]
         public NamedBool[] boolParameters;
+        /// <summary>
+        /// 浮点型参数表
+        /// </summary>
         public NamedFloat[] floatParameters;
+        /// <summary>
+        /// 触发器参数表
+        /// </summary>
         public NamedBool[] triggerParameters;
 
         protected override void Start()

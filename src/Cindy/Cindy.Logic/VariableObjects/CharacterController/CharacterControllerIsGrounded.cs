@@ -2,6 +2,9 @@
 
 namespace Cindy.Logic.VariableObjects
 {
+    /// <summary>
+    /// 角色控制器是否在地上
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/CharacterController/CharacterControllerIsGrounded (Bool)")]
     public class CharacterControllerIsGrounded : BoolObject
     {

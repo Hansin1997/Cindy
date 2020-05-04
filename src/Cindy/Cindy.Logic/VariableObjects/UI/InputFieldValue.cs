@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace Cindy.Logic.VariableObjects
 {
+    /// <summary>
+    /// 输入框值
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/UI/InputFieldValue (String)")]
     public class InputFieldValue : StringObject
     {

@@ -1,14 +1,19 @@
 ﻿using Cindy.Logic.ReferenceValues;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Text;
 using UnityEngine;
 
 namespace Cindy.Storages
 {
+    /// <summary>
+    /// 抽象可存储对象
+    /// </summary>
     public abstract class AbstractStorableObject : MonoBehaviour, IStorableObject
     {
+        /// <summary>
+        /// 存储选项
+        /// </summary>
         [SerializeField]
         public StorableObjectOption StorableOptions;
 
@@ -33,14 +38,28 @@ namespace Cindy.Storages
         }
         public abstract object GetStorableObject();
         public abstract Type GetStorableObjectType();
-        public abstract void OnPutStorableObject(object obj);
+        public abstract void OnStorableObjectRestore(object obj);
 
+        /// <summary>
+        /// 存储选项类
+        /// </summary>
         [Serializable]
         public class StorableObjectOption
         {
+            /// <summary>
+            /// 标签
+            /// </summary>
             public ReferenceString[] labels = { new ReferenceString() { value = "default" } };
+            /// <summary>
+            /// 是否全局唯一
+            /// </summary>
             public bool globalUniqueness = false;
 
+            /// <summary>
+            /// 判断是否包含标签
+            /// </summary>
+            /// <param name="labels"></param>
+            /// <returns></returns>
             public bool ContainerLabel(params string[] labels)
             {
                 HashSet<string> labelsSet = new HashSet<string>();
@@ -56,6 +75,11 @@ namespace Cindy.Storages
                 return false;
             }
 
+            /// <summary>
+            /// 判断是否包含标签
+            /// </summary>
+            /// <param name="labels"></param>
+            /// <returns></returns>
             public bool ContainerLabel(params ReferenceString[] labels)
             {
                 HashSet<string> labelsSet = new HashSet<string>();

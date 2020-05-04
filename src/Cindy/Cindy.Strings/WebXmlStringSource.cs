@@ -6,6 +6,9 @@ using UnityEngine.Networking;
 
 namespace Cindy.Strings
 {
+    /// <summary>
+    /// Web Xml文本源
+    /// </summary>
     [CreateAssetMenu(fileName = "WebXmlStringSource", menuName = "Cindy/StringSources/WebXmlStringSource", order = 1)]
     public class WebXmlStringSource : AbstractXmlStringSource
     {

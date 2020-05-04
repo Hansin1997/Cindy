@@ -5,14 +5,23 @@ using UnityEngine;
 
 namespace Cindy.Logic.Conditions
 {
+    /// <summary>
+    /// 抽象字符串条件
+    /// </summary>
     public abstract class StringCondition : Condition
     {
         public StringObject stringObject;
     }
 
+    /// <summary>
+    /// 字符串非空条件
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/Conditions/StringNotEmptyCondition")]
     public class StringNotEmptyCondition : StringCondition
     {
+        /// <summary>
+        /// 是否剔除首尾空字符
+        /// </summary>
         public bool trim;
 
         public override bool Check()
@@ -22,10 +31,19 @@ namespace Cindy.Logic.Conditions
         }
     }
 
+    /// <summary>
+    /// 字符串比较条件
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/Conditions/StringCompareCondition")]
     public class StringCompareCondition : StringCondition
     {
+        /// <summary>
+        /// 操作符
+        /// </summary>
         public Operator @operator;
+        /// <summary>
+        /// 比较对象
+        /// </summary>
         public ReferenceString target;
 
         public override bool Check()
@@ -48,9 +66,21 @@ namespace Cindy.Logic.Conditions
 
         public enum Operator
         {
+            /// <summary>
+            /// 等于
+            /// </summary>
             Equals,
+            /// <summary>
+            /// 不等于
+            /// </summary>
             NotEquals,
+            /// <summary>
+            /// 匹配
+            /// </summary>
             IsMatch,
+            /// <summary>
+            /// 不匹配
+            /// </summary>
             NotMatch
         }
     }

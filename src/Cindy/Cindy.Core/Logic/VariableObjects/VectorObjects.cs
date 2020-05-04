@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Cindy.Logic.VariableObjects
 {
+    /// <summary>
+    /// Vector3变量
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Vector3Object (Vector3)")]
     public class Vector3Object : VariableObject<Vector3>
     {
@@ -51,6 +54,9 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
+    /// <summary>
+    /// Vector3分量
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Vector3Value (Float)")]
     public class Vector3Value : FloatObject
     {
@@ -122,6 +128,9 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
+    /// <summary>
+    /// Vector3长度
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Vector3Magnitude (Float)")]
     public class Vector3Magnitude : FloatObject
     {
@@ -140,6 +149,9 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
+    /// <summary>
+    /// 相对Vector3
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/RelativedVector3 (Vector3)")]
     public class RelativedVector3 : Vector3Object
     {
@@ -158,6 +170,9 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
+    /// <summary>
+    /// Vector2变量
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Vector2Object (Vector2)")]
     public class Vector2Object : VariableObject<Vector2>
     {
@@ -186,7 +201,10 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
-    [AddComponentMenu("Cindy/Logic/VariableObject/Vectors/Vector2Value (Vector2)")]
+    /// <summary>
+    /// Vector2分量
+    /// </summary>
+    [AddComponentMenu("Cindy/Logic/VariableObject/Vectors/Vector2Value (Float)")]
     public class Vector2Value : FloatObject
     {
         [Header("Vector2Value")]
@@ -251,6 +269,9 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
+    /// <summary>
+    /// 相对Vector2
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/RelativedVector2 (Vector2)")]
     public class RelativedVector2 : Vector2Object
     {
@@ -269,6 +290,9 @@ namespace Cindy.Logic.VariableObjects
         }
     }
 
+    /// <summary>
+    /// Vector2长度
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Vector2Magnitude (Float)")]
     public class Vector2Magnitude : FloatObject
     {

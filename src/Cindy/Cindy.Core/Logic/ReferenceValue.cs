@@ -2,20 +2,42 @@
 
 namespace Cindy.Logic
 {
+    /// <summary>
+    /// 引用值类型，方便变量对象值和静态值切换。
+    /// </summary>
+    /// <typeparam name="T">数据类型</typeparam>
+    /// <typeparam name="V">变量对象类型</typeparam>
     [Serializable]
     public class ReferenceValue<T,V> where V : VariableObject<T>
     {
+        /// <summary>
+        /// 引用对象
+        /// </summary>
         public V reference;
+        /// <summary>
+        /// 静态值
+        /// </summary>
         public T value;
 
+        /// <summary>
+        /// 当引用对象存在时操作其变量值，否则操作静态值。
+        /// </summary>
         public T Value { get { return GetValue(); } set { SetValue(value); } }
 
+        /// <summary>
+        /// 当引用对象存在时获取其变量值，否则获取静态值。
+        /// </summary>
+        /// <returns>数据值</returns>
         public virtual T GetValue()
         {
             T V = reference != null && reference.Value != null ? reference.Value : value;
             return V;
         }
 
+        /// <summary>
+        /// 当引用对象存在时设置其变量值，否则设置静态值。
+        /// </summary>
+        /// <param name="value">数据值</param>
         public virtual void SetValue(T value)
         {
             if (reference != null)
@@ -57,6 +79,14 @@ namespace Cindy.Logic
             if(Value == null)
                 return base.GetHashCode();
             return Value.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            if (Value != null)
+                return Value.ToString();
+            else
+                return base.ToString();
         }
     }
 }

@@ -4,6 +4,9 @@ using UnityEngine.AI;
 
 namespace Cindy.Logic.VariableObjects.Vectors
 {
+    /// <summary>
+    /// 导航器位置
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Vectors/NavigationVector3 (Vector3)")]
     public class NavigationVector3 : Vector3Object
     {

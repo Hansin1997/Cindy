@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Cindy.UI.Binder.Sources
 {
+    /// <summary>
+    /// 存储器数据源
+    /// </summary>
     [AddComponentMenu("Cindy/UI/Binder/DataSources/StorageDataSource")]
     public class StorageDataSource : AbstractDataSource
     {

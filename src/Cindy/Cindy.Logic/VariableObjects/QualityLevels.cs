@@ -2,6 +2,9 @@
 
 namespace Cindy.Logic.VariableObjects
 {
+    /// <summary>
+    /// 画质等级
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Util/QualityLevel (Int)")]
     public class QualityLevel : IntObject
     {

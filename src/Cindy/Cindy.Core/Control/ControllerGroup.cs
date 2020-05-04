@@ -2,9 +2,15 @@
 
 namespace Cindy.Control
 {
+    /// <summary>
+    /// 控制器组
+    /// </summary>
     [AddComponentMenu("Cindy/Control/Controllers/ControllerGroup", 0)]
     public class ControllerGroup : Controller
     {
+        /// <summary>
+        /// 控制器数组
+        /// </summary>
         public Controller[] controllers;
 
         public override void OnControllerSelect()

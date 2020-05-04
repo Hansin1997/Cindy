@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Cindy.Storages
 {
+    /// <summary>
+    /// PlayerPref存储器
+    /// </summary>
     [CreateAssetMenu(fileName = "PlayerPrefsStorage", menuName = "Cindy/Storage/PlayerPrefsStorage", order = 1)]
     public class PlayerPrefsStorage : AbstractStorage
     {
@@ -13,6 +16,10 @@ namespace Cindy.Storages
 
         protected const string keysKey = "#KEYS#";
 
+        /// <summary>
+        /// 获取存储器的所有键
+        /// </summary>
+        /// <returns></returns>
         public IList<string> GetKeys()
         {
             IList<string> result = null;
@@ -28,7 +35,11 @@ namespace Cindy.Storages
             return new List<string>();
         }
 
-        public void SetKeys(IList<string> keys)
+        /// <summary>
+        /// 设置存储器的键
+        /// </summary>
+        /// <param name="keys"></param>
+        protected void SetKeys(IList<string> keys)
         {
             if (keys == null || keys.Count == 0)
                 PlayerPrefs.DeleteKey(prefix + keysKey);
@@ -145,7 +156,7 @@ namespace Cindy.Storages
             yield return null;
         }
 
-        public override IEnumerator DoLoadObjects(BoolAction<Exception> action, Action<float> progess, IStorableObject[] storableObjects)
+        public override IEnumerator DoRestoreObjects(BoolAction<Exception> action, Action<float> progess, IStorableObject[] storableObjects)
         {
             try
             {
@@ -155,7 +166,7 @@ namespace Cindy.Storages
                     string json = PlayerPrefs.GetString(prefix + storableObject.GetStorableKey());
                     if (json == null)
                         continue;
-                    storableObject.OnPutStorableObject(JSON.FromJson(json, storableObject.GetStorableObjectType()));
+                    storableObject.OnStorableObjectRestore(JSON.FromJson(json, storableObject.GetStorableObjectType()));
                 }
                 progess(1);
                 action?.Invoke(true, null);

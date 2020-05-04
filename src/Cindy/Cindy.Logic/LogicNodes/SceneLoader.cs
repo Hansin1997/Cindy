@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 
 namespace Cindy.Logic.LogicNodes
 {
+    /// <summary>
+    /// 场景加载器
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/LogicNodes/SceneLoader")]
     public class SceneLoader : CoroutineLogicNode
     {

@@ -2,6 +2,9 @@
 
 namespace Cindy.Logic.VariableObjects
 {
+    /// <summary>
+    /// 屏幕大小
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/Util/ScreenSize (Vector2)")]
     public class ScreenSize : Vector2Object
     {

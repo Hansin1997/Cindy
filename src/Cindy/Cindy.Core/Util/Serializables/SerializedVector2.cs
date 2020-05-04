@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Cindy.Util.Serializables
 {
+    /// <summary>
+    /// 序列化Vector2
+    /// </summary>
     [Serializable]
     public class SerializedVector2
     {

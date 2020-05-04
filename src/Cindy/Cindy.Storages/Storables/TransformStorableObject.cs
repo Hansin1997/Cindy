@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Cindy.Storages.Storables
 {
+    /// <summary>
+    /// Transform可存储对象，可存储位置、旋转、缩放。
+    /// </summary>
     [AddComponentMenu("Cindy/Storage/StorableObject/TransformStorableObject", 1)]
     [DisallowMultipleComponent]
     public class TransformStorableObject : AbstractStorableObject
@@ -27,7 +30,7 @@ namespace Cindy.Storages.Storables
             return typeof(SerializedTransform);
         }
 
-        public override void OnPutStorableObject(object obj)
+        public override void OnStorableObjectRestore(object obj)
         {
             bool active = gameObject.activeSelf;
             gameObject.SetActive(false);

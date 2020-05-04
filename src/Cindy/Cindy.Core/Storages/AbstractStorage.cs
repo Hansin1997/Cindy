@@ -5,14 +5,63 @@ using UnityEngine;
 
 namespace Cindy.Storages
 {
+    /// <summary>
+    /// 抽象存储器
+    /// </summary>
     public abstract class AbstractStorage : ScriptableObject, IStorage, IObjectStorage
     {
+        /// <summary>
+        /// 协程执行清除所有数据
+        /// </summary>
+        /// <param name="action">异步回调</param>
+        /// <returns>协程迭代器</returns>
         public abstract IEnumerator DoClear(BoolAction<Exception> action);
+        /// <summary>
+        /// 协程执行获取数据
+        /// </summary>
+        /// <param name="key">数据键名</param>
+        /// <param name="resultAction">异步回调</param>
+        /// <returns>协程迭代器</returns>
         public abstract IEnumerator DoGet(string key, ResultAction<string, Exception> resultAction);
+        /// <summary>
+        /// 协程执行存储数据
+        /// </summary>
+        /// <param name="key">数据键名</param>
+        /// <param name="value">数据值</param>
+        /// <param name="action">异步回调</param>
+        /// <returns>协程迭代器</returns>
         public abstract IEnumerator DoPut(string key, object value, BoolAction<Exception> action);
+        /// <summary>
+        /// 协程执行获取多个数据
+        /// </summary>
+        /// <param name="resultAction">异步回调</param>
+        /// <param name="progess">进度回调</param>
+        /// <param name="keys">数据键名数组</param>
+        /// <returns>协程迭代器</returns>
         public abstract IEnumerator DoGetMultiple(ResultAction<string[], Exception> resultAction, Action<float> progess, string[] keys);
+        /// <summary>
+        /// 协程执行存储多个数据
+        /// </summary>
+        /// <param name="keyValuePairs">数据字典</param>
+        /// <param name="action">异步回调</param>
+        /// <param name="progess">进度回调</param>
+        /// <returns>协程迭代器</returns>
         public abstract IEnumerator DoPutMultiple(IDictionary<string, object> keyValuePairs, BoolAction<Exception> action, Action<float> progess);
-        public abstract IEnumerator DoLoadObjects(BoolAction<Exception> action, Action<float> progess, IStorableObject[] storableObjects);
+        /// <summary>
+        /// 协程执行恢复对象
+        /// </summary>
+        /// <param name="action">异步回调</param>
+        /// <param name="progess">进度回调</param>
+        /// <param name="storableObjects">可存储物体数组</param>
+        /// <returns>协程迭代器</returns>
+        public abstract IEnumerator DoRestoreObjects(BoolAction<Exception> action, Action<float> progess, IStorableObject[] storableObjects);
+        /// <summary>
+        /// 协程执行存储对象
+        /// </summary>
+        /// <param name="action">异步回调</param>
+        /// <param name="progress">进度回调</param>
+        /// <param name="storableObjects">可存储物体数组</param>
+        /// <returns>协程迭代器</returns>
         public abstract IEnumerator DoPutObjects(BoolAction<Exception> action, Action<float> progress, IStorableObject[] storableObjects);
        
         public void Clear(MonoBehaviour context, BoolAction<Exception> action)
@@ -99,7 +148,7 @@ namespace Cindy.Storages
             }
         }
 
-        public void LoadObjects(MonoBehaviour context, BoolAction<Exception> action, Action<float> progess, params IStorableObject[] storableObjects)
+        public void RestoreObjects(MonoBehaviour context, BoolAction<Exception> action, Action<float> progess, params IStorableObject[] storableObjects)
         {
             if(action == null)
             {
@@ -108,7 +157,7 @@ namespace Cindy.Storages
             }
             try
             {
-                context.StartCoroutine(DoLoadObjects(action, progess, storableObjects));
+                context.StartCoroutine(DoRestoreObjects(action, progess, storableObjects));
             }
             catch (Exception e)
             {

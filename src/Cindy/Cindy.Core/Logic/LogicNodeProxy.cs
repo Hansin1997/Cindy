@@ -4,11 +4,20 @@ using UnityEngine;
 
 namespace Cindy.Logic
 {
+    /// <summary>
+    /// 逻辑节点代理
+    /// </summary>
     [AddComponentMenu("Cindy/Logic/LogicNodeProxy")]
     public class LogicNodeProxy : LogicNode
     {
+        /// <summary>
+        /// 上下文
+        /// </summary>
         [Header("LogicNodeProxy")]
         public Context context;
+        /// <summary>
+        /// 被代理的节点名称数组
+        /// </summary>
         public ReferenceString[] targets;
 
         protected override void Run()
