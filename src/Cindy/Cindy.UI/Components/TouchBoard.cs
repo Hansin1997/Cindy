@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cindy.Logic.ReferenceValues;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -17,7 +18,10 @@ namespace Cindy.UI.Components
 
         public InputType inputType = InputType.Delta;
 
+        public ReferenceFloat horizontalSensitivity = new ReferenceFloat() { value = 100 } , verticalSensitivity = new ReferenceFloat() { value = 100 };
+
         private PointerEventData ed;
+        private Vector2 dp;
         private VirtualAxis horizontalAxis, verticalAxis;
         private VirtualButton _btn;
         private int state;
@@ -37,9 +41,9 @@ namespace Cindy.UI.Components
                     {
                         default:
                         case InputType.Delta:
-                            return ed.delta.x / Screen.width * 100;
+                            return ed.delta.x / Screen.width * horizontalSensitivity.Value;
                         case InputType.Position:
-                            return (ed.position.x - rectTransform.anchoredPosition.x - rectTransform.rect.width / 2) * 2 / rectTransform.rect.width;
+                            return (ed.position.x - dp.x) / Screen.width * horizontalSensitivity.Value;
                     }
                 };
                 VirtualInput.Register(horizontalAxisName, horizontalAxis);
@@ -54,9 +58,9 @@ namespace Cindy.UI.Components
                     {
                         default:
                         case InputType.Delta:
-                            return ed.delta.y / Screen.height * 100;
+                            return ed.delta.y / Screen.height * horizontalSensitivity.Value;
                         case InputType.Position:
-                            return (ed.position.y - rectTransform.anchoredPosition.y - rectTransform.rect.height / 2) * 2 / rectTransform.rect.height;
+                            return (ed.position.y - dp.y) / Screen.height * horizontalSensitivity.Value;
                     }
                 };
                 VirtualInput.Register(verticalAxisName, verticalAxis);
@@ -84,14 +88,18 @@ namespace Cindy.UI.Components
         {
             base.OnPointerDown(eventData);
             ed = eventData;
+            dp = ed.position;
             state = 1;
         }
 
         public override void OnPointerUp(PointerEventData eventData)
         {
             base.OnPointerUp(eventData);
-            ed = null;
-            state = -1;
+            if(ed != null && eventData.pointerId == ed.pointerId)
+            {
+                ed = null;
+                state = -1;
+            }
         }
 
         protected override void OnDestroy()
