@@ -5,7 +5,7 @@ namespace Cindy.UI.Pages
     /// <summary>
     /// 页面容器接口
     /// </summary>
-    public interface IPageContainer<P> where P : IPage
+    public interface IPageContainer<P> where P : IPage<P>
     {
         /// <summary>
         /// 将一个页面入栈
