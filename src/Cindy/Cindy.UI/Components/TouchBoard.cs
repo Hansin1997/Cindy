@@ -99,17 +99,36 @@ namespace Cindy.UI.Components
         public override void OnPointerDown(PointerEventData eventData)
         {
             base.OnPointerDown(eventData);
-            ed = eventData;
-            dp = ed.position;
-            state = 1;
+            if(ed != null)
+            {
+                if(ed.pointerId == eventData.pointerId)
+                {
+                    ed = eventData;
+                    dp = ed.position;
+                    state = 1;
+                }
+            }
+            else
+            {
+                ed = eventData;
+                dp = ed.position;
+                state = 1;
+            }
         }
 
         public override void OnPointerUp(PointerEventData eventData)
         {
             base.OnPointerUp(eventData);
-            if(ed != null && eventData.pointerId == ed.pointerId)
+            if(ed != null)
             {
-                ed = null;
+                if(eventData.pointerId == ed.pointerId)
+                {
+                    ed = null;
+                    state = -1;
+                }
+            }
+            else
+            {
                 state = -1;
             }
         }

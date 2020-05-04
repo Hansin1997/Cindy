@@ -561,7 +561,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 790955620}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -798742717, guid: bd1c68aca836d6b4f8ec0de1e3c93ba1, type: 3}
+  m_Script: {fileID: -798742717, guid: 992cf245ab855ea428b2707377a597c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pages: []
@@ -1362,6 +1362,7 @@ MonoBehaviour:
     reference: {fileID: 0}
     value: This is a MessageBox with blocked behaviours.
   stringSource: {fileID: 0}
+  context: {fileID: 0}
 --- !u!1 &1475224341
 GameObject:
   m_ObjectHideFlags: 0

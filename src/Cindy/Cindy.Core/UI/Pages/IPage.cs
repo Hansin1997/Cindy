@@ -5,7 +5,8 @@ namespace Cindy.UI.Pages
     /// <summary>
     /// 页面接口
     /// </summary>
-    public interface IPage
+    /// <typeparam name="P"></typeparam>
+    public interface IPage<P> where P : IPage<P>
     {
         /// <summary>
         /// 获取页面上下文
@@ -81,7 +82,7 @@ namespace Cindy.UI.Pages
         /// <typeparam name="T">页面类型</typeparam>
         /// <param name="context">上下文</param>
         /// <returns></returns>
-        T ShowAndReturn<T>(Context context = null) where T : IPage;
+        T ShowAndReturn<T>(Context context = null) where T : P;
 
         /// <summary>
         /// 判断页面是否激活

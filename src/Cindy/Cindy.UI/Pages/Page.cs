@@ -7,7 +7,7 @@ namespace Cindy.UI.Pages
     /// 页面
     /// </summary>
     [AddComponentMenu("Cindy/UI/Page/Page")]
-    public class Page : MonoBehaviour,IPage
+    public class Page : MonoBehaviour,IPage<Page>
     {
         /// <summary>
         /// 所属容器
@@ -105,7 +105,7 @@ namespace Cindy.UI.Pages
             Show(null);
         }
 
-        public virtual T ShowAndReturn<T>(Context context = null) where T : IPage
+        public virtual T ShowAndReturn<T>(Context context = null) where T : Page
         {
             return PageContainer.Load<T>(name, context);
         }
