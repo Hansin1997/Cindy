@@ -1,4 +1,6 @@
 ﻿using Cindy.Logic;
+using Cindy.Util;
+using System;
 using UnityEngine;
 
 namespace Cindy.UI.Pages
@@ -7,7 +9,7 @@ namespace Cindy.UI.Pages
     /// 页面
     /// </summary>
     [AddComponentMenu("Cindy/UI/Page/Page")]
-    public class Page : MonoBehaviour,IPage<Page>
+    public class Page : Attachment, IPage<Page>
     {
         /// <summary>
         /// 所属容器
@@ -97,7 +99,14 @@ namespace Cindy.UI.Pages
 
         public virtual void Show(Context context)
         {
-            PageContainer.Load<Page>(name, context);
+            if (FindTarget() is PageContainer pc)
+            {
+                pc.LoadPage(name, context);
+            }
+            else
+            {
+                PageContainer.Load<Page>(name, context);
+            }
         }
 
         public virtual void Show()
@@ -105,14 +114,33 @@ namespace Cindy.UI.Pages
             Show(null);
         }
 
+        public override void Attach()
+        {
+            Show();
+        }
+
+        public override void Detach()
+        {
+            Finish();
+        }
+
         public virtual T ShowAndReturn<T>(Context context = null) where T : Page
         {
+            if(FindTarget() is PageContainer pc)
+            {
+                return pc.LoadPage<T>(name, context);
+            }
             return PageContainer.Load<T>(name, context);
         }
 
         public virtual bool IsActive()
         {
-            return owner != null && owner.pages != null && owner.pages.Count > 0 && owner.pages[owner.pages.Count - 1] == this;
+            return owner != null && owner.Pages != null && owner.Pages.Count > 0 && owner.Pages[owner.Pages.Count - 1] == this;
+        }
+
+        protected override Type GetTargetType()
+        {
+            return typeof(PageContainer);
         }
     }
 }

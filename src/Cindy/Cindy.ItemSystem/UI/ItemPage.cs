@@ -13,8 +13,9 @@ namespace Cindy.ItemSystem.UI
 
         public ItemListView ItemListView;
 
-        protected virtual void Start()
+        protected override void Start()
         {
+            base.Start();
             ItemListView.source = Finder.Find<ItemContainer>(itemContainerName.Value);
             ItemListView.Refresh();
         }

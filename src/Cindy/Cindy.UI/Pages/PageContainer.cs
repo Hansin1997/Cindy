@@ -1,4 +1,5 @@
 ﻿using Cindy.Logic;
+using Cindy.Util;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,15 +9,35 @@ namespace Cindy.UI.Pages
     /// 页面容器
     /// </summary>
     [AddComponentMenu("Cindy/UI/Page/PageContainer")]
-    public class PageContainer : MonoBehaviour , IPageContainer<Page>
+    public class PageContainer : AttachmentContainer , IPageContainer<Page>
     {
-        public List<Page> pages;
+        public List<Attachment> Pages { get { return attachments; } }
         protected Page currentPage;
+
+        public override bool Add(Attachment attachment)
+        {
+            if (base.Add(attachment) && attachment is Page p)
+            {
+                Push(p);
+                return true;
+            }else
+                return false;
+        }
+
+        public override bool Remove(Attachment attachment)
+        {
+            if (Pages.Contains(attachment) && attachment is Page p)
+            {
+                FinishPage(p);
+                return true;
+            }
+            else
+                return false;
+        }
 
         public virtual void Push(Page page,Context context = null)
         {
-            if (!pages.Contains(page))
-                pages.Add(page);
+            base.Add(page);
             ContextProxy[] contextProxies = page.GetComponentsInChildren<ContextProxy>();
             foreach(ContextProxy contextProxy in contextProxies)
             {
@@ -29,10 +50,10 @@ namespace Cindy.UI.Pages
 
         public virtual Page Pop()
         {
-            if (pages.Count == 0)
+            if (Pages.Count == 0)
                 return null;
-            Page page = pages[pages.Count - 1];
-            pages.RemoveAt(pages.Count - 1);
+            Page page = Pages[Pages.Count - 1] as Page;
+            Pages.RemoveAt(Pages.Count - 1);
             page.OnPageFinish();
             return page;
         }
@@ -67,11 +88,11 @@ namespace Cindy.UI.Pages
 
         public virtual void FinishPage(Page page)
         {
-            if (pages.Contains(page))
+            if (Pages.Contains(page))
             {
-                while(pages.Count > 0)
+                while(Pages.Count > 0)
                 {
-                    Page top = pages[pages.Count - 1];
+                    Page top = Pages[Pages.Count - 1] as Page;
                     Pop();
                     Destroy(top.gameObject);
                     if (currentPage == top)
@@ -94,14 +115,14 @@ namespace Cindy.UI.Pages
                     }
                 }
 
-            if (currentPage == null && pages.Count > 0)
+            if (currentPage == null && Pages.Count > 0)
             {
-                currentPage = pages[pages.Count - 1];
+                currentPage = Pages[Pages.Count - 1] as Page;
                 currentPage.OnPageFocus();
-            }else if(currentPage != null && pages.Count > 0 && pages[pages.Count - 1] != currentPage)
+            }else if(currentPage != null && Pages.Count > 0 && Pages[Pages.Count - 1] != currentPage)
             {
                 currentPage.OnPageBlur();
-                currentPage = pages[pages.Count - 1];
+                currentPage = Pages[Pages.Count - 1] as Page;
                 currentPage.OnPageFocus();
             }
             if (currentPage != null)
@@ -129,6 +150,16 @@ namespace Cindy.UI.Pages
                 return page;
             }
             return null;
+        }
+
+        protected override bool CheckAttachment(Attachment attachment)
+        {
+            return attachment is Page;
+        }
+
+        protected override bool IsAvailable(Attachment attachment)
+        {
+            return attachment != null && attachment.gameObject.activeSelf && attachment.enabled;
         }
     }
 }
