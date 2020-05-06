@@ -34,15 +34,13 @@ namespace Cindy.Logic
                 OnConditionValueChanged(val);
                 lastValue = val;
                 firstTime = false;
-                return true;
             }
             else if (lastValue != val)
             {
                 OnConditionValueChanged(val);
                 lastValue = val;
-                return true;
             }
-            return false;
+            return val;
         }
     }
 }
