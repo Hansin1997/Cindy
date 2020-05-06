@@ -45,7 +45,8 @@ namespace Cindy.Control
                     OnControllerSelect(top);
                 }
                 OnControllerUpdate(top, deltaTime);
-            }
+            }else if(selectedController != null)
+                OnControllerUnselect(selectedController);
             selectedController = top;
         }
 
