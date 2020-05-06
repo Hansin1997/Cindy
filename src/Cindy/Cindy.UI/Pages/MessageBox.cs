@@ -41,6 +41,7 @@ namespace Cindy.UI.Pages
         public ReferenceString titleKey;
         public ReferenceString contentKey;
         public StringSource stringSource;
+        public ReferenceString containerName;
         public Context context;
 
         protected override void Run()
@@ -52,6 +53,7 @@ namespace Cindy.UI.Pages
             title = titleKey.Value;
             content = contentKey.Value;
             messageBox.SetText(title, content);
+            messageBox.targetName.Value = containerName.Value;
             MessageBox instance = messageBox.ShowAndReturn<MessageBox>(context);
             if (stringSource != null)
             {
