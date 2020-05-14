@@ -15,20 +15,18 @@ namespace Cindy.Logic.VariableObjects.Vectors
         public ValueType valueType;
         protected Vector3 _target;
 
-        protected override void Start()
+        protected virtual void Start()
         {
             if(agent == null)
             {
                 agent = GetComponent<NavMeshAgent>();
             }
-            base.Start();
         }
 
-        protected override void Update()
+        protected virtual void Update()
         {
             if (!_target.Equals(target.Value))
                 OnTargetChanged();
-            base.Update();
         }
 
         protected void OnTargetChanged()

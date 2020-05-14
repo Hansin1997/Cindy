@@ -12,7 +12,7 @@ namespace Cindy.Logic.VariableObjects
         [Header("Axis")]
         public ReferenceString axisName;
 
-        protected override void Start()
+        protected virtual void Start()
         {
             GetValue();
         }

@@ -13,20 +13,10 @@ namespace Cindy.Logic.VariableObjects
         public Slider slider;
         public ValueType valueType = ValueType.Value;
 
-        protected override void Start()
+        protected virtual void Start()
         {
             if (slider == null)
                 slider = GetComponent<Slider>();
-            base.Start();
-        }
-
-        protected override void OnValueLoad(float val)
-        {
-            base.OnValueLoad(val);
-
-            if (slider == null)
-                slider = GetComponent<Slider>();
-            SetSliderValue(value, slider);
         }
 
         protected override void OnValueChanged(bool save = true,bool notify = true)

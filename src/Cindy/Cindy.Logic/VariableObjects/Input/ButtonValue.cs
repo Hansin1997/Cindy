@@ -14,7 +14,7 @@ namespace Cindy.Logic.VariableObjects
         public ReferenceString buttonKey;
         public ButtonCondition.ButtonType state;
 
-        protected override void Start()
+        protected virtual void Start()
         {
             GetValue();
         }

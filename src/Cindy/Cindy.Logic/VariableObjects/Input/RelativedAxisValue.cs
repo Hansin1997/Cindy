@@ -23,7 +23,7 @@ namespace Cindy.Logic.VariableObjects
         protected GameObject targetObj;
         private string lastNameCam, lastNameObj;
 
-        protected override void Start()
+        protected virtual void Start()
         {
             FindCam();
             FindObj();

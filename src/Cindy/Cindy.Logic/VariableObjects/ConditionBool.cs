@@ -11,7 +11,7 @@ namespace Cindy.Logic.VariableObjects
         [Header("Condition")]
         public Condition condition;
 
-        protected override void Start()
+        protected virtual void Start()
         {
             value = condition != null && condition.Check();
         }

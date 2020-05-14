@@ -94,17 +94,6 @@ namespace Cindy.Logic.VariableObjects
             base.OnValueChanged(save, notify);
         }
 
-        protected override void OnValueLoad(float val)
-        {
-            ApplyToVector(val);
-            base.OnValueLoad(val);
-        }
-
-        protected override void OnValueLoadEmpty()
-        {
-            GetValue();
-        }
-
         public override float GetValue()
         {
             switch (component)
@@ -238,17 +227,6 @@ namespace Cindy.Logic.VariableObjects
             base.OnValueChanged(save, notify);
         }
 
-        protected override void OnValueLoad(float val)
-        {
-            ApplyToVector(value);
-            base.OnValueLoad(val);
-        }
-
-        protected override void OnValueLoadEmpty()
-        {
-            GetValue();
-        }
-
         public override float GetValue()
         {
             switch (component)
@@ -273,7 +251,7 @@ namespace Cindy.Logic.VariableObjects
     /// 相对Vector2
     /// </summary>
     [AddComponentMenu("Cindy/Logic/VariableObject/RelativedVector2 (Vector2)")]
-    public class RelativedVector2 : Vector2Object
+    public class RelativedVector2 :Vector2Object
     {
         [Header("RelativedVector2")]
         public ReferenceVector2 start, end;

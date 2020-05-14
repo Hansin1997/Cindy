@@ -19,24 +19,15 @@ namespace Cindy.Logic.VariableObjects
         /// </summary>
         public Target target = Target.SlefAndChildren;
 
-        protected override void Start()
+        protected virtual void Start()
         {
             audioSources.AddRange(DoScan());
-            base.Start();
         }
 
-        protected override void OnValueLoad(float val)
+        public override void SetValue(float value)
         {
             foreach (AudioSource source in audioSources)
-                source.volume = val;
-            base.OnValueLoad(val);
-        }
-
-        protected override void OnValueLoadEmpty()
-        {
-            foreach (AudioSource source in audioSources)
-                source.volume = 1;
-            value = 1;
+                source.volume = value;
         }
 
         protected override void OnValueChanged(bool save = true,bool notify = true)

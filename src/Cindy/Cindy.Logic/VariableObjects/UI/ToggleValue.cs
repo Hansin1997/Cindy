@@ -12,21 +12,10 @@ namespace Cindy.Logic.VariableObjects
         [Header("Toggle Value")]
         public Toggle toggle;
 
-        protected override void Start()
+        protected virtual void Start()
         {
             if (toggle == null)
                 toggle = GetComponent<Toggle>();
-            base.Start();
-        }
-
-        protected override void OnValueLoad(bool val)
-        {
-            base.OnValueLoad(val);
-
-            if (toggle == null)
-                toggle = GetComponent<Toggle>();
-            if (toggle != null)
-                toggle.isOn = val;
         }
 
         protected override void OnValueChanged(bool save = true,bool notify = true)

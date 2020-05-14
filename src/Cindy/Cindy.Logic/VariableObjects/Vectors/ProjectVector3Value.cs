@@ -18,7 +18,7 @@ namespace Cindy.Logic.VariableObjects.Vectors
         /// </summary>
         public ReferenceVector3 normal;
 
-        protected override void Start()
+        protected virtual void Start()
         {
             GetValue();
         }

@@ -12,13 +12,6 @@ namespace Cindy.Logic.VariableObjects
         [Header("InputFieldValue")]
         public InputField inputField;
 
-        protected override void Start()
-        {
-            if (inputField == null)
-                inputField = GetComponent<InputField>();
-            base.Start();
-        }
-
         public override string GetValue()
         {
             if (inputField != null)

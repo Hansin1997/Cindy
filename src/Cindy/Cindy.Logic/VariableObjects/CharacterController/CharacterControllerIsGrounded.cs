@@ -11,7 +11,7 @@ namespace Cindy.Logic.VariableObjects
         [Header("CharacterController")]
         public CharacterController characterController;
 
-        protected override void Start()
+        protected virtual void Start()
         {
             if (characterController == null)
                 characterController = GetComponent<CharacterController>();

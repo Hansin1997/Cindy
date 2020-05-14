@@ -61,17 +61,6 @@ namespace Cindy.Logic.VariableObjects.Vectors
             base.OnValueChanged(save, notify);
         }
 
-        protected override void OnValueLoad(Vector3 val)
-        {
-            Apply(value);
-            base.OnValueLoad(val);
-        }
-
-        protected override void OnValueLoadEmpty()
-        {
-            GetValue();
-        }
-
         public override Vector3 GetValue()
         {
             Transform t = target != null && target.Value != null ? target.Value : transform;

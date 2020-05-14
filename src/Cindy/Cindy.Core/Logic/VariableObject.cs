@@ -34,28 +34,6 @@ namespace Cindy.Logic
         public ReferenceString proxyTarget;
 
         /// <summary>
-        /// 存储器，当字段不为空时将从存储器获取初始值
-        /// </summary>
-        [Header("Storage")]
-        public AbstractStorage storage;
-        /// <summary>
-        /// 存储器键名
-        /// </summary>
-        public ReferenceString key;
-        /// <summary>
-        /// 是否在数据更改时存储
-        /// </summary>
-        public bool autoSave = true;
-        /// <summary>
-        /// 是否在每一帧从存储库获取最新值
-        /// </summary>
-        public bool updateFromStorage = false;
-        /// <summary>
-        /// 存储异常处理出口
-        /// </summary>
-        public ExceptionEvent exceptionEvent;
-
-        /// <summary>
         /// 值更改事件
         /// </summary>
         [Header("Events")]
@@ -65,23 +43,9 @@ namespace Cindy.Logic
         protected VariableObject<T> _proxyTarget, _proxyTargetOld; // 当前代理对象和旧的代理对象
 
         /// <summary>
-        /// 存储异常出口
-        /// </summary>
-        public struct ExceptionEvent
-        {
-            public UnityEvent<Exception> onLoadException;
-            public UnityEvent<Exception> onSaveException;
-        }
-
-        /// <summary>
         /// 变量值
         /// </summary>
         public T Value { get { return GetValue(); }  set { SetValue(value); } }
-
-        protected virtual void Start()
-        {
-            LoadFromStorage();
-        }
 
         protected override string GetName()
         {
@@ -119,65 +83,6 @@ namespace Cindy.Logic
         }
 
         /// <summary>
-        /// 从存储器加载数据
-        /// </summary>
-        protected virtual void LoadFromStorage()
-        {
-            if (storage != null)
-            {
-                storage.RestoreObjects(this,(s,e)=>
-                {
-                    if (!s && e != null)
-                        OnValueLoadException(e);
-                }, (p) => { }, this);                    
-            }
-            else
-            {
-                OnValueLoadEmpty();
-                if (IsValueChanged())
-                    OnValueChanged(false);
-            }
-        }
-
-        /// <summary>
-        /// 当从存储器加载值完毕后
-        /// </summary>
-        /// <param name="val">加载的数据值</param>
-        protected virtual void OnValueLoad(T val)
-        {
-            if (val != null)
-                value = val;
-        }
-
-        /// <summary>
-        /// 当从存储器加载到空值
-        /// </summary>
-        protected virtual void OnValueLoadEmpty()
-        {
-
-        }
-
-        /// <summary>
-        /// 当从存储器加载时发生异常
-        /// </summary>
-        /// <param name="e">异常对象</param>
-        protected virtual void OnValueLoadException(Exception e)
-        {
-            Debug.LogWarning(e, this);
-            exceptionEvent.onLoadException.Invoke(e);
-        }
-
-        /// <summary>
-        /// 当存储器存储值时发生异常
-        /// </summary>
-        /// <param name="e">异常对象</param>
-        protected virtual void OnValueSaveException(Exception e)
-        {
-            Debug.LogWarning(e, this);
-            exceptionEvent.onSaveException.Invoke(e);
-        }
-
-        /// <summary>
         /// 判断变量值是否更改
         /// </summary>
         /// <returns>变量值是否更改</returns>
@@ -194,21 +99,6 @@ namespace Cindy.Logic
                     return true;
             }
             return false;
-        }
-
-        protected virtual void Update()
-        {
-            if(_proxyTarget != _proxyTargetOld)
-            {
-                if (_proxyTargetOld != null)
-                    _proxyTargetOld.valueChangedEvent.RemoveListener(OnProxyValueChanged);
-                _proxyTarget.valueChangedEvent.AddListener(OnProxyValueChanged);
-                _proxyTargetOld = _proxyTarget;
-            }
-            if(IsValueChanged())
-                OnValueChanged();
-            if (updateFromStorage)
-                LoadFromStorage();
         }
 
         /// <summary>
@@ -229,26 +119,9 @@ namespace Cindy.Logic
         /// <param name="notify">是否触发事件</param>
         protected virtual void OnValueChanged(bool save = true,bool notify = true)
         {
-            if (autoSave && save)
-                Save();
             if (valueChangedEvent != null && notify)
                 valueChangedEvent.Invoke();
             _value = value;
-        }
-
-        /// <summary>
-        /// 存储变量
-        /// </summary>
-        public virtual void Save()
-        {
-            if (storage != null)
-            {
-                storage.PutObjects(this, (isSuccess, exception) =>
-                {
-                    if (!isSuccess)
-                        OnValueSaveException(exception);
-                }, (p) => { }, this);
-            }
         }
 
         /// <summary>
@@ -257,6 +130,13 @@ namespace Cindy.Logic
         /// <param name="value"></param>
         public virtual void SetValue(T value)
         {
+            if (_proxyTarget != _proxyTargetOld)
+            {
+                if (_proxyTargetOld != null)
+                    _proxyTargetOld.valueChangedEvent.RemoveListener(OnProxyValueChanged);
+                _proxyTarget.valueChangedEvent.AddListener(OnProxyValueChanged);
+                _proxyTargetOld = _proxyTarget;
+            }
             if (proxyContext != null)
             {
                 if (_proxyTarget == null || !_proxyTarget.variableName.Equals(proxyTarget.Value))
@@ -266,6 +146,9 @@ namespace Cindy.Logic
                     target.SetValue(value);
             }
             this.value = value;
+
+            if (IsValueChanged())
+                OnValueChanged();
         }
 
         /// <summary>
@@ -274,7 +157,14 @@ namespace Cindy.Logic
         /// <returns></returns>
         public virtual T GetValue()
         {
-            if(proxyContext != null)
+            if (_proxyTarget != _proxyTargetOld)
+            {
+                if (_proxyTargetOld != null)
+                    _proxyTargetOld.valueChangedEvent.RemoveListener(OnProxyValueChanged);
+                _proxyTarget.valueChangedEvent.AddListener(OnProxyValueChanged);
+                _proxyTargetOld = _proxyTarget;
+            }
+            if (proxyContext != null)
             {
                 if (_proxyTarget == null || !_proxyTarget.variableName.Equals(proxyTarget.Value))
                     _proxyTarget = proxyContext.GetVariable<VariableObject<T>, T>(proxyTarget.Value);
@@ -282,6 +172,9 @@ namespace Cindy.Logic
                 if (target != null)
                     value = target.GetValue();
             }
+
+            if (IsValueChanged())
+                OnValueChanged();
             return value;
         }
 
@@ -302,7 +195,7 @@ namespace Cindy.Logic
 
         public virtual string GetStorableKey()
         {
-            return key.Value;
+            return variableName;
         }
 
         public virtual object GetStorableObject()
@@ -317,18 +210,13 @@ namespace Cindy.Logic
 
         public virtual void OnStorableObjectRestore(object obj)
         {
-            if (obj == null)
-                OnValueLoadEmpty();
+            if (TramsformValue(obj, out T v))
+            {
+                SetValue(v);
+            }
             else
             {
-                if (TramsformValue(obj,out T v))
-                {
-                    OnValueLoad(v);
-                }
-                else
-                {
-                    Debug.LogWarning(string.Format("obj({0}) can not tramsfrom to {1}", obj.GetType().Name, typeof(T).Name));
-                }
+                Debug.LogWarning(string.Format("obj({0}) can not tramsfrom to {1}", obj.GetType().Name, typeof(T).Name));
             }
             if (IsValueChanged())
                 OnValueChanged(false);

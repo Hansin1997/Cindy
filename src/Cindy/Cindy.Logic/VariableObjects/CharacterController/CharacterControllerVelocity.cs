@@ -18,7 +18,7 @@ namespace Cindy.Logic.VariableObjects
             Z
         }
 
-        protected override void Start()
+        protected virtual void Start()
         {
             if (characterController == null)
                 characterController = GetComponent<CharacterController>();

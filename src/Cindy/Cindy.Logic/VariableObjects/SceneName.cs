@@ -12,9 +12,8 @@ namespace Cindy.Logic.VariableObjects
         [Header("Scene Name")]
         public SceneType sceneType = SceneType.ActiveScene;
 
-        protected override void Start()
+        protected virtual void Start()
         {
-            base.Start();
             GetValue();
         }
         public override void SetValue(string value)
